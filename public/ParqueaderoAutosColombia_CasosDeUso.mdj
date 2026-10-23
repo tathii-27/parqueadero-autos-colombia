@@ -1,0 +1,413 @@
+{
+  "_type": "Project",
+  "_id": "AAAAAAF8AutosColombiaUseCaseProject",
+  "name": "Parqueadero Autos Colombia - Diagrama de Casos de Uso",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "AAAAAAF8ModelCasosDeUso",
+      "_parent": {
+        "$ref": "AAAAAAF8AutosColombiaUseCaseProject"
+      },
+      "name": "Modelo de Casos de Uso del Sistema",
+      "ownedElements": [
+        {
+          "_type": "UMLUseCaseDiagram",
+          "_id": "AAAAAAF8DiagramCasosDeUso",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelCasosDeUso"
+          },
+          "name": "Diagrama de Casos de Uso Principal",
+          "visible": true,
+          "defaultDiagram": true,
+          "ownedViews": [
+            {
+              "_type": "UMLActorView",
+              "_id": "V_Act_Operario",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "Act_Operario" },
+              "font": "Arial;11;0",
+              "left": 40,
+              "top": 140,
+              "width": 90,
+              "height": 95,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Act_Operario_Name",
+                "_parent": { "$ref": "V_Act_Operario" },
+                "model": { "$ref": "Act_Operario" },
+                "font": "Arial;11;1",
+                "left": 40,
+                "top": 215,
+                "width": 90,
+                "height": 20
+              }
+            },
+            {
+              "_type": "UMLActorView",
+              "_id": "V_Act_Admin",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "Act_Admin" },
+              "font": "Arial;11;0",
+              "left": 40,
+              "top": 460,
+              "width": 90,
+              "height": 95,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Act_Admin_Name",
+                "_parent": { "$ref": "V_Act_Admin" },
+                "model": { "$ref": "Act_Admin" },
+                "font": "Arial;11;1",
+                "left": 40,
+                "top": 535,
+                "width": 90,
+                "height": 20
+              }
+            },
+            {
+              "_type": "UMLActorView",
+              "_id": "V_Act_Cliente",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "Act_Cliente" },
+              "font": "Arial;11;0",
+              "left": 920,
+              "top": 150,
+              "width": 90,
+              "height": 95,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Act_Cliente_Name",
+                "_parent": { "$ref": "V_Act_Cliente" },
+                "model": { "$ref": "Act_Cliente" },
+                "font": "Arial;11;1",
+                "left": 920,
+                "top": 225,
+                "width": 90,
+                "height": 20
+              }
+            },
+            {
+              "_type": "UMLActorView",
+              "_id": "V_Act_Pasarela",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "Act_Pasarela" },
+              "font": "Arial;11;0",
+              "left": 920,
+              "top": 460,
+              "width": 90,
+              "height": 95,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Act_Pasarela_Name",
+                "_parent": { "$ref": "V_Act_Pasarela" },
+                "model": { "$ref": "Act_Pasarela" },
+                "font": "Arial;11;1",
+                "left": 920,
+                "top": 535,
+                "width": 90,
+                "height": 20
+              }
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU01",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU01" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 80,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU02",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU02" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 160,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU03",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU03" },
+              "font": "Arial;11;0",
+              "left": 470,
+              "top": 80,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU04",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU04" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 240,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU05",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU05" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 320,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU06",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU06" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 180,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU07",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU07" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 260,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU08",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU08" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 340,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU09",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU09" },
+              "font": "Arial;11;0",
+              "left": 710,
+              "top": 120,
+              "width": 180,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU10",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU10" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 420,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU11",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU11" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 440,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU12",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU12" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 510,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU13",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU13" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 580,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU14",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU14" },
+              "font": "Arial;11;0",
+              "left": 230,
+              "top": 650,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU15",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU15" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 520,
+              "width": 200,
+              "height": 50
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "V_CU16",
+              "_parent": { "$ref": "AAAAAAF8DiagramCasosDeUso" },
+              "model": { "$ref": "CU16" },
+              "font": "Arial;11;0",
+              "left": 530,
+              "top": 600,
+              "width": 200,
+              "height": 50
+            }
+          ]
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "Act_Operario",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "Operario / Cajero"
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "Act_Admin",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "Administrador"
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "Act_Cliente",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "Cliente / Conductor"
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "Act_Pasarela",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "Pasarela Pagos / DIAN"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU01",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-01: Registrar Ingreso Vehicular"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU02",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-02: Asignar Celda de Parqueo"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU03",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-03: Registrar Novedad / Daño Previo"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU04",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-04: Registrar Salida y Tiempo"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU05",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-05: Monitorear Celdas en Tiempo Real"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU06",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-06: Liquidar Cobro de Estancia"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU07",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-07: Procesar Transacción de Pago"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU08",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-08: Emitir Ticket / Factura DIAN"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU09",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-09: Aplicar Tarifa Preferencial"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU10",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-10: Realizar Cierre / Arqueo Diario"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU11",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-11: Registrar Cliente Mensualista"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU12",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-12: Suscribir Cupo Fijo Mensual"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU13",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-13: Renovar / Suspender Suscripción"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU14",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-14: Consultar Estado de Cuenta"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU15",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-15: Configurar Tarifas y Fracciones"
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "CU16",
+          "_parent": { "$ref": "AAAAAAF8ModelCasosDeUso" },
+          "name": "CU-16: Generar Reportes de Ocupación"
+        }
+      ]
+    }
+  ]
+}

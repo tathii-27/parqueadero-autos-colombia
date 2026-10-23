@@ -1,0 +1,1040 @@
+const fs = require('fs');
+const path = require('path');
+
+const project = {
+  "_type": "Project",
+  "_id": "AAAAAAF8AutosColombiaProject",
+  "name": "Parqueadero Autos Colombia - Arquitectura del Sistema",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "AAAAAAF8ModelArchitecture",
+      "_parent": { "$ref": "AAAAAAF8AutosColombiaProject" },
+      "name": "Modelo Arquitectural del Sistema",
+      "ownedElements": [
+        // ================= DIAGRAMA DE CLASES DEL DOMINIO =================
+        {
+          "_type": "UMLClassDiagram",
+          "_id": "AAAAAAF8DiagramClasesPrincipal",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Diagrama de Clases del Dominio",
+          "visible": true,
+          "defaultDiagram": true,
+          "ownedViews": [
+            // 1. Vista Vehiculo
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Vehiculo",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Vehiculo" },
+              "font": "Arial;11;0",
+              "left": 40,
+              "top": 40,
+              "width": 240,
+              "height": 190,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Vehiculo_Name",
+                "_parent": { "$ref": "V_Vehiculo" },
+                "model": { "$ref": "C_Vehiculo" },
+                "font": "Arial;11;1",
+                "left": 40,
+                "top": 40,
+                "width": 240,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Vehiculo_Attr",
+                "_parent": { "$ref": "V_Vehiculo" },
+                "model": { "$ref": "C_Vehiculo" },
+                "font": "Arial;11;0",
+                "left": 40,
+                "top": 65,
+                "width": 240,
+                "height": 80
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Vehiculo_Oper",
+                "_parent": { "$ref": "V_Vehiculo" },
+                "model": { "$ref": "C_Vehiculo" },
+                "font": "Arial;11;0",
+                "left": 40,
+                "top": 145,
+                "width": 240,
+                "height": 45
+              }
+            },
+
+            // 2. Vista EntradaVehiculo
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Entrada",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Entrada" },
+              "font": "Arial;11;0",
+              "left": 350,
+              "top": 40,
+              "width": 270,
+              "height": 270,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Entrada_Name",
+                "_parent": { "$ref": "V_Entrada" },
+                "model": { "$ref": "C_Entrada" },
+                "font": "Arial;11;1",
+                "left": 350,
+                "top": 40,
+                "width": 270,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Entrada_Attr",
+                "_parent": { "$ref": "V_Entrada" },
+                "model": { "$ref": "C_Entrada" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 65,
+                "width": 270,
+                "height": 150
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Entrada_Oper",
+                "_parent": { "$ref": "V_Entrada" },
+                "model": { "$ref": "C_Entrada" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 215,
+                "width": 270,
+                "height": 55
+              }
+            },
+
+            // 3. Vista CeldaParqueo
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Celda",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Celda" },
+              "font": "Arial;11;0",
+              "left": 690,
+              "top": 40,
+              "width": 250,
+              "height": 210,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Celda_Name",
+                "_parent": { "$ref": "V_Celda" },
+                "model": { "$ref": "C_Celda" },
+                "font": "Arial;11;1",
+                "left": 690,
+                "top": 40,
+                "width": 250,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Celda_Attr",
+                "_parent": { "$ref": "V_Celda" },
+                "model": { "$ref": "C_Celda" },
+                "font": "Arial;11;0",
+                "left": 690,
+                "top": 65,
+                "width": 250,
+                "height": 95
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Celda_Oper",
+                "_parent": { "$ref": "V_Celda" },
+                "model": { "$ref": "C_Celda" },
+                "font": "Arial;11;0",
+                "left": 690,
+                "top": 160,
+                "width": 250,
+                "height": 60
+              }
+            },
+
+            // 4. Vista NovedadVehiculo
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Novedad",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Novedad" },
+              "font": "Arial;11;0",
+              "left": 40,
+              "top": 350,
+              "width": 240,
+              "height": 210,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Novedad_Name",
+                "_parent": { "$ref": "V_Novedad" },
+                "model": { "$ref": "C_Novedad" },
+                "font": "Arial;11;1",
+                "left": 40,
+                "top": 350,
+                "width": 240,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Novedad_Attr",
+                "_parent": { "$ref": "V_Novedad" },
+                "model": { "$ref": "C_Novedad" },
+                "font": "Arial;11;0",
+                "left": 40,
+                "top": 375,
+                "width": 240,
+                "height": 100
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Novedad_Oper",
+                "_parent": { "$ref": "V_Novedad" },
+                "model": { "$ref": "C_Novedad" },
+                "font": "Arial;11;0",
+                "left": 40,
+                "top": 475,
+                "width": 240,
+                "height": 45
+              }
+            },
+
+            // 5. Vista UsuarioMensualista
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Usuario",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Usuario" },
+              "font": "Arial;11;0",
+              "left": 350,
+              "top": 360,
+              "width": 270,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Usuario_Name",
+                "_parent": { "$ref": "V_Usuario" },
+                "model": { "$ref": "C_Usuario" },
+                "font": "Arial;11;1",
+                "left": 350,
+                "top": 360,
+                "width": 270,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Usuario_Attr",
+                "_parent": { "$ref": "V_Usuario" },
+                "model": { "$ref": "C_Usuario" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 385,
+                "width": 270,
+                "height": 105
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Usuario_Oper",
+                "_parent": { "$ref": "V_Usuario" },
+                "model": { "$ref": "C_Usuario" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 490,
+                "width": 270,
+                "height": 55
+              }
+            },
+
+            // 6. Vista SuscripcionMensual
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Suscripcion",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Suscripcion" },
+              "font": "Arial;11;0",
+              "left": 690,
+              "top": 360,
+              "width": 250,
+              "height": 170,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Suscripcion_Name",
+                "_parent": { "$ref": "V_Suscripcion" },
+                "model": { "$ref": "C_Suscripcion" },
+                "font": "Arial;11;1",
+                "left": 690,
+                "top": 360,
+                "width": 250,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Suscripcion_Attr",
+                "_parent": { "$ref": "V_Suscripcion" },
+                "model": { "$ref": "C_Suscripcion" },
+                "font": "Arial;11;0",
+                "left": 690,
+                "top": 385,
+                "width": 250,
+                "height": 75
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Suscripcion_Oper",
+                "_parent": { "$ref": "V_Suscripcion" },
+                "model": { "$ref": "C_Suscripcion" },
+                "font": "Arial;11;0",
+                "left": 690,
+                "top": 460,
+                "width": 250,
+                "height": 45
+              }
+            },
+
+            // 7. Vista Pago
+            {
+              "_type": "UMLClassView",
+              "_id": "V_Pago",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "C_Pago" },
+              "font": "Arial;11;0",
+              "left": 350,
+              "top": 630,
+              "width": 270,
+              "height": 200,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pago_Name",
+                "_parent": { "$ref": "V_Pago" },
+                "model": { "$ref": "C_Pago" },
+                "font": "Arial;11;1",
+                "left": 350,
+                "top": 630,
+                "width": 270,
+                "height": 25
+              },
+              "attributeCompartment": {
+                "_type": "UMLAttributeCompartmentView",
+                "_id": "V_Pago_Attr",
+                "_parent": { "$ref": "V_Pago" },
+                "model": { "$ref": "C_Pago" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 655,
+                "width": 270,
+                "height": 100
+              },
+              "operationCompartment": {
+                "_type": "UMLOperationCompartmentView",
+                "_id": "V_Pago_Oper",
+                "_parent": { "$ref": "V_Pago" },
+                "model": { "$ref": "C_Pago" },
+                "font": "Arial;11;0",
+                "left": 350,
+                "top": 755,
+                "width": 270,
+                "height": 35
+              }
+            },
+
+            // ================= ASOCIACIONES VISUALES (LINEAS) =================
+            // Línea 1: Vehiculo -> EntradaVehiculo
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Veh_Ent",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Veh_Ent" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Entrada" },
+              "tail": { "$ref": "V_Vehiculo" },
+              "lineStyle": 1,
+              "points": "280;135;350;135",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Ent_Name",
+                "_parent": { "$ref": "V_Assoc_Veh_Ent" },
+                "model": { "$ref": "Assoc_Veh_Ent" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 290,
+                "top": 115,
+                "width": 45,
+                "height": 13,
+                "text": "registra"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Ent_TailMult",
+                "_parent": { "$ref": "V_Assoc_Veh_Ent" },
+                "model": { "$ref": "AssocEnd_Veh_Ent_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 285,
+                "top": 118,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Ent_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Veh_Ent" },
+                "model": { "$ref": "AssocEnd_Veh_Ent_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 330,
+                "top": 118,
+                "text": "0..*"
+              }
+            },
+
+            // Línea 2: EntradaVehiculo -> CeldaParqueo
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Ent_Cel",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Ent_Cel" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Celda" },
+              "tail": { "$ref": "V_Entrada" },
+              "lineStyle": 1,
+              "points": "620;135;690;135",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Cel_Name",
+                "_parent": { "$ref": "V_Assoc_Ent_Cel" },
+                "model": { "$ref": "Assoc_Ent_Cel" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 635,
+                "top": 115,
+                "width": 40,
+                "height": 13,
+                "text": "asigna"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Cel_TailMult",
+                "_parent": { "$ref": "V_Assoc_Ent_Cel" },
+                "model": { "$ref": "AssocEnd_Ent_Cel_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 625,
+                "top": 118,
+                "text": "0..1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Cel_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Ent_Cel" },
+                "model": { "$ref": "AssocEnd_Ent_Cel_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 670,
+                "top": 118,
+                "text": "1"
+              }
+            },
+
+            // Línea 3: Vehiculo -> NovedadVehiculo
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Veh_Nov",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Veh_Nov" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Novedad" },
+              "tail": { "$ref": "V_Vehiculo" },
+              "lineStyle": 1,
+              "points": "160;230;160;350",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Nov_Name",
+                "_parent": { "$ref": "V_Assoc_Veh_Nov" },
+                "model": { "$ref": "Assoc_Veh_Nov" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 165,
+                "top": 280,
+                "width": 50,
+                "height": 13,
+                "text": "presenta"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Nov_TailMult",
+                "_parent": { "$ref": "V_Assoc_Veh_Nov" },
+                "model": { "$ref": "AssocEnd_Veh_Nov_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 140,
+                "top": 240,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Veh_Nov_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Veh_Nov" },
+                "model": { "$ref": "AssocEnd_Veh_Nov_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 140,
+                "top": 330,
+                "text": "0..*"
+              }
+            },
+
+            // Línea 4: UsuarioMensualista -> Vehiculo
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Usu_Veh",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Usu_Veh" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Vehiculo" },
+              "tail": { "$ref": "V_Usuario" },
+              "lineStyle": 1,
+              "points": "350;420;290;420;290;210;280;210",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Veh_Name",
+                "_parent": { "$ref": "V_Assoc_Usu_Veh" },
+                "model": { "$ref": "Assoc_Usu_Veh" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 295,
+                "top": 310,
+                "width": 40,
+                "height": 13,
+                "text": "posee"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Veh_TailMult",
+                "_parent": { "$ref": "V_Assoc_Usu_Veh" },
+                "model": { "$ref": "AssocEnd_Usu_Veh_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 330,
+                "top": 400,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Veh_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Usu_Veh" },
+                "model": { "$ref": "AssocEnd_Usu_Veh_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 260,
+                "top": 195,
+                "text": "1..*"
+              }
+            },
+
+            // Línea 5: UsuarioMensualista -> SuscripcionMensual
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Usu_Sus",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Usu_Sus" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Suscripcion" },
+              "tail": { "$ref": "V_Usuario" },
+              "lineStyle": 1,
+              "points": "620;445;690;445",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Sus_Name",
+                "_parent": { "$ref": "V_Assoc_Usu_Sus" },
+                "model": { "$ref": "Assoc_Usu_Sus" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 635,
+                "top": 425,
+                "width": 50,
+                "height": 13,
+                "text": "contrata"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Sus_TailMult",
+                "_parent": { "$ref": "V_Assoc_Usu_Sus" },
+                "model": { "$ref": "AssocEnd_Usu_Sus_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 625,
+                "top": 428,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Usu_Sus_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Usu_Sus" },
+                "model": { "$ref": "AssocEnd_Usu_Sus_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 670,
+                "top": 428,
+                "text": "1"
+              }
+            },
+
+            // Línea 6: EntradaVehiculo -> Pago
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Ent_Pag",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Ent_Pag" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Pago" },
+              "tail": { "$ref": "V_Entrada" },
+              "lineStyle": 1,
+              "points": "485;310;485;630",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Pag_Name",
+                "_parent": { "$ref": "V_Assoc_Ent_Pag" },
+                "model": { "$ref": "Assoc_Ent_Pag" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 490,
+                "top": 590,
+                "width": 45,
+                "height": 13,
+                "text": "liquida"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Pag_TailMult",
+                "_parent": { "$ref": "V_Assoc_Ent_Pag" },
+                "model": { "$ref": "AssocEnd_Ent_Pag_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 465,
+                "top": 320,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Ent_Pag_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Ent_Pag" },
+                "model": { "$ref": "AssocEnd_Ent_Pag_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 465,
+                "top": 610,
+                "text": "0..1"
+              }
+            },
+
+            // Línea 7: SuscripcionMensual -> Pago
+            {
+              "_type": "UMLAssociationView",
+              "_id": "V_Assoc_Sus_Pag",
+              "_parent": { "$ref": "AAAAAAF8DiagramClasesPrincipal" },
+              "model": { "$ref": "Assoc_Sus_Pag" },
+              "visible": true,
+              "font": "Arial;11;0",
+              "head": { "$ref": "V_Pago" },
+              "tail": { "$ref": "V_Suscripcion" },
+              "lineStyle": 1,
+              "points": "815;530;815;730;620;730",
+              "nameLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Sus_Pag_Name",
+                "_parent": { "$ref": "V_Assoc_Sus_Pag" },
+                "model": { "$ref": "Assoc_Sus_Pag" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 720,
+                "top": 710,
+                "width": 40,
+                "height": 13,
+                "text": "abona"
+              },
+              "tailMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Sus_Pag_TailMult",
+                "_parent": { "$ref": "V_Assoc_Sus_Pag" },
+                "model": { "$ref": "AssocEnd_Sus_Pag_1" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 820,
+                "top": 540,
+                "text": "1"
+              },
+              "headMultiplicityLabel": {
+                "_type": "EdgeLabelView",
+                "_id": "V_Assoc_Sus_Pag_HeadMult",
+                "_parent": { "$ref": "V_Assoc_Sus_Pag" },
+                "model": { "$ref": "AssocEnd_Sus_Pag_2" },
+                "visible": true,
+                "font": "Arial;10;0",
+                "left": 630,
+                "top": 715,
+                "text": "1..*"
+              }
+            }
+          ]
+        },
+
+        // ================= ENTIDADES Y CLASES (MODELO) =================
+
+        // 1. Vehiculo
+        {
+          "_type": "UMLClass",
+          "_id": "C_Vehiculo",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Vehiculo",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A1_placa", "name": "placa", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A1_tipo", "name": "tipo", "visibility": "private", "type": "TipoVehiculo" },
+            { "_type": "UMLAttribute", "_id": "A1_marca", "name": "marca", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A1_modelo", "name": "modelo", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A1_color", "name": "color", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O1_val", "name": "validarFormatoPlaca", "parameters": [{ "_type": "UMLParameter", "name": "placa", "type": "String" }], "returnType": "Boolean" },
+            { "_type": "UMLOperation", "_id": "O1_part", "name": "esParticular", "returnType": "Boolean" }
+          ],
+          "ownedElements": [
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Veh_Ent",
+              "_parent": { "$ref": "C_Vehiculo" },
+              "name": "registra",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Veh_Ent_1",
+                "_parent": { "$ref": "Assoc_Veh_Ent" },
+                "reference": { "$ref": "C_Vehiculo" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Veh_Ent_2",
+                "_parent": { "$ref": "Assoc_Veh_Ent" },
+                "reference": { "$ref": "C_Entrada" },
+                "multiplicity": "0..*",
+                "navigable": true
+              }
+            },
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Veh_Nov",
+              "_parent": { "$ref": "C_Vehiculo" },
+              "name": "presenta",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Veh_Nov_1",
+                "_parent": { "$ref": "Assoc_Veh_Nov" },
+                "reference": { "$ref": "C_Vehiculo" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Veh_Nov_2",
+                "_parent": { "$ref": "Assoc_Veh_Nov" },
+                "reference": { "$ref": "C_Novedad" },
+                "multiplicity": "0..*",
+                "navigable": true
+              }
+            }
+          ]
+        },
+
+        // 2. EntradaVehiculo
+        {
+          "_type": "UMLClass",
+          "_id": "C_Entrada",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "EntradaVehiculo",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A2_id", "name": "id", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_ticket", "name": "numeroTicket", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_placa", "name": "placa", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_tipoV", "name": "tipoVehiculo", "visibility": "private", "type": "TipoVehiculo" },
+            { "_type": "UMLAttribute", "_id": "A2_tipoS", "name": "tipoServicio", "visibility": "private", "type": "TipoServicio" },
+            { "_type": "UMLAttribute", "_id": "A2_celda", "name": "celdaId", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_hEnt", "name": "horaEntrada", "visibility": "private", "type": "DateTime" },
+            { "_type": "UMLAttribute", "_id": "A2_hSal", "name": "horaSalida", "visibility": "private", "type": "DateTime" },
+            { "_type": "UMLAttribute", "_id": "A2_notas", "name": "notasInspeccion", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_est", "name": "estado", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A2_min", "name": "totalMinutos", "visibility": "private", "type": "Integer" },
+            { "_type": "UMLAttribute", "_id": "A2_monto", "name": "montoLiquidado", "visibility": "private", "type": "Double" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O2_calc", "name": "calcularMinutosTranscurridos", "parameters": [{ "_type": "UMLParameter", "name": "horaActual", "type": "DateTime" }], "returnType": "Integer" },
+            { "_type": "UMLOperation", "_id": "O2_fin", "name": "finalizarEstadia", "parameters": [{ "_type": "UMLParameter", "name": "horaSalida", "type": "DateTime" }, { "_type": "UMLParameter", "name": "monto", "type": "Double" }], "returnType": "Void" }
+          ],
+          "ownedElements": [
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Ent_Cel",
+              "_parent": { "$ref": "C_Entrada" },
+              "name": "asigna",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Ent_Cel_1",
+                "_parent": { "$ref": "Assoc_Ent_Cel" },
+                "reference": { "$ref": "C_Entrada" },
+                "multiplicity": "0..1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Ent_Cel_2",
+                "_parent": { "$ref": "Assoc_Ent_Cel" },
+                "reference": { "$ref": "C_Celda" },
+                "multiplicity": "1",
+                "navigable": true
+              }
+            },
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Ent_Pag",
+              "_parent": { "$ref": "C_Entrada" },
+              "name": "liquida",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Ent_Pag_1",
+                "_parent": { "$ref": "Assoc_Ent_Pag" },
+                "reference": { "$ref": "C_Entrada" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Ent_Pag_2",
+                "_parent": { "$ref": "Assoc_Ent_Pag" },
+                "reference": { "$ref": "C_Pago" },
+                "multiplicity": "0..1",
+                "navigable": true
+              }
+            }
+          ]
+        },
+
+        // 3. CeldaParqueo
+        {
+          "_type": "UMLClass",
+          "_id": "C_Celda",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "CeldaParqueo",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A3_id", "name": "id", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A3_zona", "name": "zona", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A3_tipo", "name": "tipoPermitido", "visibility": "private", "type": "TipoVehiculo" },
+            { "_type": "UMLAttribute", "_id": "A3_est", "name": "estado", "visibility": "private", "type": "EstadoCelda" },
+            { "_type": "UMLAttribute", "_id": "A3_placa", "name": "placaActual", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A3_res", "name": "usuarioReservadoId", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O3_oc", "name": "ocupar", "parameters": [{ "_type": "UMLParameter", "name": "placa", "type": "String" }], "returnType": "Boolean" },
+            { "_type": "UMLOperation", "_id": "O3_lib", "name": "liberar", "returnType": "Void" },
+            { "_type": "UMLOperation", "_id": "O3_mant", "name": "inhabilitarPorMantenimiento", "parameters": [{ "_type": "UMLParameter", "name": "motivo", "type": "String" }], "returnType": "Void" }
+          ]
+        },
+
+        // 4. UsuarioMensualista
+        {
+          "_type": "UMLClass",
+          "_id": "C_Usuario",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "UsuarioMensualista",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A4_id", "name": "id", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_nom", "name": "nombreCompleto", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_docT", "name": "tipoDocumento", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_docN", "name": "numeroDocumento", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_tel", "name": "telefono", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_email", "name": "email", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A4_celda", "name": "celdaAsignadaId", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O4_dia", "name": "tieneMensualidadAlDia", "returnType": "Boolean" },
+            { "_type": "UMLOperation", "_id": "O4_vinc", "name": "vincularVehiculo", "parameters": [{ "_type": "UMLParameter", "name": "v", "type": "Vehiculo" }], "returnType": "Void" },
+            { "_type": "UMLOperation", "_id": "O4_ren", "name": "renovarContrato", "parameters": [{ "_type": "UMLParameter", "name": "meses", "type": "Integer" }], "returnType": "Void" }
+          ],
+          "ownedElements": [
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Usu_Veh",
+              "_parent": { "$ref": "C_Usuario" },
+              "name": "posee",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Usu_Veh_1",
+                "_parent": { "$ref": "Assoc_Usu_Veh" },
+                "reference": { "$ref": "C_Usuario" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Usu_Veh_2",
+                "_parent": { "$ref": "Assoc_Usu_Veh" },
+                "reference": { "$ref": "C_Vehiculo" },
+                "multiplicity": "1..*",
+                "navigable": true
+              }
+            },
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Usu_Sus",
+              "_parent": { "$ref": "C_Usuario" },
+              "name": "contrata",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Usu_Sus_1",
+                "_parent": { "$ref": "Assoc_Usu_Sus" },
+                "reference": { "$ref": "C_Usuario" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Usu_Sus_2",
+                "_parent": { "$ref": "Assoc_Usu_Sus" },
+                "reference": { "$ref": "C_Suscripcion" },
+                "multiplicity": "1",
+                "navigable": true
+              }
+            }
+          ]
+        },
+
+        // 5. SuscripcionMensual
+        {
+          "_type": "UMLClass",
+          "_id": "C_Suscripcion",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "SuscripcionMensual",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A5_ini", "name": "fechaInicio", "visibility": "private", "type": "Date" },
+            { "_type": "UMLAttribute", "_id": "A5_venc", "name": "fechaVencimiento", "visibility": "private", "type": "Date" },
+            { "_type": "UMLAttribute", "_id": "A5_canon", "name": "canonMensual", "visibility": "private", "type": "Double" },
+            { "_type": "UMLAttribute", "_id": "A5_est", "name": "estado", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O5_dias", "name": "diasParaVencimiento", "returnType": "Integer" },
+            { "_type": "UMLOperation", "_id": "O5_venc", "name": "estaVencida", "returnType": "Boolean" }
+          ],
+          "ownedElements": [
+            {
+              "_type": "UMLAssociation",
+              "_id": "Assoc_Sus_Pag",
+              "_parent": { "$ref": "C_Suscripcion" },
+              "name": "abona",
+              "end1": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Sus_Pag_1",
+                "_parent": { "$ref": "Assoc_Sus_Pag" },
+                "reference": { "$ref": "C_Suscripcion" },
+                "multiplicity": "1"
+              },
+              "end2": {
+                "_type": "UMLAssociationEnd",
+                "_id": "AssocEnd_Sus_Pag_2",
+                "_parent": { "$ref": "Assoc_Sus_Pag" },
+                "reference": { "$ref": "C_Pago" },
+                "multiplicity": "1..*",
+                "navigable": true
+              }
+            }
+          ]
+        },
+
+        // 6. NovedadVehiculo
+        {
+          "_type": "UMLClass",
+          "_id": "C_Novedad",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "NovedadVehiculo",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A6_id", "name": "id", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_cod", "name": "codigo", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_placa", "name": "placa", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_tipo", "name": "tipo", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_sev", "name": "severidad", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_desc", "name": "descripcion", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A6_est", "name": "estado", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O6_not", "name": "notificarPropietario", "parameters": [{ "_type": "UMLParameter", "name": "telefono", "type": "String" }], "returnType": "Void" },
+            { "_type": "UMLOperation", "_id": "O6_res", "name": "resolver", "parameters": [{ "_type": "UMLParameter", "name": "solucion", "type": "String" }], "returnType": "Void" }
+          ]
+        },
+
+        // 7. Pago
+        {
+          "_type": "UMLClass",
+          "_id": "C_Pago",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Pago",
+          "attributes": [
+            { "_type": "UMLAttribute", "_id": "A7_id", "name": "id", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A7_rec", "name": "numeroRecibo", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A7_fec", "name": "fecha", "visibility": "private", "type": "DateTime" },
+            { "_type": "UMLAttribute", "_id": "A7_con", "name": "concepto", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A7_mon", "name": "monto", "visibility": "private", "type": "Double" },
+            { "_type": "UMLAttribute", "_id": "A7_med", "name": "medioPago", "visibility": "private", "type": "String" },
+            { "_type": "UMLAttribute", "_id": "A7_caj", "name": "cajero", "visibility": "private", "type": "String" }
+          ],
+          "operations": [
+            { "_type": "UMLOperation", "_id": "O7_comp", "name": "generarComprobanteImprimible", "returnType": "String" }
+          ]
+        },
+
+        // ================= PAQUETES POR CAPAS DE LA ARQUITECTURA =================
+        {
+          "_type": "UMLPackage",
+          "_id": "Pkg_Presentacion",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Capa 1: Presentacion (UI & Vistas)",
+          "ownedElements": [
+            { "_type": "UMLClass", "_id": "UI_Entrada", "name": "VistaRegistroEntrada" },
+            { "_type": "UMLClass", "_id": "UI_Salida", "name": "VistaSalidaLiquidacion" },
+            { "_type": "UMLClass", "_id": "UI_Celdas", "name": "MonitorCeldasTiempoReal" },
+            { "_type": "UMLClass", "_id": "UI_Mensualistas", "name": "GestionMensualistasView" }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "Pkg_Negocio",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Capa 2: Logica de Negocio (Servicios)",
+          "ownedElements": [
+            { "_type": "UMLClass", "_id": "Srv_Controlador", "name": "ControladorParqueadero" },
+            { "_type": "UMLClass", "_id": "Srv_Liquidacion", "name": "ServicioLiquidacionTarifas" },
+            { "_type": "UMLClass", "_id": "Srv_Celdas", "name": "ServicioAsignacionCeldas" },
+            { "_type": "UMLClass", "_id": "Srv_Mensualistas", "name": "ServicioContratosMensuales" }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "Pkg_Datos",
+          "_parent": { "$ref": "AAAAAAF8ModelArchitecture" },
+          "name": "Capa 3: Acceso a Datos (Persistencia)",
+          "ownedElements": [
+            { "_type": "UMLClass", "_id": "Repo_Entradas", "name": "RepositorioEntradas" },
+            { "_type": "UMLClass", "_id": "Repo_Celdas", "name": "RepositorioCeldas" },
+            { "_type": "UMLClass", "_id": "Repo_Mensualistas", "name": "RepositorioMensualistas" },
+            { "_type": "UMLClass", "_id": "Repo_Pagos", "name": "RepositorioPagosRecaudos" }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+const outputPath = path.join(__dirname, '../public/ParqueaderoAutosColombia_StarUML.mdj');
+fs.writeFileSync(outputPath, JSON.stringify(project, null, 2), 'utf8');
+console.log('Successfully written StarUML project to:', outputPath);

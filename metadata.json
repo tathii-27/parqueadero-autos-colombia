@@ -1,0 +1,6 @@
+{
+  "name": "Parqueadero Autos Colombia",
+  "description": "Sistema integral de gestión de operaciones diarias para Parqueadero Autos Colombia: control de entradas y salidas de vehículos, gestión de usuarios mensualistas y celdas, registro de novedades e incidencias, y control de pagos y caja.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

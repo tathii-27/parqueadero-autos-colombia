@@ -1,0 +1,860 @@
+{
+  "_type": "Project",
+  "_id": "AAAAAAF8AutosColombiaPackageProject",
+  "name": "Parqueadero Autos Colombia - Diagrama de Paquetes UML 2.5",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "AAAAAAF8ModelPackages",
+      "_parent": {
+        "$ref": "AAAAAAF8AutosColombiaPackageProject"
+      },
+      "name": "Arquitectura de Paquetes del Sistema",
+      "ownedElements": [
+        {
+          "_type": "UMLPackageDiagram",
+          "_id": "AAAAAAF8DiagramPaquetesPrincipal",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Diagrama de Paquetes Arquitectural (Español)",
+          "visible": true,
+          "defaultDiagram": true,
+          "ownedViews": [
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Presentacion",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Presentacion"
+              },
+              "font": "Arial;11;0",
+              "left": 40,
+              "top": 40,
+              "width": 260,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Presentacion_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Presentacion"
+                },
+                "model": {
+                  "$ref": "P_Presentacion"
+                },
+                "font": "Arial;11;1",
+                "left": 45,
+                "top": 65,
+                "width": 250,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Controladores",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Controladores"
+              },
+              "font": "Arial;11;0",
+              "left": 360,
+              "top": 40,
+              "width": 260,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Controladores_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Controladores"
+                },
+                "model": {
+                  "$ref": "P_Controladores"
+                },
+                "font": "Arial;11;1",
+                "left": 365,
+                "top": 65,
+                "width": 250,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Servicios",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Servicios"
+              },
+              "font": "Arial;11;0",
+              "left": 680,
+              "top": 40,
+              "width": 260,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Servicios_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Servicios"
+                },
+                "model": {
+                  "$ref": "P_Servicios"
+                },
+                "font": "Arial;11;1",
+                "left": 685,
+                "top": 65,
+                "width": 250,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Dominio",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Dominio"
+              },
+              "font": "Arial;11;0",
+              "left": 200,
+              "top": 320,
+              "width": 280,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Dominio_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Dominio"
+                },
+                "model": {
+                  "$ref": "P_Dominio"
+                },
+                "font": "Arial;11;1",
+                "left": 205,
+                "top": 345,
+                "width": 270,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Persistencia",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Persistencia"
+              },
+              "font": "Arial;11;0",
+              "left": 540,
+              "top": 320,
+              "width": 280,
+              "height": 220,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Persistencia_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Persistencia"
+                },
+                "model": {
+                  "$ref": "P_Persistencia"
+                },
+                "font": "Arial;11;1",
+                "left": 545,
+                "top": 345,
+                "width": 270,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLPackageView",
+              "_id": "V_Pkg_Transversal",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "P_Transversal"
+              },
+              "font": "Arial;11;0",
+              "left": 370,
+              "top": 590,
+              "width": 280,
+              "height": 170,
+              "nameCompartment": {
+                "_type": "UMLNameCompartmentView",
+                "_id": "V_Pkg_Transversal_Name",
+                "_parent": {
+                  "$ref": "V_Pkg_Transversal"
+                },
+                "model": {
+                  "$ref": "P_Transversal"
+                },
+                "font": "Arial;11;1",
+                "left": 375,
+                "top": 615,
+                "width": 270,
+                "height": 25
+              }
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Pres_Ctrl",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Pres_Ctrl"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Controladores"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Presentacion"
+              },
+              "lineStyle": 1,
+              "points": "300;140;360;140"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Ctrl_Serv",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Ctrl_Serv"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Servicios"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Controladores"
+              },
+              "lineStyle": 1,
+              "points": "620;140;680;140"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Serv_Dom",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Serv_Dom"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Dominio"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Servicios"
+              },
+              "lineStyle": 1,
+              "points": "720;260;440;340"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Serv_Pers",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Serv_Pers"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Persistencia"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Servicios"
+              },
+              "lineStyle": 1,
+              "points": "740;260;700;320"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Pers_Dom",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Pers_Dom"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Dominio"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Persistencia"
+              },
+              "lineStyle": 1,
+              "points": "540;420;480;420"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Dom_Trans",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Dom_Trans"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Transversal"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Dominio"
+              },
+              "lineStyle": 1,
+              "points": "370;540;440;590"
+            },
+            {
+              "_type": "UMLDependencyView",
+              "_id": "V_Dep_Pers_Trans",
+              "_parent": {
+                "$ref": "AAAAAAF8DiagramPaquetesPrincipal"
+              },
+              "model": {
+                "$ref": "Dep_Pers_Trans"
+              },
+              "visible": true,
+              "font": "Arial;10;0",
+              "head": {
+                "$ref": "V_Pkg_Transversal"
+              },
+              "tail": {
+                "$ref": "V_Pkg_Persistencia"
+              },
+              "lineStyle": 1,
+              "points": "640;540;570;590"
+            }
+          ]
+        }
+      ],
+      "packages": [
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Presentacion",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Presentacion",
+          "stereotype": "capa",
+          "visibility": "public",
+          "documentation": "Capa de interfaz gráfica y visualizadores para el usuario final",
+          "ownedElements": [
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Pres_Ctrl",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Presentacion"
+              },
+              "target": {
+                "$ref": "P_Controladores"
+              }
+            },
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Pres_Dom",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "importa",
+              "stereotype": "importa",
+              "source": {
+                "$ref": "P_Presentacion"
+              },
+              "target": {
+                "$ref": "P_Dominio"
+              }
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_VistaOperacionesPatio",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "VistaOperacionesPatio"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ModalRegistroIngreso",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "ModalRegistroIngreso"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ModalLiquidacionSalida",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "ModalLiquidacionSalida"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_VistaMapaCeldas",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "VistaMapaCeldas"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_VistaGestionMensualistas",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "VistaGestionMensualistas"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_VistaLibroNovedades",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "VistaLibroNovedades"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_VistaArqueoCajaDiaria",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "VistaArqueoCajaDiaria"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ModalImpresionComprobante",
+              "_parent": {
+                "$ref": "P_Presentacion"
+              },
+              "name": "ModalImpresionComprobante"
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Controladores",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Controladores",
+          "stereotype": "capa",
+          "visibility": "public",
+          "documentation": "Fachadas y coordinación de peticiones de usuario",
+          "ownedElements": [
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Ctrl_Serv",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Controladores"
+              },
+              "target": {
+                "$ref": "P_Servicios"
+              }
+            },
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Ctrl_Dom",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "importa",
+              "stereotype": "importa",
+              "source": {
+                "$ref": "P_Controladores"
+              },
+              "target": {
+                "$ref": "P_Dominio"
+              }
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ControladorParqueadero",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "ControladorParqueadero"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ControladorCaja",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "ControladorCaja"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ControladorMensualidades",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "ControladorMensualidades"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ControladorNovedades",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "ControladorNovedades"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ControladorAsignacionCeldas",
+              "_parent": {
+                "$ref": "P_Controladores"
+              },
+              "name": "ControladorAsignacionCeldas"
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Servicios",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Servicios",
+          "stereotype": "capa",
+          "visibility": "public",
+          "documentation": "Lógica del negocio, liquidación tarifaria y custodia",
+          "ownedElements": [
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Serv_Dom",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Servicios"
+              },
+              "target": {
+                "$ref": "P_Dominio"
+              }
+            },
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Serv_Pers",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Servicios"
+              },
+              "target": {
+                "$ref": "P_Persistencia"
+              }
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ServicioIngresoVehiculo",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "ServicioIngresoVehiculo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ServicioSalidaVehiculo",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "ServicioSalidaVehiculo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ServicioCalculoTarifas",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "ServicioCalculoTarifas"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ServicioAsignacionCeldas",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "ServicioAsignacionCeldas"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_GestorSuscripciones",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "GestorSuscripciones"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_GestorNovedades",
+              "_parent": {
+                "$ref": "P_Servicios"
+              },
+              "name": "GestorNovedades"
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Dominio",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Dominio",
+          "stereotype": "subsistema",
+          "visibility": "public",
+          "documentation": "Entidades y reglas centrales del negocio de parqueadero",
+          "ownedElements": [
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Dom_Trans",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Dominio"
+              },
+              "target": {
+                "$ref": "P_Transversal"
+              }
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_Vehiculo_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "Vehiculo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_EntradaVehiculo_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "EntradaVehiculo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_CeldaParqueo_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "CeldaParqueo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_UsuarioMensualista_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "UsuarioMensualista"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_SuscripcionMensual_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "SuscripcionMensual"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_NovedadVehiculo_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "NovedadVehiculo"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_Pago_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "Pago"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ConfiguracionTarifas_Ent",
+              "_parent": {
+                "$ref": "P_Dominio"
+              },
+              "name": "ConfiguracionTarifas"
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Persistencia",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Persistencia",
+          "stereotype": "capa",
+          "visibility": "public",
+          "documentation": "Acceso a base de datos relacional y almacenamiento",
+          "ownedElements": [
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Pers_Dom",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "importa",
+              "stereotype": "importa",
+              "source": {
+                "$ref": "P_Persistencia"
+              },
+              "target": {
+                "$ref": "P_Dominio"
+              }
+            },
+            {
+              "_type": "UMLDependency",
+              "_id": "Dep_Pers_Trans",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "utiliza",
+              "stereotype": "utiliza",
+              "source": {
+                "$ref": "P_Persistencia"
+              },
+              "target": {
+                "$ref": "P_Transversal"
+              }
+            },
+            {
+              "_type": "UMLInterface",
+              "_id": "I_IRepositorioParqueadero",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "IRepositorioParqueadero"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_AdaptadorAlmacenamientoLocal",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "AdaptadorAlmacenamientoLocal"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_AdaptadorBaseDatosSql",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "AdaptadorBaseDatosSql"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_GestorAuditoriaTransaccional",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "GestorAuditoriaTransaccional"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_CoordinadorTransacciones",
+              "_parent": {
+                "$ref": "P_Persistencia"
+              },
+              "name": "CoordinadorTransacciones"
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "P_Transversal",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelPackages"
+          },
+          "name": "Transversal",
+          "stereotype": "transversal",
+          "visibility": "public",
+          "documentation": "Componentes transversales y utilitarios compartidos en el ecosistema colombiano",
+          "ownedElements": [
+            {
+              "_type": "UMLEnumeration",
+              "_id": "E_TipoVehiculoEnum",
+              "_parent": {
+                "$ref": "P_Transversal"
+              },
+              "name": "TipoVehiculoEnum"
+            },
+            {
+              "_type": "UMLEnumeration",
+              "_id": "E_EstadoCeldaEnum",
+              "_parent": {
+                "$ref": "P_Transversal"
+              },
+              "name": "EstadoCeldaEnum"
+            },
+            {
+              "_type": "UMLEnumeration",
+              "_id": "E_TipoServicioEnum",
+              "_parent": {
+                "$ref": "P_Transversal"
+              },
+              "name": "TipoServicioEnum"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_ValidadorPlacasRunt",
+              "_parent": {
+                "$ref": "P_Transversal"
+              },
+              "name": "ValidadorPlacasRunt"
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "C_FormateadorMonedaCop",
+              "_parent": {
+                "$ref": "P_Transversal"
+              },
+              "name": "FormateadorMonedaCop"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

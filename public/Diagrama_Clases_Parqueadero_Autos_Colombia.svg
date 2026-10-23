@@ -1,0 +1,265 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 940" width="1200" height="940" style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <!-- Arrow Marker for Directed Associations -->
+    <marker id="uml-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0f172a" />
+    </marker>
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1" />
+    </pattern>
+    <!-- Drop Shadow Filter for Class Boxes -->
+    <filter id="shadow" x="-3%" y="-2%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background Grid -->
+  <rect width="1200" height="940" fill="#f8fafc" />
+  <rect width="1200" height="940" fill="url(#grid)" />
+
+  <!-- ================= TOP HEADER BANNER ================= -->
+  <rect x="30" y="20" width="1140" height="70" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)" />
+  <rect x="30" y="20" width="6" height="70" rx="3" fill="#059669" />
+  
+  <text x="50" y="46" font-size="11" font-weight="700" fill="#059669" letter-spacing="1">IU DIGITAL DE ANTIOQUIA · INGENIERÍA DE SOFTWARE · STARUML V5.X (UML 2.5)</text>
+  <text x="50" y="70" font-size="18" font-weight="800" fill="#0f172a">Diagrama de Clases del Dominio · Sistema de Gestión Parqueadero Autos Colombia</text>
+  
+  <text x="1150" y="48" font-size="11" font-weight="600" fill="#475569" text-anchor="end">Autora: Tatiana Gallego</text>
+  <text x="1150" y="68" font-size="10" font-family="monospace" fill="#64748b" text-anchor="end">tatiana.gallegog@est.iudigital.edu.co</text>
+
+  <!-- ================= CONNECTOR LINES & MULTIPLICITIES ================= -->
+
+  <!-- 1. Vehiculo (x=330, y=210) -> EntradaVehiculo (x=450, y=210) -->
+  <g id="rel-veh-entrada">
+    <line x1="330" y1="210" x2="448" y2="210" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="355" y="190" width="65" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="387" y="203" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">registra</text>
+    <text x="340" y="204" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="430" y="204" font-size="11" fill="#334155" font-weight="700">0..*</text>
+  </g>
+
+  <!-- 2. EntradaVehiculo (x=730, y=210) -> CeldaParqueo (x=830, y=210) -->
+  <g id="rel-entrada-celda">
+    <line x1="730" y1="210" x2="828" y2="210" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="752" y="190" width="58" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="781" y="203" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">asigna</text>
+    <text x="740" y="204" font-size="11" fill="#334155" font-weight="700">0..1</text>
+    <text x="815" y="204" font-size="11" fill="#334155" font-weight="700">1</text>
+  </g>
+
+  <!-- 3. Vehiculo (x=190, y=320) -> NovedadVehiculo (x=190, y=430) -->
+  <g id="rel-veh-novedad">
+    <line x1="190" y1="320" x2="190" y2="428" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="198" y="365" width="65" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="230" y="378" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">presenta</text>
+    <text x="175" y="340" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="175" y="418" font-size="11" fill="#334155" font-weight="700">0..*</text>
+  </g>
+
+  <!-- 4. UsuarioMensualista (x=450, y=490) -> Vehiculo (x=330, y=280) via polyline -->
+  <g id="rel-usuario-veh">
+    <path d="M 450 500 L 390 500 L 390 280 L 332 280" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="360" y="375" width="60" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="390" y="388" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">posee</text>
+    <text x="430" y="494" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="340" y="274" font-size="11" fill="#334155" font-weight="700">1..*</text>
+  </g>
+
+  <!-- 5. UsuarioMensualista (x=730, y=500) -> SuscripcionMensual (x=830, y=500) -->
+  <g id="rel-usuario-suscripcion">
+    <line x1="730" y1="500" x2="828" y2="500" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="752" y="480" width="62" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="783" y="493" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">contrata</text>
+    <text x="740" y="494" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="815" y="494" font-size="11" fill="#334155" font-weight="700">1</text>
+  </g>
+
+  <!-- 6. EntradaVehiculo (x=540, y=415) -> Pago (x=540, y=678) -->
+  <g id="rel-entrada-pago">
+    <path d="M 540 415 L 540 610 L 540 678" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="548" y="625" width="58" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="577" y="638" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">liquida</text>
+    <text x="548" y="435" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="548" y="668" font-size="11" fill="#334155" font-weight="700">0..1</text>
+  </g>
+
+  <!-- 7. SuscripcionMensual (x=950, y=580) -> Pago (x=730, y=770) via polyline -->
+  <g id="rel-suscripcion-pago">
+    <path d="M 950 580 L 950 770 L 732 770" fill="none" stroke="#0f172a" stroke-width="2" marker-end="url(#uml-arrow)" />
+    <rect x="815" y="752" width="58" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="844" y="765" font-size="10" fill="#0f172a" font-weight="700" text-anchor="middle" font-family="monospace">abona</text>
+    <text x="958" y="600" font-size="11" fill="#334155" font-weight="700">1</text>
+    <text x="740" y="764" font-size="11" fill="#334155" font-weight="700">1..*</text>
+  </g>
+
+  <!-- ================= CLASS BOXES (UML 2.5 Standard) ================= -->
+
+  <!-- 1. VEHICULO (x=50, y=110, w=280, h=210) -->
+  <g id="box-vehiculo" filter="url(#shadow)">
+    <rect x="50" y="110" width="280" height="210" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="50" y="110" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="190" y="125" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Entity&gt;&gt;</text>
+    <text x="190" y="139" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">Vehiculo</text>
+    
+    <!-- Attributes -->
+    <text x="62" y="164" font-size="10.5" fill="#0f172a" font-family="monospace">- placa: String</text>
+    <text x="62" y="180" font-size="10.5" fill="#0f172a" font-family="monospace">- tipo: TipoVehiculo</text>
+    <text x="62" y="196" font-size="10.5" fill="#0f172a" font-family="monospace">- marca: String</text>
+    <text x="62" y="212" font-size="10.5" fill="#0f172a" font-family="monospace">- modelo: String</text>
+    <text x="62" y="228" font-size="10.5" fill="#0f172a" font-family="monospace">- color: String</text>
+    
+    <line x1="50" y1="240" x2="330" y2="240" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="62" y="260" font-size="10.5" fill="#0f172a" font-family="monospace">+ validarFormatoPlaca(placa): Bool</text>
+    <text x="62" y="278" font-size="10.5" fill="#0f172a" font-family="monospace">+ esParticular(): Boolean</text>
+    <text x="62" y="296" font-size="10.5" fill="#0f172a" font-family="monospace">+ getDetalleVehiculo(): String</text>
+  </g>
+
+  <!-- 2. ENTRADA VEHICULO (x=450, y=100, w=280, h=315) -->
+  <g id="box-entrada" filter="url(#shadow)">
+    <rect x="450" y="100" width="280" height="315" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="450" y="100" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="590" y="115" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Aggregate Root&gt;&gt;</text>
+    <text x="590" y="129" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">EntradaVehiculo</text>
+    
+    <!-- Attributes -->
+    <text x="460" y="152" font-size="10" fill="#0f172a" font-family="monospace">- id: String</text>
+    <text x="460" y="167" font-size="10" fill="#0f172a" font-family="monospace">- numeroTicket: String</text>
+    <text x="460" y="182" font-size="10" fill="#0f172a" font-family="monospace">- placa: String</text>
+    <text x="460" y="197" font-size="10" fill="#0f172a" font-family="monospace">- tipoVehiculo: TipoVehiculo</text>
+    <text x="460" y="212" font-size="10" fill="#0f172a" font-family="monospace">- tipoServicio: TipoServicio</text>
+    <text x="460" y="227" font-size="10" fill="#0f172a" font-family="monospace">- celdaId: String</text>
+    <text x="460" y="242" font-size="10" fill="#0f172a" font-family="monospace">- horaEntrada: DateTime</text>
+    <text x="460" y="257" font-size="10" fill="#0f172a" font-family="monospace">- horaSalida: DateTime</text>
+    <text x="460" y="272" font-size="10" fill="#0f172a" font-family="monospace">- notasInspeccion: String</text>
+    <text x="460" y="287" font-size="10" fill="#0f172a" font-family="monospace">- estado: String</text>
+    <text x="460" y="302" font-size="10" fill="#0f172a" font-family="monospace">- totalMinutos: Integer</text>
+    <text x="460" y="317" font-size="10" fill="#0f172a" font-family="monospace">- montoLiquidado: Double</text>
+    
+    <line x1="450" y1="328" x2="730" y2="328" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="460" y="348" font-size="10" fill="#0f172a" font-family="monospace">+ calcularMinutos(hSalida): Int</text>
+    <text x="460" y="366" font-size="10" fill="#0f172a" font-family="monospace">+ finalizarEstadia(hSal, monto): Void</text>
+    <text x="460" y="384" font-size="10" fill="#0f172a" font-family="monospace">+ generarCodigoTicket(): String</text>
+  </g>
+
+  <!-- 3. CELDA PARQUEO (x=830, y=110, w=280, h=230) -->
+  <g id="box-celda" filter="url(#shadow)">
+    <rect x="830" y="110" width="280" height="230" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="830" y="110" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="970" y="125" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Entity&gt;&gt;</text>
+    <text x="970" y="139" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">CeldaParqueo</text>
+    
+    <!-- Attributes -->
+    <text x="842" y="164" font-size="10.5" fill="#0f172a" font-family="monospace">- id: String</text>
+    <text x="842" y="180" font-size="10.5" fill="#0f172a" font-family="monospace">- zona: String</text>
+    <text x="842" y="196" font-size="10.5" fill="#0f172a" font-family="monospace">- tipoPermitido: TipoVehiculo</text>
+    <text x="842" y="212" font-size="10.5" fill="#0f172a" font-family="monospace">- estado: EstadoCelda</text>
+    <text x="842" y="228" font-size="10.5" fill="#0f172a" font-family="monospace">- placaActual: String</text>
+    <text x="842" y="244" font-size="10.5" fill="#0f172a" font-family="monospace">- usuarioReservadoId: String</text>
+    
+    <line x1="830" y1="256" x2="1110" y2="256" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="842" y="276" font-size="10.5" fill="#0f172a" font-family="monospace">+ ocupar(placa): Boolean</text>
+    <text x="842" y="294" font-size="10.5" fill="#0f172a" font-family="monospace">+ liberar(): Void</text>
+    <text x="842" y="312" font-size="10.5" fill="#0f172a" font-family="monospace">+ inhabilitarPorMantenimiento(): Void</text>
+  </g>
+
+  <!-- 4. NOVEDAD VEHICULO (x=50, y=430, w=280, h=220) -->
+  <g id="box-novedad" filter="url(#shadow)">
+    <rect x="50" y="430" width="280" height="220" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="50" y="430" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="190" y="445" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Entity&gt;&gt;</text>
+    <text x="190" y="459" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">NovedadVehiculo</text>
+    
+    <!-- Attributes -->
+    <text x="62" y="484" font-size="10.5" fill="#0f172a" font-family="monospace">- id: String</text>
+    <text x="62" y="500" font-size="10.5" fill="#0f172a" font-family="monospace">- codigo: String</text>
+    <text x="62" y="516" font-size="10.5" fill="#0f172a" font-family="monospace">- placa: String</text>
+    <text x="62" y="532" font-size="10.5" fill="#0f172a" font-family="monospace">- tipo: String</text>
+    <text x="62" y="548" font-size="10.5" fill="#0f172a" font-family="monospace">- severidad: String</text>
+    <text x="62" y="564" font-size="10.5" fill="#0f172a" font-family="monospace">- descripcion: String</text>
+    <text x="62" y="580" font-size="10.5" fill="#0f172a" font-family="monospace">- estado: String</text>
+    
+    <line x1="50" y1="592" x2="330" y2="592" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="62" y="612" font-size="10.5" fill="#0f172a" font-family="monospace">+ notificarPropietario(tel): Void</text>
+    <text x="62" y="630" font-size="10.5" fill="#0f172a" font-family="monospace">+ resolver(solucion): Void</text>
+  </g>
+
+  <!-- 5. USUARIO MENSUALISTA (x=450, y=440, w=280, h=215) -->
+  <g id="box-usuario" filter="url(#shadow)">
+    <rect x="450" y="440" width="280" height="215" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="450" y="440" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="590" y="455" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Entity&gt;&gt;</text>
+    <text x="590" y="469" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">UsuarioMensualista</text>
+    
+    <!-- Attributes -->
+    <text x="460" y="492" font-size="10" fill="#0f172a" font-family="monospace">- id: String</text>
+    <text x="460" y="507" font-size="10" fill="#0f172a" font-family="monospace">- nombreCompleto: String</text>
+    <text x="460" y="522" font-size="10" fill="#0f172a" font-family="monospace">- tipoDocumento: String</text>
+    <text x="460" y="537" font-size="10" fill="#0f172a" font-family="monospace">- numeroDocumento: String</text>
+    <text x="460" y="552" font-size="10" fill="#0f172a" font-family="monospace">- telefono: String</text>
+    <text x="460" y="567" font-size="10" fill="#0f172a" font-family="monospace">- email: String</text>
+    <text x="460" y="582" font-size="10" fill="#0f172a" font-family="monospace">- celdaAsignadaId: String</text>
+    
+    <line x1="450" y1="592" x2="730" y2="592" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="460" y="612" font-size="10" fill="#0f172a" font-family="monospace">+ tieneMensualidadAlDia(): Boolean</text>
+    <text x="460" y="628" font-size="10" fill="#0f172a" font-family="monospace">+ vincularVehiculo(v: Vehiculo): Void</text>
+    <text x="460" y="644" font-size="10" fill="#0f172a" font-family="monospace">+ renovarContrato(meses): Void</text>
+  </g>
+
+  <!-- 6. SUSCRIPCION MENSUAL (x=830, y=415, w=280, h=165) -->
+  <g id="box-suscripcion" filter="url(#shadow)">
+    <rect x="830" y="415" width="280" height="165" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="830" y="415" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="970" y="430" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Entity&gt;&gt;</text>
+    <text x="970" y="444" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">SuscripcionMensual</text>
+    
+    <!-- Attributes -->
+    <text x="842" y="470" font-size="10.5" fill="#0f172a" font-family="monospace">- fechaInicio: Date</text>
+    <text x="842" y="486" font-size="10.5" fill="#0f172a" font-family="monospace">- fechaVencimiento: Date</text>
+    <text x="842" y="502" font-size="10.5" fill="#0f172a" font-family="monospace">- canonMensual: Double</text>
+    <text x="842" y="518" font-size="10.5" fill="#0f172a" font-family="monospace">- estado: String</text>
+    
+    <line x1="830" y1="528" x2="1110" y2="528" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="842" y="548" font-size="10.5" fill="#0f172a" font-family="monospace">+ diasParaVencimiento(): Integer</text>
+    <text x="842" y="566" font-size="10.5" fill="#0f172a" font-family="monospace">+ estaVencida(): Boolean</text>
+  </g>
+
+  <!-- 7. PAGO (x=450, y=685, w=280, h=195) -->
+  <g id="box-pago" filter="url(#shadow)">
+    <rect x="450" y="685" width="280" height="195" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="4" />
+    <rect x="450" y="685" width="280" height="34" fill="#f1f5f9" stroke="#0f172a" stroke-width="1" />
+    <text x="590" y="700" font-size="9" fill="#64748b" text-anchor="middle" font-family="monospace">&lt;&lt;Value Object / Receipt&gt;&gt;</text>
+    <text x="590" y="714" font-size="13" font-weight="bold" fill="#0f172a" text-anchor="middle">Pago</text>
+    
+    <!-- Attributes -->
+    <text x="460" y="738" font-size="10" fill="#0f172a" font-family="monospace">- id: String</text>
+    <text x="460" y="753" font-size="10" fill="#0f172a" font-family="monospace">- numeroRecibo: String</text>
+    <text x="460" y="768" font-size="10" fill="#0f172a" font-family="monospace">- fecha: DateTime</text>
+    <text x="460" y="783" font-size="10" fill="#0f172a" font-family="monospace">- concepto: String</text>
+    <text x="460" y="798" font-size="10" fill="#0f172a" font-family="monospace">- monto: Double</text>
+    <text x="460" y="813" font-size="10" fill="#0f172a" font-family="monospace">- medioPago: String</text>
+    <text x="460" y="828" font-size="10" fill="#0f172a" font-family="monospace">- cajero: String</text>
+    
+    <line x1="450" y1="838" x2="730" y2="838" stroke="#0f172a" stroke-width="1" />
+    <!-- Methods -->
+    <text x="460" y="858" font-size="10" fill="#0f172a" font-family="monospace">+ generarComprobante(): String</text>
+    <text x="460" y="874" font-size="10" fill="#0f172a" font-family="monospace">+ calcularIVA(tasa): Double</text>
+  </g>
+
+  <!-- ================= LEGEND / CONVENTIONS FOOTER ================= -->
+  <g id="legend">
+    <rect x="50" y="890" width="1100" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" />
+    <text x="70" y="913" font-size="11" font-weight="700" fill="#0f172a">Convenciones UML 2.5:</text>
+    <text x="210" y="913" font-size="11" font-family="monospace" fill="#059669">[-] Atributo Privado</text>
+    <text x="370" y="913" font-size="11" font-family="monospace" fill="#2563eb">[+] Método Público</text>
+    <text x="530" y="913" font-size="11" font-family="monospace" fill="#7c3aed">1..* Uno a Muchos</text>
+    <text x="680" y="913" font-size="11" font-family="monospace" fill="#d97706">0..1 Cero o Uno (Opcional)</text>
+    <text x="880" y="913" font-size="11" font-weight="600" fill="#475569">Archivo Nativo: ParqueaderoAutosColombia_StarUML.mdj</text>
+  </g>
+</svg>

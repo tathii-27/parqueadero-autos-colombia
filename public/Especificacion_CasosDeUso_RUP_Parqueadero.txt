@@ -1,0 +1,302 @@
+================================================================================
+PARQUEADERO AUTOS COLOMBIA · ESPECIFICACIÓN DE CASOS DE USO (METODOLOGÍA RUP / UML 2.5)
+Estudiante: Tatiana Gallego (tatiana.gallegog@est.iudigital.edu.co)
+Institución: Institución Universitaria Digital de Antioquia (IU Digital)
+Programa: Ingeniería de Software · Arquitectura y Modelado de Software
+================================================================================
+
+1. DESCRIPCIÓN GENERAL DEL SISTEMA
+El sistema de información "Parqueadero Autos Colombia" gestiona de manera automatizada 
+el ciclo de estancia vehicular, control de aforo por celdas, liquidación de tarifas por minuto 
+y hora, arqueos diarios de caja y contratos de mensualistas recurrentes, deslindando 
+responsabilidades de custodia mediante el registro previo de daños e incidencias.
+
+================================================================================
+2. ACTORES DEL SISTEMA
+================================================================================
+
+1. ACT-01: Operario de Caseta / Cajero (Actor Humano Principal)
+   - Descripción: Empleado operativo responsable del registro directo de entrada y salida 
+     de vehículos, inspección inicial pericial, cobro en taquilla y emisión de tickets.
+   - Casos de uso asociados: CU-01, CU-02, CU-03, CU-04, CU-05, CU-06, CU-07, CU-08, CU-10.
+
+2. ACT-02: Administrador del Parqueadero (Actor Humano Supervisor)
+   - Descripción: Supervisor general con privilegios administrativos. 
+     Hereda mediante generalización todas las capacidades operativas y añade la gestión de 
+     tarifas, mensualistas, arqueos diarios y reportes gerenciales.
+   - Casos de uso asociados: CU-11, CU-12, CU-13, CU-14, CU-15, CU-16 (y por herencia CU-01 a CU-10).
+
+3. ACT-03: Cliente Conductor / Mensualista (Actor Humano Externo)
+   - Descripción: Propietario o conductor del vehículo que solicita el servicio de estancia, 
+     presenta su automotor a inspección, contrata cupos mensuales y realiza el pago.
+   - Casos de uso asociados: CU-01, CU-04, CU-06, CU-07, CU-11, CU-12.
+
+4. ACT-04: Pasarela de Pagos / Facturación DIAN (Actor Sistema Externo)
+   - Descripción: API bancaria y de facturación electrónica que procesa autorizaciones de 
+     tarjetas débito/crédito, transferencias QR y genera el timbrado fiscal reglamentario.
+   - Casos de uso asociados: CU-07, CU-08.
+
+================================================================================
+3. ESPECIFICACIÓN DETALLADA DE CASOS DE USO (PLANTILLA RUP)
+================================================================================
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-01 · REGISTRAR INGRESO DE VEHÍCULO
+--------------------------------------------------------------------------------
+- Módulo: Control de Acceso y Celdas
+- Actor Principal: Operario de Caseta / Cajero
+- Actores Secundarios: Cliente Conductor
+- Tipo de Relaciones:
+  * <<include>>: CU-02 (Asignar Celda de Estacionamiento)
+  * <<extend>>: CU-03 (Registrar Novedad / Daño Previo con Fotografía)
+- Precondiciones: El sistema se encuentra operativo y el aforo del parqueadero no está colmado.
+- Flujo Principal:
+  1. El conductor posiciona el automotor en la bahía de acceso de la caseta.
+  2. El operario ingresa la placa alfanumérica (formato colombiano AAA123 o AAA12D).
+  3. El sistema valida la placa y verifica que no figure con estancia activa en patio.
+  4. El sistema ejecuta obligatoriamente el CU-02 (Asignar Celda de Estacionamiento).
+  5. El operario confirma los datos del automotor (Tipo, Marca, Color).
+  6. El sistema genera el consecutivo de ticket con timestamp de ingreso (hora y minuto legal).
+  7. Se imprime el ticket térmico con código QR y se levanta la barrera de acceso.
+- Flujos Alternos:
+  * 3a. Placa con estancia previa sin liquidar: El sistema bloquea el ingreso y solicita auditoría.
+  * 4a. Capacidad colmada (100% de ocupación): El sistema notifica aforo completo y sugiere lista de espera.
+  * 5a. Vehículo con daños visibles: Si el operario detecta rayones o abolladuras, se dispara el CU-03.
+- Postcondiciones: El vehículo queda con estado EN_CURSO y la celda seleccionada pasa a OCUPADA.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-02 · ASIGNAR CELDA DE ESTACIONAMIENTO
+--------------------------------------------------------------------------------
+- Módulo: Control de Acceso y Celdas
+- Actor Principal: Operario de Caseta / Cajero
+- Tipo de Relación: <<include>> invocado por CU-01.
+- Precondiciones: Proceso de ingreso de vehículo en ejecución con tipología identificada.
+- Flujo Principal:
+  1. El sistema filtra las celdas disponibles según la categoría (Zona A: Carros, Zona B: Motos, Zona C: Camionetas).
+  2. El algoritmo sugiere la celda óptima más próxima al acceso.
+  3. El operario confirma o selecciona manualmente una celda alternativa.
+  4. La celda queda vinculada al ticket de ingreso.
+- Flujos Alternos:
+  * 2a. Vehículo de mensualista: El sistema asigna automáticamente la celda fija reservada.
+- Postcondiciones: La celda queda reservada para el automotor entrante.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-03 · REGISTRAR NOVEDAD / DAÑO PREVIO CON FOTOGRAFÍA
+--------------------------------------------------------------------------------
+- Módulo: Control de Acceso y Celdas
+- Actor Principal: Operario de Caseta / Cajero
+- Tipo de Relación: <<extend>> sobre CU-01 (Punto de Extensión: Inspección visual de ingreso).
+- Precondiciones: El vehículo presenta imperfecciones físicas (rayones, golpes, accesorios rotos).
+- Flujo Principal:
+  1. El operario marca la casilla "Registrar Novedad Previa".
+  2. Selecciona la zona afectada (Frontal, Lateral Izq/Der, Techo, Posterior).
+  3. Describe la anomalía observada.
+  4. Captura o adjunta fotografía de evidencia digital.
+  5. El sistema emite código de novedad NOV-XXXX anexo al ticket de entrada.
+- Postcondiciones: Daño previo documentado que exonera de responsabilidad al establecimiento.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-04 · REGISTRAR SALIDA Y CALCULAR TIEMPO TRANSCURRIDO
+--------------------------------------------------------------------------------
+- Módulo: Control de Acceso y Celdas
+- Actor Principal: Operario de Caseta / Cajero
+- Actores Secundarios: Cliente Conductor
+- Tipo de Relaciones: <<include>>: CU-06 (Liquidar Cobro de Estancia).
+- Precondiciones: Vehículo registrado en el sistema con estancia activa (EN_CURSO).
+- Flujo Principal:
+  1. El conductor presenta el ticket o indica la placa en caseta de salida.
+  2. El operario busca el registro en el sistema.
+  3. El sistema calcula los minutos transcurridos entre el ingreso y el momento actual.
+  4. Si el tiempo es menor o igual a 15 minutos (Gracia institucional), el valor es $0.
+  5. Si supera el periodo de gracia, se invoca obligatoriamente el CU-06 (Liquidar Cobro).
+  6. Una vez confirmado el pago, el sistema registra la hora de salida.
+  7. Se autoriza la apertura de la barrera de salida.
+- Flujos Alternos:
+  * 1a. Ticket extraviado: El operario solicita documento de propiedad (tarjeta de circulación) y aplica protocolo RN-08.
+- Postcondiciones: La estancia cambia a FINALIZADA y la celda queda LIBRE / DISPONIBLE.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-05 · MONITOREAR CELDAS EN TIEMPO REAL
+--------------------------------------------------------------------------------
+- Módulo: Control de Acceso y Celdas
+- Actor Principal: Operario de Caseta / Cajero, Administrador
+- Precondiciones: Usuario autenticado en el sistema.
+- Flujo Principal:
+  1. El usuario visualiza el mapa de patio interactivo con semaforización (Verde: Libre, Rojo: Ocupada, Azul: Reservada).
+  2. Consulta el porcentaje de aforo global y por zonas.
+- Postcondiciones: Información situacional actualizada del parqueadero.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-06 · LIQUIDAR COBRO DE ESTANCIA
+--------------------------------------------------------------------------------
+- Módulo: Facturación y Cobro
+- Actor Principal: Operario de Caseta / Cajero
+- Tipo de Relaciones:
+  * <<include>>: CU-07 (Procesar Transacción de Pago)
+  * <<extend>>: CU-09 (Aplicar Tarifa Preferencial / Descuento)
+- Precondiciones: Minutos de estancia computados superiores al periodo de gracia.
+- Flujo Principal:
+  1. El sistema recupera el tarifario vigente para la categoría del vehículo.
+  2. Multiplica las fracciones/horas o día pleno correspondiente.
+  3. Calcula el subtotal y el IVA aplicable.
+  4. Se deriva al CU-07 (Procesar Transacción de Pago).
+- Flujos Alternos:
+  * 2a. Automotor de mensualista: Se dispara la extensión CU-09 (Tarifa preferencial $0).
+- Postcondiciones: Monto total liquidado listo para recaudar.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-07 · PROCESAR TRANSACCIÓN DE PAGO
+--------------------------------------------------------------------------------
+- Módulo: Facturación y Cobro
+- Actor Principal: Operario de Caseta / Cajero
+- Actores Secundarios: Pasarela de Pagos / DIAN, Cliente Conductor
+- Tipo de Relaciones: <<include>>: CU-08 (Emitir Ticket / Factura Electrónica).
+- Precondiciones: Liquidación activa pendiente de abono.
+- Flujo Principal:
+  1. El operario solicita al cliente el método de pago:
+     - Efectivo: Digita monto recibido y el sistema calcula la devuelta.
+     - Datáfono: Envía importe a la pasarela bancaria externa y recibe voucher de aprobación.
+     - Transferencia QR: Valida la referencia bancaria en pantalla.
+  2. El sistema almacena la transacción contable con código REC-XXXX.
+  3. Ejecuta obligatoriamente el CU-08 (Emitir Factura / Ticket).
+- Flujos Alternos:
+  * 1a. Transacción electrónica declinada: Se solicita método alternativo.
+- Postcondiciones: Recaudo asentado en el libro contable de caja.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-08 · EMITIR TICKET DE SALIDA / FACTURA ELECTRÓNICA
+--------------------------------------------------------------------------------
+- Módulo: Facturación y Cobro
+- Actor Principal: Operario de Caseta / Cajero
+- Actores Secundarios: Pasarela de Pagos / DIAN
+- Tipo de Relación: <<include>> desde CU-07.
+- Precondiciones: Pago acreditado en caja.
+- Flujo Principal:
+  1. El sistema genera el comprobante fiscal bajo Ley 1480 de 2011 con desglose tributario.
+  2. Si el cliente requiere factura electrónica, la pasarela remite el XML a la DIAN.
+  3. Se imprime copia física en impresora térmica o se remite al correo del cliente.
+- Postcondiciones: Soporte legal emitido y entregado al usuario.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-09 · APLICAR TARIFA PREFERENCIAL / DESCUENTO MENSUALISTA
+--------------------------------------------------------------------------------
+- Módulo: Facturación y Cobro
+- Actor Principal: Operario de Caseta / Cajero
+- Tipo de Relación: <<extend>> sobre CU-06.
+- Punto de Extensión: Cuando el automotor pertenece a una suscripción mensual activa.
+- Flujo Principal:
+  1. El sistema valida el contrato vigente de la placa.
+  2. Aplica cobro por $0 de estancia al contar con mensualidad prepagada.
+- Postcondiciones: Liquidación registrada con costo $0 institucional.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-10 · REALIZAR ARQUEO Y CIERRE DIARIO DE CAJA
+--------------------------------------------------------------------------------
+- Módulo: Facturación y Cobro
+- Actor Principal: Operario de Caseta / Cajero, Administrador
+- Precondiciones: Fin del turno de trabajo operativo.
+- Flujo Principal:
+  1. El cajero solicita el arqueo de cierre.
+  2. El sistema computa totales recaudados discriminados por método de pago.
+  3. El cajero ingresa el dinero físico contado en gaveta.
+  4. El sistema compara y determina cuadre exacto, sobrante o faltante.
+  5. Administrador y cajero firman el acta digital de cierre.
+- Postcondiciones: Libro de turno congelado para efectos contables.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-11 · REGISTRAR CLIENTE MENSUALISTA
+--------------------------------------------------------------------------------
+- Módulo: Mensualistas y Suscripciones
+- Actor Principal: Administrador del Parqueadero
+- Actores Secundarios: Cliente Conductor
+- Precondiciones: Cliente no inscrito en la base de datos de mensualistas.
+- Flujo Principal:
+  1. El administrador ingresa documento de identidad, nombres, teléfono y correo electrónico.
+  2. Asocia la(s) placa(s) autorizadas del cliente.
+  3. El sistema valida la unicidad tributaria y almacena el registro.
+- Postcondiciones: Cliente habilitado para suscribir contratos mensuales.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-12 · SUSCRIBIR CUPO FIJO MENSUAL
+--------------------------------------------------------------------------------
+- Módulo: Mensualistas y Suscripciones
+- Actor Principal: Administrador del Parqueadero
+- Actores Secundarios: Cliente Conductor
+- Precondiciones: Cliente registrado y celda fija disponible.
+- Flujo Principal:
+  1. El administrador selecciona el cliente y vehículo.
+  2. Define la fecha de inicio, corte (e.g. 30 días) y canon pactado.
+  3. Asigna la celda fija reservada.
+  4. Registra el pago del canon mensual.
+- Postcondiciones: Celda marcada como RESERVADA y contrato con estado VIGENTE.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-13 · RENOVAR O SUSPENDER SUSCRIPCIÓN
+--------------------------------------------------------------------------------
+- Módulo: Mensualistas y Suscripciones
+- Actor Principal: Administrador del Parqueadero
+- Precondiciones: Contrato de mensualista existente en el sistema.
+- Flujo Principal:
+  1. El administrador localiza el contrato del cliente.
+  2. Si el cliente paga la cuota: renueva por 30 días adicionales la fecha de corte.
+  3. Si presenta mora: suspende el acceso automático hasta regularización.
+- Postcondiciones: Fecha de vigencia ampliada o suscripción suspendida.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-14 · CONSULTAR HISTORIAL Y ESTADO DE CUENTA
+--------------------------------------------------------------------------------
+- Módulo: Mensualistas y Suscripciones
+- Actor Principal: Administrador del Parqueadero, Cliente Conductor
+- Precondiciones: Cliente registrado.
+- Flujo Principal:
+  1. Se consulta el perfil del cliente.
+  2. El sistema lista todos los accesos realizados, pagos efectuados y saldo pendiente.
+- Postcondiciones: Extracto histórico generado.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-15 · CONFIGURAR PARÁMETROS DE TARIFAS Y FRACCIONES
+--------------------------------------------------------------------------------
+- Módulo: Administración y Parámetros
+- Actor Principal: Administrador del Parqueadero
+- Precondiciones: Privilegios de superusuario administrador.
+- Flujo Principal:
+  1. El administrador ingresa a Configuración de Tarifas.
+  2. Define valor por minuto, valor por hora, día pleno y mensualidad por categoría vehicular.
+  3. Ajusta el tiempo de gracia en minutos (default: 15 min).
+  4. Guarda los cambios con registro de auditoría.
+- Postcondiciones: Nuevas liquidaciones emplearán los valores modificados.
+
+--------------------------------------------------------------------------------
+CASO DE USO: CU-16 · GENERAR REPORTES DE OCUPACIÓN E INGRESOS
+--------------------------------------------------------------------------------
+- Módulo: Administración y Parámetros
+- Actor Principal: Administrador del Parqueadero
+- Precondiciones: Datos operacionales acumulados.
+- Flujo Principal:
+  1. El administrador selecciona periodo analítico (Día, Semana, Mes).
+  2. El sistema grafica ocupación promedio, picos horarios y recaudos acumulados.
+  3. Se genera reporte exportable en formato digital.
+- Postcondiciones: Informe de inteligencia de negocio emitido.
+
+================================================================================
+4. MATRIZ DE TRAZABILIDAD (HISTORIAS DE USUARIO -> CASOS DE USO)
+================================================================================
+- HU-01 (Registro ágil de placa)              --> CU-01
+- HU-02 (Asignación automática de celda)      --> CU-02, CU-05
+- HU-03 (Impresión de ticket con QR)          --> CU-01, CU-08
+- HU-04 (Inspección y foto de daño previo)    --> CU-03
+- HU-05 (Cálculo exacto de tiempo)            --> CU-04
+- HU-06 (Liquidación con tarifas diferenciales)--> CU-06, CU-15
+- HU-07 (Múltiples métodos de pago)           --> CU-07
+- HU-08 (Comprobante de pago fiscal)          --> CU-08
+- HU-09 (Periodo de gracia institucional)     --> CU-04, CU-15
+- HU-10 (Directorio de mensualistas)          --> CU-11
+- HU-11 (Contratos y cupos fijos mensuales)   --> CU-12
+- HU-12 (Control de vigencia y corte)         --> CU-13, CU-14
+- HU-13 (Arqueo y cierre diario de caja)      --> CU-10
+- HU-14 (Gestión de tarifas y parámetros)     --> CU-15
+- HU-15 (Monitoreo visual de aforo)           --> CU-05
+- HU-16 (Reportes analíticos de gestión)      --> CU-16
+- HU-17 (Manejo de ticket extraviado)         --> CU-04
+- HU-18 (Auditoría inmutable de movimientos)  --> CU-10, CU-16
+================================================================================

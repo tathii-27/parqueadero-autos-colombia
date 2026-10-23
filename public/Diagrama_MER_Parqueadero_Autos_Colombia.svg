@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="1100" height="750" style="background-color: #ffffff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1" />
+    </filter>
+  </defs>
+
+  <!-- Encabezado del Diagrama -->
+  <rect x="0" y="0" width="1100" height="60" fill="#0f172a" />
+  <text x="30" y="36" fill="#ffffff" font-size="18" font-weight="bold">PARQUEADERO AUTOS COLOMBIA · MODELO ENTIDAD - RELACIÓN (MER CONCEPTUAL)</text>
+  <text x="850" y="36" fill="#10b981" font-size="12" font-weight="600">Notación Chen · 8 Entidades · 8 Relaciones</text>
+
+  <!-- Fondo cuadriculado suave -->
+  <g stroke="#f1f5f9" stroke-width="1">
+    <line x1="50" y1="90" x2="1050" y2="90" />
+    <line x1="50" y1="230" x2="1050" y2="230" />
+    <line x1="50" y1="380" x2="1050" y2="380" />
+    <line x1="50" y1="530" x2="1050" y2="530" />
+    <line x1="50" y1="680" x2="1050" y2="680" />
+  </g>
+
+  <!-- LÍNEAS DE CONEXIÓN ENTRE ENTIDADES Y RELACIONES -->
+  <!-- VEHICULO (130, 140) <-> REGISTRA (330, 140) <-> ENTRADA (530, 140) -->
+  <line x1="200" y1="140" x2="290" y2="140" stroke="#475569" stroke-width="2.5" />
+  <line x1="370" y1="140" x2="460" y2="140" stroke="#475569" stroke-width="2.5" />
+
+  <!-- ENTRADA (530, 140) <-> ASIGNA (720, 140) <-> CELDA (910, 140) -->
+  <line x1="600" y1="140" x2="680" y2="140" stroke="#475569" stroke-width="2.5" />
+  <line x1="760" y1="140" x2="840" y2="140" stroke="#475569" stroke-width="2.5" />
+
+  <!-- VEHICULO (130, 140) <-> REPORTA (130, 275) <-> NOVEDAD (130, 420) -->
+  <line x1="130" y1="170" x2="130" y2="240" stroke="#475569" stroke-width="2.5" />
+  <line x1="130" y1="310" x2="130" y2="390" stroke="#475569" stroke-width="2.5" />
+
+  <!-- USUARIO (530, 420) <-> POSEE (340, 420) <-> VEHICULO (130, 140) -->
+  <line x1="460" y1="420" x2="380" y2="420" stroke="#475569" stroke-width="2.5" />
+  <line x1="300" y1="420" x2="170" y2="170" stroke="#475569" stroke-width="2.5" />
+
+  <!-- USUARIO (530, 420) <-> CONTRATA (720, 420) <-> SUSCRIPCION (910, 420) -->
+  <line x1="600" y1="420" x2="680" y2="420" stroke="#475569" stroke-width="2.5" />
+  <line x1="760" y1="420" x2="840" y2="420" stroke="#475569" stroke-width="2.5" />
+
+  <!-- ENTRADA (530, 140) <-> LIQUIDA (530, 275) <-> PAGO (530, 620) -->
+  <line x1="530" y1="170" x2="530" y2="240" stroke="#475569" stroke-width="2.5" />
+  <line x1="530" y1="310" x2="530" y2="590" stroke="#475569" stroke-width="2.5" />
+
+  <!-- SUSCRIPCION (910, 420) <-> ABONA (910, 550) <-> PAGO (530, 620) -->
+  <line x1="910" y1="450" x2="910" y2="520" stroke="#475569" stroke-width="2.5" />
+  <line x1="910" y1="580" x2="910" y2="620" stroke="#475569" stroke-width="2.5" />
+  <line x1="910" y1="620" x2="600" y2="620" stroke="#475569" stroke-width="2.5" />
+
+  <!-- TARIFA (130, 620) <-> APLICA (330, 620) <-> PAGO (530, 620) -->
+  <line x1="200" y1="620" x2="290" y2="620" stroke="#475569" stroke-width="2.5" />
+  <line x1="370" y1="620" x2="460" y2="620" stroke="#475569" stroke-width="2.5" />
+
+  <!-- ================= ENTIDADES (RECTÁNGULOS AZUL MARINO) ================= -->
+  <!-- 1. VEHICULO -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="110" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="130" y="145" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">VEHÍCULO</text>
+    <text x="60" y="100" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: placa</text>
+    <circle cx="60" cy="185" r="4" fill="#3b82f6" />
+    <text x="70" y="188" fill="#64748b" font-size="9.5">tipo, marca, color</text>
+  </g>
+
+  <!-- 2. ENTRADA_VEHICULO -->
+  <g filter="url(#shadow)">
+    <rect x="460" y="110" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="530" y="145" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">ENTRADA</text>
+    <text x="460" y="100" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_entrada</text>
+    <circle cx="460" cy="185" r="4" fill="#3b82f6" />
+    <text x="470" y="188" fill="#64748b" font-size="9.5">fecha_ingreso, salida, estado</text>
+  </g>
+
+  <!-- 3. CELDA_PARQUEO -->
+  <g filter="url(#shadow)">
+    <rect x="840" y="110" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="910" y="145" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">CELDA</text>
+    <text x="840" y="100" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_celda</text>
+    <circle cx="840" cy="185" r="4" fill="#3b82f6" />
+    <text x="850" y="188" fill="#64748b" font-size="9.5">numero_celda, zona, tipo</text>
+  </g>
+
+  <!-- 4. NOVEDAD_VEHICULO -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="390" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="130" y="425" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">NOVEDAD</text>
+    <text x="60" y="380" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_novedad</text>
+    <circle cx="60" cy="465" r="4" fill="#3b82f6" />
+    <text x="70" y="468" fill="#64748b" font-size="9.5">daño_previo, fotos, obs</text>
+  </g>
+
+  <!-- 5. USUARIO_MENSUALISTA -->
+  <g filter="url(#shadow)">
+    <rect x="460" y="390" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="530" y="425" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">MENSUALISTA</text>
+    <text x="460" y="380" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_usuario</text>
+    <circle cx="460" cy="465" r="4" fill="#3b82f6" />
+    <text x="470" y="468" fill="#64748b" font-size="9.5">nombres, doc, teléfono, email</text>
+  </g>
+
+  <!-- 6. SUSCRIPCION_MENSUAL -->
+  <g filter="url(#shadow)">
+    <rect x="840" y="390" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="910" y="425" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">SUSCRIPCIÓN</text>
+    <text x="840" y="380" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_suscripcion</text>
+    <circle cx="840" cy="465" r="4" fill="#3b82f6" />
+    <text x="850" y="468" fill="#64748b" font-size="9.5">fecha_inicio, fin, valor, estado</text>
+  </g>
+
+  <!-- 7. PAGO -->
+  <g filter="url(#shadow)">
+    <rect x="460" y="590" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="530" y="625" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">PAGO / FACTURA</text>
+    <text x="460" y="580" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_pago</text>
+    <circle cx="460" cy="665" r="4" fill="#3b82f6" />
+    <text x="470" y="668" fill="#64748b" font-size="9.5">total, metodo_pago, fecha</text>
+  </g>
+
+  <!-- 8. TARIFA_PARQUEO -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="590" width="140" height="60" fill="#0f172a" rx="6" />
+    <text x="130" y="625" fill="#ffffff" font-weight="bold" font-size="13" text-anchor="middle">TARIFA</text>
+    <text x="60" y="580" fill="#2563eb" font-size="10" font-weight="bold" font-family="monospace">PK: id_tarifa</text>
+    <circle cx="60" cy="665" r="4" fill="#3b82f6" />
+    <text x="70" y="668" fill="#64748b" font-size="9.5">tipo_vehiculo, valor_hora, dia</text>
+  </g>
+
+  <!-- ================= RELACIONES (ROMBOS VERDE ESMERALDA) ================= -->
+  <!-- 1. REGISTRA -->
+  <g filter="url(#shadow)">
+    <polygon points="330,110 370,140 330,170 290,140" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="330" y="144" fill="#ffffff" font-weight="bold" font-size="10" text-anchor="middle">REGISTRA</text>
+    <text x="215" y="132" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="420" y="132" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">N (0,n)</text>
+  </g>
+
+  <!-- 2. ASIGNA -->
+  <g filter="url(#shadow)">
+    <polygon points="720,110 760,140 720,170 680,140" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="720" y="144" fill="#ffffff" font-weight="bold" font-size="10" text-anchor="middle">ASIGNA</text>
+    <text x="615" y="132" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (0,1)</text>
+    <text x="800" y="132" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+  </g>
+
+  <!-- 3. REPORTA -->
+  <g filter="url(#shadow)">
+    <polygon points="130,240 170,275 130,310 90,275" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="130" y="279" fill="#ffffff" font-weight="bold" font-size="9" text-anchor="middle">REPORTA</text>
+    <text x="140" y="200" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="140" y="360" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">N (0,n)</text>
+  </g>
+
+  <!-- 4. POSEE -->
+  <g filter="url(#shadow)">
+    <polygon points="340,390 380,420 340,450 300,420" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="340" y="424" fill="#ffffff" font-weight="bold" font-size="10" text-anchor="middle">POSEE</text>
+    <text x="420" y="410" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="210" y="200" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">N (1,n)</text>
+  </g>
+
+  <!-- 5. CONTRATA -->
+  <g filter="url(#shadow)">
+    <polygon points="720,390 760,420 720,450 680,420" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="720" y="424" fill="#ffffff" font-weight="bold" font-size="9" text-anchor="middle">CONTRATA</text>
+    <text x="615" y="410" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="800" y="410" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+  </g>
+
+  <!-- 6. LIQUIDA -->
+  <g filter="url(#shadow)">
+    <polygon points="530,240 570,275 530,310 490,275" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="530" y="279" fill="#ffffff" font-weight="bold" font-size="10" text-anchor="middle">LIQUIDA</text>
+    <text x="540" y="200" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="540" y="560" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (0,1)</text>
+  </g>
+
+  <!-- 7. ABONA -->
+  <g filter="url(#shadow)">
+    <polygon points="910,520 945,550 910,580 875,550" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="910" y="554" fill="#ffffff" font-weight="bold" font-size="9" text-anchor="middle">ABONA</text>
+    <text x="920" y="480" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="700" y="612" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">N (0,n)</text>
+  </g>
+
+  <!-- 8. APLICA -->
+  <g filter="url(#shadow)">
+    <polygon points="330,590 370,620 330,650 290,620" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+    <text x="330" y="624" fill="#ffffff" font-weight="bold" font-size="10" text-anchor="middle">APLICA</text>
+    <text x="215" y="612" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">1 (1,1)</text>
+    <text x="420" y="612" fill="#0f172a" font-size="10.5" font-weight="bold" font-family="monospace">N (1,n)</text>
+  </g>
+
+  <!-- Leyenda y Pie de Página -->
+  <rect x="50" y="700" width="1000" height="35" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+  <rect x="70" y="712" width="16" height="12" fill="#0f172a" rx="2" />
+  <text x="95" y="722" fill="#334155" font-size="11" font-weight="600">Entidad Fuerte (Rectángulo)</text>
+
+  <polygon points="300,718 310,712 320,718 310,724" fill="#10b981" />
+  <text x="330" y="722" fill="#334155" font-size="11" font-weight="600">Relación Semántica (Rombo)</text>
+
+  <text x="560" y="722" fill="#2563eb" font-size="11" font-weight="bold" font-family="monospace">PK: Clave Primaria</text>
+  <text x="740" y="722" fill="#0f172a" font-size="11" font-weight="bold" font-family="monospace">(min, max): Cardinalidad Formal</text>
+</svg>

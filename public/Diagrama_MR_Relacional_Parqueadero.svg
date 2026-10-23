@@ -1,0 +1,308 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" width="1200" height="860" style="background-color: #f8fafc; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <filter id="mr-shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08" />
+    </filter>
+    <marker id="fk-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+    </marker>
+    <marker id="pk-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+      <circle cx="5" cy="5" r="4" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <!-- Banner Superior -->
+  <rect x="0" y="0" width="1200" height="60" fill="#0f172a" />
+  <text x="35" y="36" fill="#ffffff" font-size="18" font-weight="bold">PARQUEADERO AUTOS COLOMBIA · MODELO RELACIONAL LÓGICO (MR - 3FN)</text>
+  <text x="890" y="36" fill="#38bdf8" font-size="12" font-weight="600">8 Tablas Relacionales · Integridad Referencial</text>
+
+  <!-- LÍNEAS DE RELACIÓN FK -> PK (Flechas Azules) -->
+  <!-- 1. VEHICULOS.id_usuario_propietario (FK) -> USUARIOS_MENSUALISTAS.id_usuario (PK) -->
+  <path d="M 285 245 L 320 245 L 320 160 L 350 160" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#fk-arrow)" />
+
+  <!-- 2. NOVEDADES.placa_vehiculo (FK) -> VEHICULOS.placa (PK) -->
+  <path d="M 165 470 L 165 310" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 3. ENTRADAS.placa_vehiculo (FK) -> VEHICULOS.placa (PK) -->
+  <path d="M 640 180 L 285 180" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 4. ENTRADAS.id_celda_asignada (FK) -> CELDAS_PARQUEO.id_celda (PK) -->
+  <path d="M 890 205 L 940 205" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 5. SUSCRIPCIONES.id_usuario (FK) -> USUARIOS_MENSUALISTAS.id_usuario (PK) -->
+  <path d="M 475 480 L 475 350" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 6. PAGOS.id_entrada (FK) -> ENTRADAS.id_entrada (PK) -->
+  <path d="M 765 520 L 765 360" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 7. PAGOS.id_suscripcion (FK) -> SUSCRIPCIONES.id_suscripcion (PK) -->
+  <path d="M 640 590 L 600 590" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- 8. PAGOS.id_tarifa_aplicada (FK) -> TARIFAS.id_tarifa (PK) -->
+  <path d="M 890 640 L 940 640" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+
+  <!-- ================= TABLA 1: VEHICULOS ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(35, 90)">
+    <rect width="250" height="230" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">VEHICULOS</text>
+    <text x="235" y="21" fill="#94a3b8" font-size="10" text-anchor="end">Catalogo</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 placa</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(8) [PK]</text>
+
+    <text x="12" y="75" fill="#334155" font-size="10.5">tipo_vehiculo</text>
+    <text x="238" y="75" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">marca</text>
+    <text x="238" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(40)</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">modelo</text>
+    <text x="238" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(40)</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">color</text>
+    <text x="238" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(30)</text>
+
+    <rect x="0" y="162" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="179" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_usuario_propietario</text>
+    <text x="238" y="179" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">UUID [FK]</text>
+
+    <text x="12" y="209" fill="#334155" font-size="10.5">creado_en</text>
+    <text x="238" y="209" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TIMESTAMP</text>
+  </g>
+
+  <!-- ================= TABLA 2: USUARIOS_MENSUALISTAS ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(350, 90)">
+    <rect width="250" height="255" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">USUARIOS_MENSUALISTAS</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_usuario</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">UUID [PK]</text>
+
+    <text x="12" y="75" fill="#334155" font-size="10.5">tipo_documento</text>
+    <text x="238" y="75" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(10)</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">numero_documento</text>
+    <text x="238" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(25)</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">nombres</text>
+    <text x="238" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(60)</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">apellidos</text>
+    <text x="238" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(60)</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">telefono</text>
+    <text x="238" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="205" fill="#334155" font-size="10.5">email</text>
+    <text x="238" y="205" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(100)</text>
+
+    <text x="12" y="231" fill="#334155" font-size="10.5">estado</text>
+    <text x="238" y="231" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+  </g>
+
+  <!-- ================= TABLA 3: ENTRADAS_VEHICULOS ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(640, 90)">
+    <rect width="250" height="260" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">ENTRADAS_VEHICULOS</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_entrada</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">UUID [PK]</text>
+
+    <rect x="0" y="58" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="75" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 placa_vehiculo</text>
+    <text x="238" y="75" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(8) [FK]</text>
+
+    <rect x="0" y="84" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="101" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_celda_asignada</text>
+    <text x="238" y="101" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(10) [FK]</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">fecha_hora_ingreso</text>
+    <text x="238" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TIMESTAMP</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">fecha_hora_salida</text>
+    <text x="238" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TIMESTAMP</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">tiempo_total_minutos</text>
+    <text x="238" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">INT</text>
+
+    <text x="12" y="205" fill="#334155" font-size="10.5">estado_estancia</text>
+    <text x="238" y="205" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="231" fill="#334155" font-size="10.5">observaciones_ingreso</text>
+    <text x="238" y="231" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TEXT</text>
+  </g>
+
+  <!-- ================= TABLA 4: CELDAS_PARQUEO ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(940, 90)">
+    <rect width="225" height="180" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 219 0 Q 225 0 225 6 L 225 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">CELDAS_PARQUEO</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="225" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_celda</text>
+    <text x="213" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR [PK]</text>
+
+    <text x="12" y="75" fill="#334155" font-size="10.5">numero_celda</text>
+    <text x="213" y="75" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(10)</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">tipo_permitido</text>
+    <text x="213" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">piso_zona</text>
+    <text x="213" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">estado_ocupacion</text>
+    <text x="213" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+  </g>
+
+  <!-- ================= TABLA 5: NOVEDADES_VEHICULOS ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(35, 470)">
+    <rect width="250" height="235" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">NOVEDADES_VEHICULOS</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_novedad</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">UUID [PK]</text>
+
+    <rect x="0" y="58" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="75" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 placa_vehiculo</text>
+    <text x="238" y="75" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(8) [FK]</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">tipo_novedad</text>
+    <text x="238" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(30)</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">ubicacion_vehiculo</text>
+    <text x="238" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(50)</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">descripcion_dano</text>
+    <text x="238" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TEXT</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">foto_evidencia_url</text>
+    <text x="238" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(255)</text>
+
+    <text x="12" y="205" fill="#334155" font-size="10.5">reportado_por</text>
+    <text x="238" y="205" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(100)</text>
+  </g>
+
+  <!-- ================= TABLA 6: SUSCRIPCIONES_MENSUALES ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(350, 480)">
+    <rect width="250" height="225" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">SUSCRIPCIONES_MENSUALES</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_suscripcion</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">UUID [PK]</text>
+
+    <rect x="0" y="58" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="75" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_usuario</text>
+    <text x="238" y="75" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">UUID [FK]</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">fecha_inicio</text>
+    <text x="238" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DATE</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">fecha_fin</text>
+    <text x="238" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DATE</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">valor_mensual</text>
+    <text x="238" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(12,2)</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">estado_suscripcion</text>
+    <text x="238" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="205" fill="#334155" font-size="10.5">renovacion_automatica</text>
+    <text x="238" y="205" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">BOOLEAN</text>
+  </g>
+
+  <!-- ================= TABLA 7: PAGOS ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(640, 480)">
+    <rect width="250" height="280" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 244 0 Q 250 0 250 6 L 250 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">PAGOS</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="250" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_pago</text>
+    <text x="238" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">UUID [PK]</text>
+
+    <text x="12" y="75" fill="#334155" font-size="10.5">numero_factura</text>
+    <text x="238" y="75" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(30)</text>
+
+    <rect x="0" y="84" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="101" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_entrada</text>
+    <text x="238" y="101" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">UUID [FK]</text>
+
+    <rect x="0" y="110" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="127" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_suscripcion</text>
+    <text x="238" y="127" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">UUID [FK]</text>
+
+    <rect x="0" y="136" width="250" height="26" fill="#f0f9ff" />
+    <text x="12" y="153" fill="#0369a1" font-size="10.5" font-weight="bold">🔗 id_tarifa_aplicada</text>
+    <text x="238" y="153" fill="#0284c7" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20) [FK]</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">monto_total</text>
+    <text x="238" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(12,2)</text>
+
+    <text x="12" y="205" fill="#334155" font-size="10.5">metodo_pago</text>
+    <text x="238" y="205" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(30)</text>
+
+    <text x="12" y="231" fill="#334155" font-size="10.5">estado_pago</text>
+    <text x="238" y="231" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="257" fill="#334155" font-size="10.5">fecha_hora_pago</text>
+    <text x="238" y="257" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">TIMESTAMP</text>
+  </g>
+
+  <!-- ================= TABLA 8: TARIFAS_PARQUEO ================= -->
+  <g filter="url(#mr-shadow)" transform="translate(940, 480)">
+    <rect width="225" height="210" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 6 Q 0 0 6 0 L 219 0 Q 225 0 225 6 L 225 32 L 0 32 Z" fill="#0f172a" />
+    <text x="15" y="21" fill="#ffffff" font-size="12" font-weight="bold">TARIFAS_PARQUEO</text>
+
+    <!-- Columnas -->
+    <rect x="0" y="32" width="225" height="26" fill="#fef3c7" />
+    <text x="12" y="49" fill="#92400e" font-size="10.5" font-weight="bold">🔑 id_tarifa</text>
+    <text x="213" y="49" fill="#78350f" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR [PK]</text>
+
+    <text x="12" y="75" fill="#334155" font-size="10.5">tipo_vehiculo</text>
+    <text x="213" y="75" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">VARCHAR(20)</text>
+
+    <text x="12" y="101" fill="#334155" font-size="10.5">tarifa_por_minuto</text>
+    <text x="213" y="101" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(10,2)</text>
+
+    <text x="12" y="127" fill="#334155" font-size="10.5">tarifa_por_hora</text>
+    <text x="213" y="127" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(10,2)</text>
+
+    <text x="12" y="153" fill="#334155" font-size="10.5">tarifa_plena_dia</text>
+    <text x="213" y="153" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(10,2)</text>
+
+    <text x="12" y="179" fill="#334155" font-size="10.5">tarifa_mensualidad</text>
+    <text x="213" y="179" fill="#64748b" font-size="9.5" font-family="monospace" text-anchor="end">DECIMAL(10,2)</text>
+  </g>
+
+  <!-- Leyenda Inferior -->
+  <rect x="35" y="795" width="1130" height="40" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+  <rect x="55" y="809" width="14" height="12" fill="#fef3c7" stroke="#d97706" />
+  <text x="75" y="819" fill="#78350f" font-size="11" font-weight="bold">Clave Primaria [PK]</text>
+
+  <rect x="235" y="809" width="14" height="12" fill="#f0f9ff" stroke="#0284c7" />
+  <text x="255" y="819" fill="#0369a1" font-size="11" font-weight="bold">Clave Foránea [FK]</text>
+
+  <line x1="415" y1="815" x2="455" y2="815" stroke="#0284c7" stroke-width="2" marker-end="url(#fk-arrow)" />
+  <text x="465" y="819" fill="#334155" font-size="11">Flecha de Integridad Referencial (FK &rarr; PK)</text>
+
+  <text x="820" y="819" fill="#059669" font-size="11" font-weight="bold">Normalizado en Tercera Forma Normal (3FN)</text>
+</svg>

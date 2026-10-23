@@ -1,0 +1,77 @@
+================================================================================
+PARQUEADERO AUTOS COLOMBIA · MODELO RELACIONAL (MR) NORMALIZADO EN 3FN
+Estudiante: Tatiana Gallego (tatiana.gallegog@est.iudigital.edu.co)
+Institución: Institución Universitaria Digital de Antioquia (IU Digital)
+Programa: Ingeniería de Software · Bases de Datos
+================================================================================
+
+1. ESQUEMA FORMAL EN TERCERA FORMA NORMAL (3FN)
+(Convención: Claves Primarias PK identificadas como [PK], Claves Foráneas FK precedidas de asterisco *[FK])
+
+1. USUARIOS_MENSUALISTAS
+   (id_usuario [PK], tipo_documento, numero_documento, nombres, apellidos, telefono, email, estado, creado_en)
+   - Clave Primaria (PK): id_usuario (UUID)
+   - Restricciones: UNIQUE(numero_documento, tipo_documento)
+   - Descripción: Registra a los clientes recurrentes que contratan servicio mensual.
+
+2. VEHICULOS
+   (placa [PK], tipo_vehiculo, marca, modelo, color, *id_usuario_propietario [FK], creado_en)
+   - Clave Primaria (PK): placa (VARCHAR(8))
+   - Clave Foránea (FK): id_usuario_propietario -> USUARIOS_MENSUALISTAS(id_usuario) ON DELETE SET NULL
+   - Descripción: Catálogo de automotores que ingresan o son de mensualistas.
+
+3. CELDAS_PARQUEO
+   (id_celda [PK], numero_celda, tipo_permitido, piso_zona, estado_ocupacion, observaciones)
+   - Clave Primaria (PK): id_celda (VARCHAR(10))
+   - Restricciones: UNIQUE(numero_celda)
+   - Descripción: Espacios físicos demarcados de parqueo con estado en tiempo real.
+
+4. ENTRADAS_VEHICULOS
+   (id_entrada [PK], *placa_vehiculo [FK], *id_celda_asignada [FK], fecha_hora_ingreso, fecha_hora_salida, tiempo_total_minutos, estado_estancia, observaciones_ingreso)
+   - Clave Primaria (PK): id_entrada (UUID)
+   - Clave Foránea (FK1): placa_vehiculo -> VEHICULOS(placa) ON UPDATE CASCADE
+   - Clave Foránea (FK2): id_celda_asignada -> CELDAS_PARQUEO(id_celda)
+   - Descripción: Ciclo de vida de estancia rotativa o mensualista.
+
+5. NOVEDADES_VEHICULOS
+   (id_novedad [PK], *placa_vehiculo [FK], tipo_novedad, ubicacion_vehiculo, descripcion_dano, foto_evidencia_url, reportado_por, fecha_hora_registro)
+   - Clave Primaria (PK): id_novedad (UUID)
+   - Clave Foránea (FK): placa_vehiculo -> VEHICULOS(placa) ON DELETE CASCADE
+   - Descripción: Inspección pericial de rayones, golpes o faltantes al ingresar.
+
+6. SUSCRIPCIONES_MENSUALES
+   (id_suscripcion [PK], *id_usuario [FK], fecha_inicio, fecha_fin, valor_mensual, estado_suscripcion, renovacion_automatica)
+   - Clave Primaria (PK): id_suscripcion (UUID)
+   - Clave Foránea (FK): id_usuario -> USUARIOS_MENSUALISTAS(id_usuario) ON DELETE CASCADE
+   - Descripción: Contratos vigentes de cupo fijo mensual.
+
+7. TARIFAS_PARQUEO
+   (id_tarifa [PK], tipo_vehiculo, tarifa_por_minuto, tarifa_por_hora, tarifa_plena_dia, tarifa_mensualidad, estado_vigencia)
+   - Clave Primaria (PK): id_tarifa (VARCHAR(20))
+   - Descripción: Estructura de cobro tarifario según categoría vehicular.
+
+8. PAGOS
+   (id_pago [PK], numero_factura, *id_entrada [FK], *id_suscripcion [FK], *id_tarifa_aplicada [FK], subtotal, iva, monto_total, metodo_pago, estado_pago, fecha_hora_pago)
+   - Clave Primaria (PK): id_pago (UUID)
+   - Clave Foránea (FK1): id_entrada -> ENTRADAS_VEHICULOS(id_entrada)
+   - Clave Foránea (FK2): id_suscripcion -> SUSCRIPCIONES_MENSUALES(id_suscripcion)
+   - Clave Foránea (FK3): id_tarifa_aplicada -> TARIFAS_PARQUEO(id_tarifa)
+   - Descripción: Recibo de caja y liquidación electrónica por rotación o mensualidad.
+
+================================================================================
+2. JUSTIFICACIÓN DE NORMALIZACIÓN (3FN)
+================================================================================
+- 1FN (Primera Forma Normal):
+  * Todos los campos contienen valores escalares atómicos.
+  * No existen listas de placas o celdas embebidas en una misma tupla.
+  * Todas las tablas poseen una Clave Primaria formal definida.
+
+- 2FN (Segunda Forma Normal):
+  * Cumple plenamente con la 1FN.
+  * En todas las entidades, cada atributo no clave posee Dependencia Funcional Completa de la clave primaria (no existen dependencias parciales).
+
+- 3FN (Tercera Forma Normal):
+  * Cumple plenamente con la 2FN.
+  * No existen dependencias funcionales transitivas entre atributos que no sean clave.
+  * Por ejemplo: El costo de la tarifa no se almacena en la tabla de ENTRADAS_VEHICULOS, sino que se referencia mediante la clave foránea id_tarifa_aplicada hacia TARIFAS_PARQUEO.
+================================================================================

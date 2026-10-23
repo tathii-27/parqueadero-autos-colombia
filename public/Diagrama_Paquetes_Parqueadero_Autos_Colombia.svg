@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 980" width="1200" height="980" style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <!-- Open Arrow Marker for UML Dependencies (dashed lines) -->
+    <marker id="uml-dep-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 1 2 L 10 6 L 1 10" fill="none" stroke="#1e293b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+    <pattern id="pkg-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1" />
+    </pattern>
+    <filter id="pkg-shadow" x="-3%" y="-2%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background Grid -->
+  <rect width="1200" height="980" fill="#f8fafc" />
+  <rect width="1200" height="980" fill="url(#pkg-grid)" />
+
+  <!-- ================= TOP HEADER BANNER ================= -->
+  <rect x="30" y="20" width="1140" height="70" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#pkg-shadow)" />
+  <rect x="30" y="20" width="6" height="70" rx="3" fill="#2563eb" />
+  
+  <text x="50" y="46" font-size="11" font-weight="700" fill="#2563eb" letter-spacing="1">IU DIGITAL DE ANTIOQUIA · INGENIERÍA DE SOFTWARE · STARUML V5.X (UML 2.5 EN ESPAÑOL)</text>
+  <text x="50" y="70" font-size="18" font-weight="800" fill="#0f172a">Diagrama de Paquetes Arquitectural · Sistema Parqueadero Autos Colombia</text>
+  
+  <text x="1150" y="48" font-size="11" font-weight="600" fill="#475569" text-anchor="end">Autora: Tatiana Gallego</text>
+  <text x="1150" y="68" font-size="10" font-family="monospace" fill="#64748b" text-anchor="end">tatiana.gallegog@est.iudigital.edu.co</text>
+
+  <!-- ================= DEPENDENCY ARROWS (Dashed with «utiliza» / «importa») ================= -->
+
+  <!-- 1. Presentacion -> Controladores (x1=370, y1=230 to x2=450, y2=230) -->
+  <g id="dep-pres-ctrl">
+    <line x1="370" y1="230" x2="448" y2="230" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="378" y="218" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="410" y="231" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+  <!-- 2. Controladores -> Servicios (x1=760, y1=230 to x2=830, y2=230) -->
+  <g id="dep-ctrl-serv">
+    <line x1="760" y1="230" x2="828" y2="230" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="768" y="218" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="800" y="231" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+  <!-- 3. Presentacion -> Dominio (via polyline: x=210, y=360 down to y=430) -->
+  <g id="dep-pres-dom">
+    <path d="M 210 360 L 210 490 L 248 490" fill="none" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="178" y="415" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="210" y="428" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«importa»</text>
+  </g>
+
+  <!-- 4. Controladores -> Dominio (diagonal / stepped: x=550, y=360 down to y=430) -->
+  <g id="dep-ctrl-dom">
+    <line x1="550" y1="360" x2="480" y2="428" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="498" y="385" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="530" y="398" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«importa»</text>
+  </g>
+
+  <!-- 5. Servicios -> Dominio (stepped: x=880, y=360 to x=590, y=470) -->
+  <g id="dep-serv-dom">
+    <path d="M 880 360 L 880 400 L 592 470" fill="none" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="706" y="395" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="738" y="408" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+  <!-- 6. Servicios -> Persistencia (x=990, y=360 to x=880, y=428) -->
+  <g id="dep-serv-pers">
+    <line x1="990" y1="360" x2="880" y2="428" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="918" y="385" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="950" y="398" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+  <!-- 7. Persistencia -> Dominio (x=660, y=550 to x=592, y=550) -->
+  <g id="dep-pers-dom">
+    <line x1="660" y1="550" x2="592" y2="550" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="598" y="538" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="630" y="551" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«importa»</text>
+  </g>
+
+  <!-- 8. Dominio -> Transversal (x=420, y=680 to x=540, y=728) -->
+  <g id="dep-dom-comm">
+    <line x1="420" y1="680" x2="538" y2="728" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="456" y="692" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="488" y="705" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+  <!-- 9. Persistencia -> Transversal (x=820, y=680 to x=700, y=728) -->
+  <g id="dep-pers-comm">
+    <line x1="820" y1="680" x2="702" y2="728" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#uml-dep-arrow)" />
+    <rect x="736" y="692" width="64" height="18" fill="#ffffff" rx="3" stroke="#cbd5e1" stroke-width="1" />
+    <text x="768" y="705" font-size="9" fill="#1e293b" font-weight="700" text-anchor="middle" font-family="monospace">«utiliza»</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 1: PRESENTACION (x=50, y=110, w=320, h=250) ================= -->
+  <g id="pkg-box-presentacion" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 50 110 L 190 110 L 190 134 L 50 134 Z" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8" />
+    <text x="60" y="126" font-size="10" font-weight="700" fill="#15803d">«capa»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="50" y="134" width="320" height="226" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="65" y="158" font-size="14" font-weight="800" fill="#14532d">Presentacion</text>
+    <text x="65" y="174" font-size="9" font-family="monospace" fill="#166534">com.autoscolombia.presentacion</text>
+    <line x1="50" y1="184" x2="370" y2="184" stroke="#86efac" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="65" y="202" font-size="10.5" fill="#14532d">• VistaOperacionesPatio</text>
+    <text x="65" y="220" font-size="10.5" fill="#14532d">• ModalRegistroIngreso / Liquidacion</text>
+    <text x="65" y="238" font-size="10.5" fill="#14532d">• VistaMapaCeldas (Mapa de Celdas)</text>
+    <text x="65" y="256" font-size="10.5" fill="#14532d">• VistaGestionMensualistas</text>
+    <text x="65" y="274" font-size="10.5" fill="#14532d">• VistaLibroNovedades</text>
+    <text x="65" y="292" font-size="10.5" fill="#14532d">• VistaArqueoCajaDiaria</text>
+    <text x="65" y="310" font-size="10.5" fill="#14532d">• ModalImpresionComprobante</text>
+    <text x="65" y="340" font-size="9" fill="#15803d" font-style="italic">Interfaz gráfica reactiva y modales</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 2: CONTROLADORES (x=440, y=110, w=320, h=250) ================= -->
+  <g id="pkg-box-controladores" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 440 110 L 580 110 L 580 134 L 440 134 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="1.8" />
+    <text x="450" y="126" font-size="10" font-weight="700" fill="#1d4ed8">«capa»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="440" y="134" width="320" height="226" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="455" y="158" font-size="14" font-weight="800" fill="#1e3a8a">Controladores</text>
+    <text x="455" y="174" font-size="9" font-family="monospace" fill="#1e40af">com.autoscolombia.controladores</text>
+    <line x1="440" y1="184" x2="760" y2="184" stroke="#93c5fd" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="455" y="206" font-size="11" fill="#1e3a8a">• ControladorParqueadero (Fachada)</text>
+    <text x="455" y="230" font-size="11" fill="#1e3a8a">• ControladorCaja (Arqueo y Pagos)</text>
+    <text x="455" y="254" font-size="11" fill="#1e3a8a">• ControladorMensualidades (Abonados)</text>
+    <text x="455" y="278" font-size="11" fill="#1e3a8a">• ControladorNovedades (Incidentes)</text>
+    <text x="455" y="302" font-size="11" fill="#1e3a8a">• ControladorAsignacionCeldas</text>
+    <text x="455" y="340" font-size="9" fill="#1d4ed8" font-style="italic">Fachadas y coordinación de peticiones</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 3: SERVICIOS (x=830, y=110, w=320, h=250) ================= -->
+  <g id="pkg-box-servicios" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 830 110 L 960 110 L 960 134 L 830 134 Z" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.8" />
+    <text x="840" y="126" font-size="10" font-weight="700" fill="#7e22ce">«capa»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="830" y="134" width="320" height="226" fill="#faf5ff" stroke="#9333ea" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="845" y="158" font-size="14" font-weight="800" fill="#581c87">Servicios</text>
+    <text x="845" y="174" font-size="9" font-family="monospace" fill="#6b21a8">com.autoscolombia.servicios</text>
+    <line x1="830" y1="184" x2="1150" y2="184" stroke="#d8b4fe" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="845" y="204" font-size="10.5" fill="#581c87">• ServicioIngresoVehiculo (RN-01..03)</text>
+    <text x="845" y="224" font-size="10.5" fill="#581c87">• ServicioSalidaVehiculo (RN-04..06)</text>
+    <text x="845" y="244" font-size="10.5" fill="#581c87">• ServicioCalculoTarifas (Tarifador)</text>
+    <text x="845" y="264" font-size="10.5" fill="#581c87">• ServicioAsignacionCeldas</text>
+    <text x="845" y="284" font-size="10.5" fill="#581c87">• GestorSuscripciones (Contratos)</text>
+    <text x="845" y="304" font-size="10.5" fill="#581c87">• GestorNovedades (Custodia)</text>
+    <text x="845" y="340" font-size="9" fill="#7e22ce" font-style="italic">Reglas de negocio y liquidación tarifaria</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 4: DOMINIO (x=250, y=430, w=340, h=250) ================= -->
+  <g id="pkg-box-dominio" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 250 430 L 380 430 L 380 454 L 250 454 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+    <text x="260" y="446" font-size="10" font-weight="700" fill="#b45309">«subsistema»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="250" y="454" width="340" height="226" fill="#fffbeb" stroke="#d97706" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="265" y="478" font-size="14" font-weight="800" fill="#78350f">Dominio</text>
+    <text x="265" y="494" font-size="9" font-family="monospace" fill="#92400e">com.autoscolombia.dominio</text>
+    <line x1="250" y1="504" x2="590" y2="504" stroke="#fcd34d" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="265" y="522" font-size="10.5" fill="#78350f">• Vehiculo (Entidad)</text>
+    <text x="265" y="540" font-size="10.5" fill="#78350f">• EntradaVehiculo (Raíz Agregada)</text>
+    <text x="265" y="558" font-size="10.5" fill="#78350f">• CeldaParqueo (Entidad)</text>
+    <text x="265" y="576" font-size="10.5" fill="#78350f">• UsuarioMensualista (Entidad)</text>
+    <text x="265" y="594" font-size="10.5" fill="#78350f">• SuscripcionMensual (Entidad)</text>
+    <text x="265" y="612" font-size="10.5" fill="#78350f">• NovedadVehiculo (Entidad)</text>
+    <text x="265" y="630" font-size="10.5" fill="#78350f">• Pago (Objeto de Valor)</text>
+    <text x="265" y="648" font-size="10.5" fill="#78350f">• ConfiguracionTarifas (Entidad)</text>
+    <text x="265" y="668" font-size="9" fill="#b45309" font-style="italic">Entidades núcleo independientes</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 5: PERSISTENCIA (x=660, y=430, w=340, h=250) ================= -->
+  <g id="pkg-box-persistencia" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 660 430 L 800 430 L 800 454 L 660 454 Z" fill="#fce7f3" stroke="#db2777" stroke-width="1.8" />
+    <text x="670" y="446" font-size="10" font-weight="700" fill="#be185d">«capa»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="660" y="454" width="340" height="226" fill="#fdf2f8" stroke="#db2777" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="675" y="478" font-size="14" font-weight="800" fill="#831843">Persistencia</text>
+    <text x="675" y="494" font-size="9" font-family="monospace" fill="#9d174d">com.autoscolombia.persistencia</text>
+    <line x1="660" y1="504" x2="1000" y2="504" stroke="#f472b6" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="675" y="528" font-size="11" fill="#831843">• «interface» IRepositorioParqueadero</text>
+    <text x="675" y="552" font-size="11" fill="#831843">• AdaptadorAlmacenamientoLocal (Navegador)</text>
+    <text x="675" y="576" font-size="11" fill="#831843">• AdaptadorBaseDatosSql (SQL 3FN)</text>
+    <text x="675" y="600" font-size="11" fill="#831843">• GestorAuditoriaTransaccional</text>
+    <text x="675" y="624" font-size="11" fill="#831843">• CoordinadorTransacciones</text>
+    <text x="675" y="668" font-size="9" fill="#be185d" font-style="italic">Repositorios y acceso a datos ACID</text>
+  </g>
+
+
+  <!-- ================= PAQUETE 6: TRANSVERSAL (x=450, y=730, w=340, h=180) ================= -->
+  <g id="pkg-box-transversal" filter="url(#pkg-shadow)">
+    <!-- Solapa de carpeta -->
+    <path d="M 450 730 L 590 730 L 590 754 L 450 754 Z" fill="#e2e8f0" stroke="#475569" stroke-width="1.8" />
+    <text x="460" y="746" font-size="10" font-weight="700" fill="#334155">«transversal»</text>
+    <!-- Cuerpo de carpeta -->
+    <rect x="450" y="754" width="340" height="156" fill="#f8fafc" stroke="#475569" stroke-width="1.8" rx="0" />
+    <!-- Título y namespace -->
+    <text x="465" y="776" font-size="14" font-weight="800" fill="#0f172a">Transversal</text>
+    <text x="465" y="792" font-size="9" font-family="monospace" fill="#334155">com.autoscolombia.transversal</text>
+    <line x1="450" y1="800" x2="790" y2="800" stroke="#cbd5e1" stroke-width="1" />
+    
+    <!-- Elementos internos -->
+    <text x="465" y="820" font-size="10.5" fill="#0f172a">• TipoVehiculoEnum / EstadoCeldaEnum</text>
+    <text x="465" y="838" font-size="10.5" fill="#0f172a">• TipoServicioEnum (Tarifas)</text>
+    <text x="465" y="856" font-size="10.5" fill="#0f172a">• ValidadorPlacasRunt (Sintaxis Colombia)</text>
+    <text x="465" y="874" font-size="10.5" fill="#0f172a">• FormateadorMonedaCop ($ COP)</text>
+    <text x="465" y="896" font-size="9" fill="#334155" font-style="italic">Utilidades transversales y constantes</text>
+  </g>
+
+  <!-- ================= LEGEND / CONVENTIONS FOOTER ================= -->
+  <g id="pkg-legend">
+    <rect x="50" y="930" width="1100" height="34" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="70" y="952" font-size="11" font-weight="700" fill="#0f172a">Convenciones UML 2.5 en Español:</text>
+    <text x="270" y="952" font-size="11" font-family="monospace" fill="#1e293b">- - - &gt; Dependencia («utiliza» / «importa»)</text>
+    <text x="600" y="952" font-size="11" font-family="monospace" fill="#059669">«capa» Capa Arquitectónica</text>
+    <text x="810" y="952" font-size="11" font-family="monospace" fill="#d97706">«subsistema» Subsistema</text>
+    <text x="980" y="952" font-size="11" font-weight="600" fill="#2563eb">StarUML: ParqueaderoAutosColombia_Paquetes.mdj</text>
+  </g>
+</svg>
