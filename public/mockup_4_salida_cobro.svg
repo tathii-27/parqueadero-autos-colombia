@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="background:#0b0f17; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="shadow4" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Top App Bar -->
+  <rect x="0" y="0" width="1440" height="70" fill="#ffffff" filter="url(#shadow4)"/>
+  <text x="40" y="42" font-size="14" fill="#64748b" font-weight="500">Workspace <tspan fill="#0f172a" font-weight="700"> &gt; Taquilla &gt; Salida y Liquidación del Cobro</tspan></text>
+  
+  <circle cx="1080" cy="35" r="5" fill="#f59e0b"/>
+  <text x="1095" y="39" font-size="13" fill="#b45309" font-weight="600">Caja 01 · Turno Mañana Abierto</text>
+
+  <rect x="1220" y="16" width="180" height="38" rx="19" fill="#f1f5f9"/>
+  <circle cx="1240" cy="35" r="14" fill="#0f172a"/>
+  <text x="1233" y="40" font-size="12" fill="#ffffff" font-weight="700">DR</text>
+  <text x="1262" y="32" font-size="12" fill="#0f172a" font-weight="700">Diana Restrepo</text>
+  <text x="1262" y="45" font-size="11" fill="#64748b">Cajera Principal</text>
+
+  <!-- Left Sidebar -->
+  <rect x="0" y="70" width="240" height="830" fill="#0f172a"/>
+  <rect x="24" y="94" width="36" height="36" rx="8" fill="#10b981"/>
+  <text x="36" y="118" font-size="18" fill="#ffffff" font-weight="900">P</text>
+  <text x="70" y="110" font-size="14" fill="#ffffff" font-weight="800">Autos Colombia</text>
+  <text x="70" y="124" font-size="11" fill="#94a3b8">Sede Chapinero · Bogotá</text>
+
+  <g transform="translate(16, 160)">
+    <text x="36" y="26" font-size="13" fill="#94a3b8" font-weight="500">1. Registro Entrada</text>
+    <text x="36" y="68" font-size="13" fill="#94a3b8" font-weight="500">2. Ticket Ingreso</text>
+    <text x="36" y="110" font-size="13" fill="#94a3b8" font-weight="500">3. Vehículos Activos</text>
+    <rect x="0" y="126" width="208" height="42" rx="8" fill="#10b981" fill-opacity="0.15"/>
+    <rect x="0" y="132" width="4" height="30" rx="2" fill="#10b981"/>
+    <text x="36" y="152" font-size="13" fill="#34d399" font-weight="700">4. Salida y Cobro</text>
+    <text x="36" y="194" font-size="13" fill="#94a3b8" font-weight="500">5. Recibo de Caja</text>
+  </g>
+
+  <!-- Main Canvas Area -->
+  <g transform="translate(280, 100)">
+    <text x="0" y="30" font-size="24" fill="#ffffff" font-weight="800">4. Registro de Salida y Liquidación del Cobro</text>
+    <text x="0" y="52" font-size="14" fill="#94a3b8">Cómputo de permanencia, regla de gracia de 15 min, calculadora de cambio y medios de pago</text>
+
+    <!-- Main Calculation Card -->
+    <g transform="translate(0, 75)">
+      <rect x="0" y="0" width="680" height="680" rx="16" fill="#1e293b" stroke="#334155"/>
+
+      <!-- Vehicle Header -->
+      <g transform="translate(30, 30)">
+        <text x="0" y="18" font-size="12" fill="#94a3b8" font-weight="700">VEHÍCULO A LIQUIDAR</text>
+        <rect x="0" y="28" width="160" height="48" rx="8" fill="#facc15"/>
+        <text x="80" y="60" font-size="24" fill="#0f172a" font-weight="900" font-family="monospace" text-anchor="middle">HNE 612</text>
+        <text x="180" y="48" font-size="15" fill="#ffffff" font-weight="800">Automóvil Particular</text>
+        <text x="180" y="68" font-size="12" fill="#94a3b8">Ticket: PAC-2026-1042 · Celda A-14</text>
+      </g>
+
+      <!-- Time Stats 3 Columns -->
+      <g transform="translate(30, 130)">
+        <rect x="0" y="0" width="195" height="80" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="18" y="26" font-size="11" fill="#94a3b8">HORA ENTRADA</text>
+        <text x="18" y="56" font-size="20" fill="#ffffff" font-weight="800" font-family="monospace">14:05:00</text>
+
+        <rect x="212" y="0" width="195" height="80" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="230" y="26" font-size="11" fill="#94a3b8">HORA SALIDA</text>
+        <text x="230" y="56" font-size="20" fill="#ffffff" font-weight="800" font-family="monospace">16:22:15</text>
+
+        <rect x="425" y="0" width="195" height="80" rx="10" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b"/>
+        <text x="443" y="26" font-size="11" fill="#fbbf24" font-weight="700">TIEMPO TOTAL</text>
+        <text x="443" y="56" font-size="20" fill="#facc15" font-weight="900" font-family="monospace">2h 17 min</text>
+      </g>
+
+      <!-- Tariff Math Breakdown -->
+      <g transform="translate(30, 235)">
+        <rect x="0" y="0" width="620" height="150" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="24" y="32" font-size="13" fill="#cbd5e1">Horas completas (2 horas x $4.500 COP):</text>
+        <text x="595" y="32" font-size="14" fill="#ffffff" font-weight="700" font-family="monospace" text-anchor="end">$9.000 COP</text>
+
+        <text x="24" y="62" font-size="13" fill="#cbd5e1">Fracción de 17 minutos (&gt; 15 min de gracia = 1 hora adicional):</text>
+        <text x="595" y="62" font-size="14" fill="#ffffff" font-weight="700" font-family="monospace" text-anchor="end">$4.500 COP</text>
+
+        <line x1="24" y1="82" x2="595" y2="82" stroke="#334155"/>
+
+        <text x="24" y="115" font-size="16" fill="#ffffff" font-weight="800">TOTAL A LIQUIDAR (3 HORAS):</text>
+        <text x="595" y="118" font-size="24" fill="#34d399" font-weight="900" font-family="monospace" text-anchor="end">$13.500 COP</text>
+      </g>
+
+      <!-- Payment Methods -->
+      <g transform="translate(30, 415)">
+        <text x="0" y="20" font-size="13" fill="#94a3b8" font-weight="700">MÉTODO DE PAGO SELECCIONADO</text>
+
+        <!-- Efectivo -->
+        <rect x="0" y="32" width="145" height="75" rx="10" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="2"/>
+        <text x="20" y="62" font-size="15" fill="#34d399" font-weight="800">💵 Efectivo</text>
+        <text x="20" y="86" font-size="11" fill="#a7f3d0">Caja Registradora</text>
+
+        <!-- Nequi -->
+        <rect x="158" y="32" width="145" height="75" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="178" y="62" font-size="15" fill="#e2e8f0" font-weight="700">📱 Nequi</text>
+        <text x="178" y="86" font-size="11" fill="#64748b">QR Dinámico</text>
+
+        <!-- Daviplata -->
+        <rect x="316" y="32" width="145" height="75" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="336" y="62" font-size="15" fill="#e2e8f0" font-weight="700">🔴 Daviplata</text>
+        <text x="336" y="86" font-size="11" fill="#64748b">Transferencia</text>
+
+        <!-- Tarjeta -->
+        <rect x="475" y="32" width="145" height="75" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="495" y="62" font-size="15" fill="#e2e8f0" font-weight="700">💳 Datafono</text>
+        <text x="495" y="86" font-size="11" fill="#64748b">Débito / Crédito</text>
+      </g>
+
+      <!-- Physical Inspection Release Warning -->
+      <g transform="translate(30, 550)">
+        <rect x="0" y="0" width="620" height="90" rx="10" fill="#0f172a" stroke="#10b981" stroke-opacity="0.3"/>
+        <circle cx="25" cy="45" r="10" fill="#10b981"/>
+        <text x="21" y="50" font-size="13" fill="#0f172a" font-weight="900">✓</text>
+        <text x="45" y="38" font-size="13" fill="#ffffff" font-weight="700">Constancia de Entrega Satisfactoria:</text>
+        <text x="45" y="60" font-size="12" fill="#94a3b8">Conductor retira pertenencias declaradas. No se presentaron reclamaciones de patio.</text>
+      </g>
+    </g>
+
+    <!-- Cashier Change Calculator (Right Column) -->
+    <g transform="translate(710, 75)">
+      <rect x="0" y="0" width="410" height="680" rx="16" fill="#1e293b" stroke="#334155"/>
+
+      <text x="30" y="45" font-size="18" fill="#ffffff" font-weight="800">Calculadora de Cambio</text>
+      <text x="30" y="70" font-size="13" fill="#94a3b8">Prevención de descuadres en taquilla</text>
+      <line x1="30" y1="95" x2="380" y2="95" stroke="#334155"/>
+
+      <g transform="translate(30, 125)">
+        <text x="0" y="0" font-size="12" fill="#94a3b8">Monto Total a Cobrar:</text>
+        <text x="0" y="30" font-size="28" fill="#ffffff" font-weight="900" font-family="monospace">$13.500 COP</text>
+
+        <text x="0" y="85" font-size="12" fill="#94a3b8">Dinero Recibido del Conductor:</text>
+        <rect x="0" y="100" width="350" height="56" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+        <text x="20" y="137" font-size="24" fill="#34d399" font-weight="900" font-family="monospace">$20.000 COP</text>
+
+        <!-- Big Change Box -->
+        <rect x="0" y="180" width="350" height="120" rx="12" fill="#10b981" fill-opacity="0.15" stroke="#10b981"/>
+        <text x="20" y="212" font-size="13" fill="#a7f3d0" font-weight="800">CAMBIO EXACTO A ENTREGAR:</text>
+        <text x="20" y="255" font-size="34" fill="#34d399" font-weight="900" font-family="monospace">$6.500 COP</text>
+        <text x="20" y="282" font-size="12" fill="#6ee7b7">1 billete de $5.000 + 1 moneda de $1.000 + 1 de $500</text>
+      </g>
+
+      <!-- Fast denomination buttons -->
+      <g transform="translate(30, 460)">
+        <text x="0" y="0" font-size="11" fill="#94a3b8">Billetes frecuentes recibidos:</text>
+        <rect x="0" y="12" width="75" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="37" y="35" font-size="12" fill="#cbd5e1" text-anchor="middle">$15.000</text>
+
+        <rect x="90" y="12" width="75" height="36" rx="6" fill="#10b981" fill-opacity="0.3" stroke="#10b981"/>
+        <text x="127" y="35" font-size="12" fill="#34d399" font-weight="700" text-anchor="middle">$20.000</text>
+
+        <rect x="180" y="12" width="75" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="217" y="35" font-size="12" fill="#cbd5e1" text-anchor="middle">$50.000</text>
+
+        <rect x="270" y="12" width="75" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="307" y="35" font-size="12" fill="#cbd5e1" text-anchor="middle">Exacto</text>
+      </g>
+
+      <!-- Big Action CTA -->
+      <g transform="translate(30, 590)">
+        <rect x="0" y="0" width="350" height="54" rx="10" fill="#10b981"/>
+        <text x="175" y="34" font-size="14" fill="#0f172a" font-weight="900" text-anchor="middle" letter-spacing="0.5">CONFIRMAR PAGO Y SALIDA (F2)</text>
+      </g>
+    </g>
+  </g>
+</svg>

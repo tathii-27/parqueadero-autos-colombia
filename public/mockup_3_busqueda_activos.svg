@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="background:#0b0f17; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="shadow3" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Top App Bar -->
+  <rect x="0" y="0" width="1440" height="70" fill="#ffffff" filter="url(#shadow3)"/>
+  <text x="40" y="42" font-size="14" fill="#64748b" font-weight="500">Workspace <tspan fill="#0f172a" font-weight="700"> &gt; Patio &gt; Búsqueda de Vehículos Activos</tspan></text>
+  
+  <circle cx="1080" cy="35" r="5" fill="#10b981"/>
+  <text x="1095" y="39" font-size="13" fill="#047857" font-weight="600">Patio Sincronizado en Tiempo Real</text>
+
+  <rect x="1220" y="16" width="180" height="38" rx="19" fill="#f1f5f9"/>
+  <circle cx="1240" cy="35" r="14" fill="#0f172a"/>
+  <text x="1233" y="40" font-size="12" fill="#ffffff" font-weight="700">CM</text>
+  <text x="1262" y="32" font-size="12" fill="#0f172a" font-weight="700">Camila Martínez</text>
+  <text x="1262" y="45" font-size="11" fill="#64748b">Operadora Caseta</text>
+
+  <!-- Left Sidebar -->
+  <rect x="0" y="70" width="240" height="830" fill="#0f172a"/>
+  <rect x="24" y="94" width="36" height="36" rx="8" fill="#10b981"/>
+  <text x="36" y="118" font-size="18" fill="#ffffff" font-weight="900">P</text>
+  <text x="70" y="110" font-size="14" fill="#ffffff" font-weight="800">Autos Colombia</text>
+  <text x="70" y="124" font-size="11" fill="#94a3b8">Sede Chapinero · Bogotá</text>
+
+  <g transform="translate(16, 160)">
+    <text x="36" y="26" font-size="13" fill="#94a3b8" font-weight="500">1. Registro Entrada</text>
+    <text x="36" y="68" font-size="13" fill="#94a3b8" font-weight="500">2. Ticket Ingreso</text>
+    <rect x="0" y="84" width="208" height="42" rx="8" fill="#10b981" fill-opacity="0.15"/>
+    <rect x="0" y="90" width="4" height="30" rx="2" fill="#10b981"/>
+    <text x="36" y="110" font-size="13" fill="#34d399" font-weight="700">3. Vehículos Activos</text>
+    <text x="36" y="152" font-size="13" fill="#94a3b8" font-weight="500">4. Salida y Cobro</text>
+    <text x="36" y="194" font-size="13" fill="#94a3b8" font-weight="500">5. Recibo de Caja</text>
+  </g>
+
+  <!-- Main Canvas Area -->
+  <g transform="translate(280, 100)">
+    <text x="0" y="30" font-size="24" fill="#ffffff" font-weight="800">3. Búsqueda y Monitoreo de Vehículos Activos</text>
+    <text x="0" y="52" font-size="14" fill="#94a3b8">Tablero de control en tiempo real, búsqueda predictiva por placa y radar de ocupación de celdas</text>
+
+    <!-- KPI Metric Cards -->
+    <g transform="translate(0, 75)">
+      <!-- Card 1 -->
+      <rect x="0" y="0" width="265" height="100" rx="12" fill="#1e293b" stroke="#334155"/>
+      <text x="20" y="32" font-size="12" fill="#94a3b8" font-weight="700">CELDAS LIBRES</text>
+      <text x="20" y="70" font-size="34" fill="#34d399" font-weight="900" font-family="monospace">154</text>
+      <text x="100" y="66" font-size="13" fill="#6ee7b7">/ 255 Plazas (60.4%)</text>
+      <circle cx="235" cy="30" r="8" fill="#10b981"/>
+
+      <!-- Card 2 -->
+      <rect x="285" y="0" width="265" height="100" rx="12" fill="#1e293b" stroke="#334155"/>
+      <text x="305" y="32" font-size="12" fill="#94a3b8" font-weight="700">VEHÍCULOS EN PATIO</text>
+      <text x="305" y="70" font-size="34" fill="#38bdf8" font-weight="900" font-family="monospace">89</text>
+      <text x="360" y="66" font-size="13" fill="#7dd3fc">Rotativos Activos</text>
+      <circle cx="520" cy="30" r="8" fill="#38bdf8"/>
+
+      <!-- Card 3 -->
+      <rect x="570" y="0" width="265" height="100" rx="12" fill="#1e293b" stroke="#334155"/>
+      <text x="590" y="32" font-size="12" fill="#94a3b8" font-weight="700">ABONADOS MENSUALISTAS</text>
+      <text x="590" y="70" font-size="34" fill="#a855f7" font-weight="900" font-family="monospace">12</text>
+      <text x="645" y="66" font-size="13" fill="#d8b4fe">Contratos Vigentes</text>
+      <circle cx="805" cy="30" r="8" fill="#a855f7"/>
+
+      <!-- Card 4 -->
+      <rect x="855" y="0" width="250" height="100" rx="12" fill="#1e293b" stroke="#334155"/>
+      <text x="875" y="32" font-size="12" fill="#94a3b8" font-weight="700">RECAUDO PROYECTADO</text>
+      <text x="875" y="70" font-size="30" fill="#facc15" font-weight="900" font-family="monospace">$412.500</text>
+      <circle cx="1075" cy="30" r="8" fill="#facc15"/>
+    </g>
+
+    <!-- Search Input & Filter Chips -->
+    <g transform="translate(0, 195)">
+      <rect x="0" y="0" width="620" height="50" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <text x="20" y="32" font-size="18" fill="#38bdf8">🔍</text>
+      <text x="55" y="32" font-size="15" fill="#ffffff" font-family="monospace" font-weight="700">Filtrando por placa: "HNE"</text>
+      <rect x="490" y="10" width="115" height="30" rx="6" fill="#38bdf8" fill-opacity="0.2"/>
+      <text x="502" y="30" font-size="11" fill="#38bdf8" font-weight="700">1 Coincidencia</text>
+
+      <!-- Category Filter Chips -->
+      <rect x="640" y="0" width="110" height="50" rx="10" fill="#38bdf8"/>
+      <text x="668" y="31" font-size="13" fill="#0f172a" font-weight="800">Todos (89)</text>
+
+      <rect x="760" y="0" width="110" height="50" rx="10" fill="#1e293b" stroke="#334155"/>
+      <text x="788" y="31" font-size="13" fill="#cbd5e1" font-weight="600">Autos (52)</text>
+
+      <rect x="880" y="0" width="110" height="50" rx="10" fill="#1e293b" stroke="#334155"/>
+      <text x="912" y="31" font-size="13" fill="#cbd5e1" font-weight="600">Motos (31)</text>
+
+      <rect x="1000" y="0" width="105" height="50" rx="10" fill="#1e293b" stroke="#334155"/>
+      <text x="1025" y="31" font-size="13" fill="#cbd5e1" font-weight="600">Pesados (6)</text>
+    </g>
+
+    <!-- Table of Active Vehicles -->
+    <g transform="translate(0, 265)">
+      <rect x="0" y="0" width="1105" height="480" rx="12" fill="#1e293b" stroke="#334155"/>
+
+      <!-- Table Header -->
+      <rect x="0" y="0" width="1105" height="48" rx="12" fill="#0f172a"/>
+      <text x="30" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">PLACA VEHICULAR</text>
+      <text x="210" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">CONSECUTIVO</text>
+      <text x="370" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">CELDA</text>
+      <text x="480" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">HORA ENTRADA</text>
+      <text x="640" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">PERMANENCIA</text>
+      <text x="800" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">VALOR ESTIMADO</text>
+      <text x="960" y="30" font-size="12" fill="#94a3b8" font-weight="800" font-family="monospace">ACCIÓN</text>
+
+      <!-- Row 1: Active Match HNE-612 -->
+      <g transform="translate(0, 48)">
+        <rect x="0" y="0" width="1105" height="75" fill="#38bdf8" fill-opacity="0.12"/>
+        <line x1="0" y1="75" x2="1105" y2="75" stroke="#334155"/>
+
+        <rect x="25" y="16" width="120" height="42" rx="6" fill="#facc15"/>
+        <text x="85" y="44" font-size="20" fill="#0f172a" font-weight="900" font-family="monospace" text-anchor="middle">HNE 612</text>
+        <text x="155" y="42" font-size="12" fill="#cbd5e1">Automóvil</text>
+
+        <text x="210" y="44" font-size="14" fill="#ffffff" font-weight="700" font-family="monospace">PAC-2026-1042</text>
+        <text x="370" y="44" font-size="16" fill="#34d399" font-weight="900" font-family="monospace">CELDA A-14</text>
+        <text x="480" y="44" font-size="14" fill="#ffffff" font-family="monospace">15:30:12</text>
+        
+        <rect x="635" y="24" width="125" height="28" rx="6" fill="#10b981" fill-opacity="0.2"/>
+        <text x="645" y="43" font-size="12" fill="#34d399" font-weight="800">12 min (Gracia)</text>
+
+        <text x="800" y="44" font-size="16" fill="#34d399" font-weight="900" font-family="monospace">$0 COP</text>
+
+        <rect x="940" y="18" width="135" height="38" rx="8" fill="#38bdf8"/>
+        <text x="1007" y="42" font-size="12" fill="#0f172a" font-weight="900" text-anchor="middle">LIQUIDAR SALIDA</text>
+      </g>
+
+      <!-- Row 2: BKG-401 -->
+      <g transform="translate(0, 123)">
+        <rect x="0" y="0" width="1105" height="70" fill="transparent"/>
+        <line x1="0" y1="70" x2="1105" y2="70" stroke="#334155"/>
+
+        <rect x="25" y="15" width="120" height="40" rx="6" fill="#facc15" fill-opacity="0.2"/>
+        <text x="85" y="41" font-size="18" fill="#facc15" font-weight="800" font-family="monospace" text-anchor="middle">BKG 401</text>
+        <text x="155" y="40" font-size="12" fill="#64748b">Automóvil</text>
+
+        <text x="210" y="41" font-size="13" fill="#cbd5e1" font-family="monospace">PAC-2026-1039</text>
+        <text x="370" y="41" font-size="15" fill="#e2e8f0" font-weight="700" font-family="monospace">CELDA A-08</text>
+        <text x="480" y="41" font-size="13" fill="#94a3b8" font-family="monospace">14:15:00</text>
+        <text x="640" y="41" font-size="13" fill="#cbd5e1">1h 15 min</text>
+        <text x="800" y="41" font-size="15" fill="#ffffff" font-weight="700" font-family="monospace">$9.000 COP</text>
+
+        <rect x="940" y="16" width="135" height="36" rx="8" fill="#0f172a" stroke="#334155"/>
+        <text x="1007" y="39" font-size="12" fill="#cbd5e1" font-weight="600" text-anchor="middle">Liquidar</text>
+      </g>
+
+      <!-- Row 3: UYS-98D Moto -->
+      <g transform="translate(0, 193)">
+        <rect x="0" y="0" width="1105" height="70" fill="transparent"/>
+        <line x1="0" y1="70" x2="1105" y2="70" stroke="#334155"/>
+
+        <rect x="25" y="15" width="120" height="40" rx="6" fill="#facc15" fill-opacity="0.2"/>
+        <text x="85" y="41" font-size="18" fill="#facc15" font-weight="800" font-family="monospace" text-anchor="middle">UYS 98D</text>
+        <text x="155" y="40" font-size="12" fill="#64748b">Motocicleta</text>
+
+        <text x="210" y="41" font-size="13" fill="#cbd5e1" font-family="monospace">PAC-2026-1035</text>
+        <text x="370" y="41" font-size="15" fill="#e2e8f0" font-weight="700" font-family="monospace">CELDA B-03</text>
+        <text x="480" y="41" font-size="13" fill="#94a3b8" font-family="monospace">13:40:00</text>
+        <text x="640" y="41" font-size="13" fill="#cbd5e1">1h 50 min</text>
+        <text x="800" y="41" font-size="15" fill="#ffffff" font-weight="700" font-family="monospace">$4.400 COP</text>
+
+        <rect x="940" y="16" width="135" height="36" rx="8" fill="#0f172a" stroke="#334155"/>
+        <text x="1007" y="39" font-size="12" fill="#cbd5e1" font-weight="600" text-anchor="middle">Liquidar</text>
+      </g>
+    </g>
+  </g>
+</svg>
