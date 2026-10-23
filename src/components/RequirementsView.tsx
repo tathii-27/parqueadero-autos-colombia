@@ -43,6 +43,7 @@ export const RequirementsView: React.FC<RequirementsViewProps> = ({
   const [expandedHuId, setExpandedHuId] = useState<string | null>('HU-01');
   const [expandedRfId, setExpandedRfId] = useState<string | null>('RF-ES-01');
   const [copiedNotification, setCopiedNotification] = useState(false);
+  const [selectedIteration, setSelectedIteration] = useState<'TODAS' | 'ITERACION_1' | 'POSTERIORES'>('ITERACION_1');
   const [matrizSearch, setMatrizSearch] = useState('');
   const [copiedMatriz, setCopiedMatriz] = useState(false);
   const [matrizViewType, setMatrizViewType] = useState<'integral' | 'agil'>('integral');
@@ -73,9 +74,14 @@ export const RequirementsView: React.FC<RequirementsViewProps> = ({
     setTimeout(() => setCopiedMatriz(false), 3000);
   };
 
-  const filteredHus = selectedEpic === 'TODAS'
-    ? USER_STORIES
-    : USER_STORIES.filter(hu => hu.epic === selectedEpic);
+  const filteredHus = USER_STORIES.filter(hu => {
+    const matchesEpic = selectedEpic === 'TODAS' || hu.epic === selectedEpic;
+    const matchesIteration = 
+      selectedIteration === 'TODAS' ? true :
+      selectedIteration === 'ITERACION_1' ? hu.inScope :
+      !hu.inScope;
+    return matchesEpic && matchesIteration;
+  });
 
   const filteredRfs = selectedCategory === 'TODOS'
     ? FUNCTIONAL_REQUIREMENTS
@@ -263,29 +269,87 @@ Estrategia de Cumplimiento: ${rnf.complianceStrategy}
       {/* SubTab: HISTORIAS DE USUARIO (SCRUM) */}
       {activeSubTab === 'hu' && (
         <div className="space-y-4">
-          {/* Epic Filter */}
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="text-slate-500 font-medium">Filtrar por Épica:</span>
-            {[
-              { id: 'TODAS', label: 'Todas las Épicas' },
-              { id: 'ENTRADA_SALIDA', label: 'Entrada y Salida' },
-              { id: 'CELDAS', label: 'Celdas' },
-              { id: 'MENSUALISTAS', label: 'Mensualistas' },
-              { id: 'NOVEDADES', label: 'Novedades' },
-              { id: 'PAGOS', label: 'Pagos y Caja' },
-            ].map(ep => (
-              <button
-                key={ep.id}
-                onClick={() => setSelectedEpic(ep.id)}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  selectedEpic === ep.id
-                    ? 'bg-slate-900 text-white font-semibold'
-                    : 'text-slate-600 hover:bg-slate-100'
-                }`}
-              >
-                {ep.label}
-              </button>
-            ))}
+          {/* Banner de Delimitación de Alcance por Iteración */}
+          <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-slate-50 border border-emerald-200 rounded-lg p-4 space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-mono font-bold text-xs bg-emerald-800 text-white px-2.5 py-0.5 rounded shadow-sm">
+                  ITERACIÓN 1
+                </span>
+                <span className="font-bold text-slate-900 text-sm">
+                  Gestión de la Entrada y Salida de Vehículos (Alcance Oficial del Sprint 1)
+                </span>
+              </div>
+              <span className="text-xs font-semibold text-emerald-800 bg-emerald-100/90 px-3 py-1 rounded-full border border-emerald-300 self-start sm:self-auto">
+                10 Historias de Usuario Nucleares (HU-01 a HU-10) · 37 Story Points
+              </span>
+            </div>
+            <p className="text-xs text-slate-700 leading-relaxed">
+              <strong>Delimitación Metodológica de Alcance:</strong> Conforme al título y objetivos de la actividad evaluativa (<em>"Iteración 1: Gestión de la entrada y salida de vehículos"</em>), las <strong>Historias de Usuario HU-01 a HU-10</strong> representan el alcance oficial y evaluable de esta entrega (captura de placa, validación de estado, asignación de celda, inspección, liquidación de tiempos, cobro multicanal y ticket fiscal). Las Historias HU-11 a HU-18 pertenecen al Product Backlog general planificadas para <strong>Iteraciones Posteriores</strong> (Celdas, Mensualistas, Novedades y Auditoría de Caja).
+            </p>
+          </div>
+
+          {/* Selector de Iteración y Filtro de Épicas */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-3 rounded-lg border border-slate-200 text-xs">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-slate-600 font-bold">Alcance de Entrega:</span>
+              <div className="flex bg-slate-100 p-0.5 rounded border border-slate-200">
+                <button
+                  onClick={() => setSelectedIteration('ITERACION_1')}
+                  className={`px-3 py-1 rounded text-xs transition-colors ${
+                    selectedIteration === 'ITERACION_1'
+                      ? 'bg-emerald-700 text-white font-bold shadow-xs'
+                      : 'text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  🎯 Iteración 1 · Entrada y Salida (10 HUs)
+                </button>
+                <button
+                  onClick={() => setSelectedIteration('POSTERIORES')}
+                  className={`px-3 py-1 rounded text-xs transition-colors ${
+                    selectedIteration === 'POSTERIORES'
+                      ? 'bg-slate-800 text-white font-bold shadow-xs'
+                      : 'text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  📅 Iteraciones Posteriores (8 HUs)
+                </button>
+                <button
+                  onClick={() => setSelectedIteration('TODAS')}
+                  className={`px-3 py-1 rounded text-xs transition-colors ${
+                    selectedIteration === 'TODAS'
+                      ? 'bg-slate-900 text-white font-bold shadow-xs'
+                      : 'text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  Ver Todas (18)
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-slate-500 font-medium">Épica:</span>
+              {[
+                { id: 'TODAS', label: 'Todas' },
+                { id: 'ENTRADA_SALIDA', label: 'Entrada y Salida' },
+                { id: 'CELDAS', label: 'Celdas' },
+                { id: 'MENSUALISTAS', label: 'Mensualistas' },
+                { id: 'NOVEDADES', label: 'Novedades' },
+                { id: 'PAGOS', label: 'Pagos' },
+              ].map(ep => (
+                <button
+                  key={ep.id}
+                  onClick={() => setSelectedEpic(ep.id)}
+                  className={`px-2 py-0.5 rounded text-[11px] transition-colors ${
+                    selectedEpic === ep.id
+                      ? 'bg-slate-900 text-white font-semibold'
+                      : 'text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  }`}
+                >
+                  {ep.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* User Stories List */}
@@ -295,20 +359,37 @@ Estrategia de Cumplimiento: ${rnf.complianceStrategy}
               return (
                 <div
                   key={hu.id}
-                  className="bg-white border border-slate-200 rounded-lg transition-all overflow-hidden"
+                  className={`bg-white border rounded-lg transition-all overflow-hidden ${
+                    hu.inScope ? 'border-emerald-200 hover:border-emerald-300' : 'border-slate-200 hover:border-slate-300'
+                  }`}
                 >
                   <div
                     onClick={() => toggleExpandHu(hu.id)}
                     className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 select-none"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="font-mono text-xs font-bold text-slate-900 bg-amber-50 text-amber-900 px-2.5 py-1 rounded border border-amber-200">
+                      <span className={`font-mono text-xs font-bold px-2.5 py-1 rounded border ${
+                        hu.inScope 
+                          ? 'bg-emerald-50 text-emerald-900 border-emerald-300' 
+                          : 'bg-slate-100 text-slate-800 border-slate-300'
+                      }`}>
                         {hu.id}
                       </span>
                       <div>
-                        <h3 className="text-sm font-semibold text-slate-900">
-                          {hu.title}
-                        </h3>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="text-sm font-semibold text-slate-900">
+                            {hu.title}
+                          </h3>
+                          {hu.inScope ? (
+                            <span className="inline-flex items-center gap-1 font-semibold text-[10px] text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.2 rounded-full">
+                              🎯 Iteración 1 · En Alcance
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 font-semibold text-[10px] text-slate-700 bg-slate-100 border border-slate-300 px-2 py-0.2 rounded-full">
+                              📅 {hu.iteration === 'ITERACION_2' ? 'Iteración 2' : hu.iteration === 'ITERACION_3' ? 'Iteración 3' : 'Iteración 4'} · Roadmap
+                            </span>
+                          )}
+                        </div>
                         <div className="text-[11px] text-slate-500 mt-0.5">
                           Épica: {hu.epicTitle} · Prioridad {hu.priority} · {hu.storyPoints} Story Points · Ref: {hu.relatedRF.join(', ')}
                         </div>

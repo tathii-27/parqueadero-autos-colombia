@@ -2,6 +2,9 @@ export interface UserStory {
   id: string; // e.g. HU-01
   epic: 'ENTRADA_SALIDA' | 'CELDAS' | 'MENSUALISTAS' | 'NOVEDADES' | 'PAGOS';
   epicTitle: string;
+  iteration: 'ITERACION_1' | 'ITERACION_2' | 'ITERACION_3' | 'ITERACION_4';
+  iterationLabel: string;
+  inScope: boolean; // true si pertenece a la Iteración 1 (Gestión de Entrada y Salida)
   title: string;
   role: string; // Como...
   action: string; // Quiero...
@@ -19,11 +22,16 @@ export interface UserStory {
 }
 
 export const USER_STORIES: UserStory[] = [
-  // --- ÉPICA: GESTIÓN DE ENTRADA Y SALIDA DE VEHÍCULOS ---
+  // ==============================================================================
+  // ITERACIÓN 1: GESTIÓN DE LA ENTRADA Y SALIDA DE VEHÍCULOS (EN ALCANCE ACTUAL)
+  // ==============================================================================
   {
     id: 'HU-01',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Registro ágil de entrada de vehículos con validación de placa',
     role: 'Operador de entrada del parqueadero',
     action: 'ingresar la placa del vehículo que arriba a la bahía de acceso en el sistema',
@@ -54,6 +62,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-02',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Detección automática y exoneración de mensualistas al ingresar',
     role: 'Operador de taquilla',
     action: 'que el sistema reconozca automáticamente si la placa ingresada corresponde a un cliente con suscripción de mensualidad activa',
@@ -83,6 +94,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-03',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Asignación y reserva inteligente de celda según tipología',
     role: 'Operador de patio',
     action: 'que el sistema me filtre y sugiera las celdas disponibles compatibles con el tipo de vehículo (Automóvil, Moto, Camioneta o Bicicleta)',
@@ -113,6 +127,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-04',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Inspección de ingreso y custodia de pertenencias',
     role: 'Operador de recepción',
     action: 'registrar observaciones sobre el estado físico inicial del automotor (rayones previos, golpes, llaves o cascos dejados en custodia)',
@@ -136,6 +153,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-05',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Emisión e impresión de ticket de ingreso físico y digital',
     role: 'Cliente del parqueadero',
     action: 'recibir un ticket de entrada físico o digital con los datos completos del establecimiento, fecha/hora y número de celda',
@@ -159,6 +179,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-06',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Búsqueda ágil y liquidación automática de tiempo para salida',
     role: 'Cajero de salida',
     action: 'buscar rápidamente un vehículo por placa o ticket y que el sistema calcule el tiempo exacto transcurrido y la tarifa a cobrar',
@@ -195,6 +218,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-07',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Cobro multimedio y cálculo automático de devuelta',
     role: 'Cajero del parqueadero',
     action: 'registrar el pago seleccionando Efectivo, Nequi, Daviplata, Tarjetas o Transferencia y disponer de una calculadora automática de cambio',
@@ -224,6 +250,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-08',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Liberación de celda y actualización del aforo en tiempo real',
     role: 'Sistema de control',
     action: 'liberar automáticamente la celda ocupada tan pronto se confirme el pago o salida del vehículo',
@@ -253,6 +282,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-09',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Emisión de recibo fiscal de caja de salida',
     role: 'Cliente y Administrador',
     action: 'emitir e imprimir un recibo oficial de caja con número consecutivo, placa, tiempo y medio de pago',
@@ -276,6 +308,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-10',
     epic: 'ENTRADA_SALIDA',
     epicTitle: 'Gestión de Entrada y Salida',
+    iteration: 'ITERACION_1',
+    iterationLabel: 'Iteración 1 · En Alcance (Gestión de Entrada y Salida)',
+    inScope: true,
     title: 'Alerta preventiva de novedades pendientes al registrar salida',
     role: 'Operador de salida',
     action: 'que el sistema me alerte visiblemente si el vehículo que va a salir tiene novedades registradas (luces encendidas, fugas de fluidos o daños reportados)',
@@ -296,11 +331,18 @@ export const USER_STORIES: UserStory[] = [
     ]
   },
 
-  // --- ÉPICA: GESTIÓN DE CELDAS Y CAPACIDAD ---
+  // ==============================================================================
+  // ITERACIONES POSTERIORES: PRODUCT BACKLOG Y ROADMAP FUTURO (FUERA DE ITERACIÓN 1)
+  // ==============================================================================
+  
+  // --- ÉPICA: GESTIÓN DE CELDAS Y CAPACIDAD (ITERACIÓN 2) ---
   {
     id: 'HU-11',
     epic: 'CELDAS',
     epicTitle: 'Gestión de Celdas',
+    iteration: 'ITERACION_2',
+    iterationLabel: 'Iteración 2 · Roadmap Futuro (Gestión de Celdas)',
+    inScope: false,
     title: 'Visualización del mapa interactivo de celdas en tiempo real',
     role: 'Supervisor de patio',
     action: 'visualizar el mapa topográfico de celdas agrupadas por zonas (Autos, Motos, Camionetas) con códigos de colores',
@@ -324,6 +366,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-12',
     epic: 'CELDAS',
     epicTitle: 'Gestión de Celdas',
+    iteration: 'ITERACION_2',
+    iterationLabel: 'Iteración 2 · Roadmap Futuro (Gestión de Celdas)',
+    inScope: false,
     title: 'Inhabilitación temporal de celdas por mantenimiento',
     role: 'Administrador de infraestructura',
     action: 'marcar una celda en estado MANTENIMIENTO con una nota explicativa',
@@ -344,11 +389,14 @@ export const USER_STORIES: UserStory[] = [
     ]
   },
 
-  // --- ÉPICA: GESTIÓN DE USUARIOS MENSUALISTAS ---
+  // --- ÉPICA: GESTIÓN DE USUARIOS MENSUALISTAS (ITERACIÓN 2) ---
   {
     id: 'HU-13',
     epic: 'MENSUALISTAS',
     epicTitle: 'Usuarios y Mensualistas',
+    iteration: 'ITERACION_2',
+    iterationLabel: 'Iteración 2 · Roadmap Futuro (Mensualistas)',
+    inScope: false,
     title: 'Registro y suscripción de clientes mensualistas',
     role: 'Administrador del parqueadero',
     action: 'afiliar un nuevo cliente ingresando sus datos personales, vehículos vinculados, tipo de plan y celda asignada',
@@ -373,6 +421,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-14',
     epic: 'MENSUALISTAS',
     epicTitle: 'Usuarios y Mensualistas',
+    iteration: 'ITERACION_2',
+    iterationLabel: 'Iteración 2 · Roadmap Futuro (Mensualistas)',
+    inScope: false,
     title: 'Monitoreo de vencimientos y renovación periódica',
     role: 'Encargado de cobranzas',
     action: 'filtrar abonados por estado ("Por Vencer" y "Vencidas") y renovar contratos por 1 a 6 meses con un solo clic',
@@ -393,11 +444,14 @@ export const USER_STORIES: UserStory[] = [
     ]
   },
 
-  // --- ÉPICA: REGISTRO Y CUSTODIA DE NOVEDADES ---
+  // --- ÉPICA: REGISTRO Y CUSTODIA DE NOVEDADES (ITERACIÓN 3) ---
   {
     id: 'HU-15',
     epic: 'NOVEDADES',
     epicTitle: 'Novedades e Incidencias',
+    iteration: 'ITERACION_3',
+    iterationLabel: 'Iteración 3 · Roadmap Futuro (Novedades)',
+    inScope: false,
     title: 'Registro formal de novedades ocurridas sobre vehículos',
     role: 'Supervisor o vigilante de turno',
     action: 'reportar una incidencia vinculada a una placa (fugas de líquidos, luces encendidas, alarma activada o rayones) indicando la severidad',
@@ -421,6 +475,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-16',
     epic: 'NOVEDADES',
     epicTitle: 'Novedades e Incidencias',
+    iteration: 'ITERACION_3',
+    iterationLabel: 'Iteración 3 · Roadmap Futuro (Novedades)',
+    inScope: false,
     title: 'Cierre y solución de incidencias con constancia de gestión',
     role: 'Operador de servicio',
     action: 'marcar una novedad como "RESUELTA" ingresando las notas de solución acordadas con el cliente',
@@ -441,11 +498,14 @@ export const USER_STORIES: UserStory[] = [
     ]
   },
 
-  // --- ÉPICA: CONTROL DE PAGOS Y CAJA DIARIA ---
+  // --- ÉPICA: CONTROL DE PAGOS Y CAJA DIARIA (ITERACIÓN 4) ---
   {
     id: 'HU-17',
     epic: 'PAGOS',
     epicTitle: 'Pagos y Caja',
+    iteration: 'ITERACION_4',
+    iterationLabel: 'Iteración 4 · Roadmap Futuro (Pagos y Caja)',
+    inScope: false,
     title: 'Arqueo de caja diario con desglose por medios de pago',
     role: 'Administrador de caja',
     action: 'consultar el consolidado de recaudo del día separado por Efectivo físico, Nequi, Daviplata, Tarjetas y Bancolombia',
@@ -469,6 +529,9 @@ export const USER_STORIES: UserStory[] = [
     id: 'HU-18',
     epic: 'PAGOS',
     epicTitle: 'Pagos y Caja',
+    iteration: 'ITERACION_4',
+    iterationLabel: 'Iteración 4 · Roadmap Futuro (Pagos y Caja)',
+    inScope: false,
     title: 'Consulta histórica y reimpresión de recibos de caja',
     role: 'Auditor contable o cajero',
     action: 'filtrar el historial de recibos por número consecutivo, placa o fecha y reimprimir cualquier comprobante previo',
