@@ -37,88 +37,143 @@ interface MockupDefinition {
   };
 }
 
+export const FIGMA_PROTOTYPE_URL = 'https://www.figma.com/proto/KqmKxldrSK9RND8iz1Si8o/Parqueadero-Autos-Colombia?node-id=2011-3791&p=f&t=rAJnrMkW641cLTh8-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1';
+
 const MOCKUPS: MockupDefinition[] = [
   {
-    id: 'mockup-dashboard',
-    title: 'Pantalla 1: Dashboard y Registro Rápido de Entrada',
-    subtitle: 'Terminal de acceso vehicular con tablero interactivo de celdas en vivo',
+    id: 'mockup-1-entrada',
+    title: 'Pantalla 1: Registro de Entrada de Vehículos',
+    subtitle: 'Captura ágil de placa RUNT colombiana, detección de mensualistas y asignación de celda',
     imageSrc: '/figma_mockup_dashboard.jpg',
-    associatedStories: ['HU-01', 'HU-02', 'HU-03', 'HU-06', 'HU-07', 'HU-08'],
+    associatedStories: ['HU-01', 'HU-02', 'HU-03', 'HU-04'],
     targetDevice: 'Desktop (1440px)',
-    figmaFrameName: 'Frame 1: Desktop - Terminal de Entrada',
-    description: 'Diseño para el operador de acceso que permite digitar la placa colombiana, detectar si es mensualista o vehículo rotativo, asignar celda por zonas y visualizar en un semáforo interactivo las celdas disponibles (verde), ocupadas (rojo) y reservadas (naranja).',
+    figmaFrameName: 'Frame 1: Caseta - Registro de Entrada',
+    description: 'Diseño para el operador de acceso que permite digitar la placa colombiana (formato estándar AAA-123 o motos AAA-12D), detectar de forma automática si cuenta con un contrato activo de mensualidad ($0 COP), filtrar y sugerir celdas compatibles por zona (A: Autos, B: Motos, C: Pesados) y documentar el estado físico de recepción.',
     keyComponents: [
-      'Input de Placa con mayúsculas automáticas y formateo (HNE612)',
-      'Selector de Zona (Zona A, B, C) y Tipo de Automotor (Carro, Moto, Pesado)',
-      'Matriz interactiva de celdas 6x4 con contadores en tiempo real (154 Libres, 89 Ocupadas)',
-      'Tabla de últimos 5 ingresos con hora, tipo y badge de estado ACTIVO',
-      'Widget de cuadre de caja diaria con desglose Efectivo vs Digital'
+      'Input de Placa con mayúsculas automáticas y formateo asistido (ej. HNE-612)',
+      'Selector de Categoría Vehicular (Automóvil, Motocicleta, Camioneta/SUV, Pesado)',
+      'Selector dinámico de celdas filtrado por zona según la tipología vehicular',
+      'Detector automático de modalidad (Rotativo Ocasional vs Abonado Mensualista)',
+      'Campo de notas de inspección previa (daños, rayones o accesorios dejados en custodia)'
     ],
     uxHighlights: [
-      'Flujo de registro completable en menos de 10 segundos con teclado numérico y Enter.',
-      'Semaforización de alto contraste accesible según lineamientos WCAG 2.1 AA.',
-      'Sidebar lateral con navegación clara y acceso directo a Novedades y Pagos.'
+      'Flujo de registro operable en menos de 10 segundos con atajos de teclado y Enter.',
+      'Prevención de errores: Validación en tiempo real de formato RUNT y bloqueo de duplicados (RN-01).',
+      'Etiquetas de alto contraste para máxima legibilidad en cabinas de patio.'
     ],
     designSpecs: {
       dimensions: '1440 x 900 px (16:9)',
-      primaryAction: 'REGISTRAR INGRESO (Verde #10B981)',
-      colorPalette: ['#0f172a (Sidebar)', '#10b981 (Disponible)', '#ef4444 (Ocupado)', '#f59e0b (Reservado)']
+      primaryAction: 'CONFIRMAR INGRESO Y EMITIR TICKET (#10B981)',
+      colorPalette: ['#0f172a (Superficie)', '#10b981 (Confirmar)', '#3b82f6 (Placa RUNT)', '#f59e0b (Inspección)']
     }
   },
   {
-    id: 'mockup-pago',
-    title: 'Pantalla 2: Liquidación de Salida, Ticket QR y Cobro Multimedio',
-    subtitle: 'Estación de caja y pasarela de cobro para emisión de comprobante y apertura de talanquera',
+    id: 'mockup-2-ticket',
+    title: 'Pantalla 2: Confirmación de Ingreso y Emisión de Ticket',
+    subtitle: 'Comprobante físico y térmico numerado PAC-2026-XXXX con código QR y datos fiscales',
     imageSrc: '/figma_mockup_pago_salida.jpg',
-    associatedStories: ['HU-04', 'HU-05', 'HU-15', 'HU-16', 'HU-17'],
+    associatedStories: ['HU-04', 'HU-05'],
     targetDevice: 'Terminal de Caja (1024px)',
-    figmaFrameName: 'Frame 2: Terminal - Liquidación y Salida',
-    description: 'Interfaz de cobro ágil al egreso. Muestra el ticket térmico generado con QR, desglose de tarifa base y minutos adicionales, cálculo dinámico de cambio en efectivo y botones de pago rápido (Efectivo, Nequi, Daviplata, Tarjeta).',
+    figmaFrameName: 'Frame 2: Terminal - Emisión de Ticket Térmico',
+    description: 'Comprobante formal emitido al conductor tras registrar su ingreso. Cumple estrictamente con la Ley 1480 de 2011 (Estatuto del Consumidor de Colombia), incluyendo NIT del parqueadero, timestamp exacto de entrada, código QR para validación rápida en salida, celda asignada y póliza de responsabilidad civil.',
     keyComponents: [
-      'Ticket térmico digital PAC-2026-1042 con código QR escaneable',
-      'Desglose auditado: Tarifa Base $2.500 COP + Tiempo Extra 90 min $9.000 COP + IVA $1.000 COP = $12.500 COP',
-      'Selector de método de pago con botones grandes táctiles (Efectivo, Nequi, Daviplata, Tarjeta)',
-      'Campo "Efectivo Recibido" con cálculo instantáneo de cambio ($7.500 COP)',
-      'Botón maestro con confirmación de apertura de talanquera electromecánica'
+      'Encabezado fiscal corporativo: Autos Colombia S.A.S. · NIT 900.842.125-4',
+      'Número consecutivo único e inmutable (PAC-2026-1042)',
+      'Placa vehicular en tipografía tipificada de alto impacto (HNE612)',
+      'Fecha y hora exacta de acceso con marca de tiempo ISO',
+      'Código QR bidimensional escaneable en la cabina de salida',
+      'Detalle de inspección inicial y cláusula legal de custodia'
     ],
     uxHighlights: [
-      'Evita errores de conteo de dinero calculando la devuelta en tiempo real.',
-      'Admite validación de comprobante digital o salida sin ticket mediante escáner de placa.',
-      'Botón secundario para emisión de Factura Electrónica legal.'
+      'Estilos de impresión térmica adaptativa para papel estándar de 58mm y 80mm ESC/POS.',
+      'Apertura automática de la vista previa con un solo clic o atajo Ctrl+P.',
+      'Soporte digital para envío por correo o consulta en pantalla táctil.'
     ],
     designSpecs: {
-      dimensions: '1440 x 810 px (16:9)',
-      primaryAction: 'Completar Pago y Abrir Talanquera (#059669)',
-      colorPalette: ['#064e3b (Ticket Header)', '#10b981 (Primary)', '#f8fafc (Surface)', '#0f172a (Text)']
+      dimensions: '1024 x 768 px (4:3)',
+      primaryAction: 'IMPRIMIR TICKET TÉRMICO (#0F172A)',
+      colorPalette: ['#0f172a (Texto)', '#10b981 (QR/Validado)', '#ffffff (Papel Térmico)', '#64748b (Fiscal)']
     }
   },
   {
-    id: 'mockup-novedad',
-    title: 'Pantalla 3: Inspección Vehicular y Reporte de Novedades',
-    subtitle: 'Módulo de auditoría de daños preexistentes con silueta anatómica y foto',
-    imageSrc: '/figma_mockup_novedades.jpg',
-    associatedStories: ['HU-12', 'HU-13', 'HU-14'],
-    targetDevice: 'Tablet / Móvil Operador (768px)',
-    figmaFrameName: 'Frame 3: Tablet - Inspección de Novedades',
-    description: 'Pantalla diseñada para el vigilante u operador de patio. Permite inspeccionar el vehículo al entrar, marcar sobre el plano anatómico 2D del auto la ubicación de golpes o rayones, adjuntar foto de evidencia y tipificar la severidad para blindar jurídicamente al parqueadero.',
+    id: 'mockup-3-busqueda',
+    title: 'Pantalla 3: Búsqueda y Monitoreo de Vehículos Activos',
+    subtitle: 'Panel de control de patio en tiempo real con buscador predictivo por placa y mapa de aforo',
+    imageSrc: '/figma_mockup_dashboard.jpg',
+    associatedStories: ['HU-06', 'HU-11'],
+    targetDevice: 'Desktop (1440px)',
+    figmaFrameName: 'Frame 3: Patio - Búsqueda de Vehículos Activos',
+    description: 'Tablero de control para supervisión de estancia. Permite localizar cualquier vehículo en menos de 100 milisegundos mediante un buscador insensible a mayúsculas/minúsculas, visualizando en tarjetas interactivas el tiempo transcurrido en minutos, la celda ocupada, el estado de la mensualidad y el botón de liquidación directa.',
     keyComponents: [
-      'Diagrama vectorial del vehículo con puntos interactivos de impacto (Bumper y Puerta)',
-      'Identificador de placa en badge destacado (KLY872)',
-      'Selector de Tipo de Daño (Rayón, Golpe, Desperfecto)',
-      'Badges de Severidad con código cromático (Baja, Media, Alta)',
-      'Contenedor de foto de evidencia fotográfica adjunta tomada con la cámara',
-      'Campo de texto para descripción circunstancial',
-      'Botón de registro y despacho de notificación al propietario'
+      'Buscador reactivo instantáneo por placa, número de ticket o celda',
+      'Semáforo de aforo en vivo: 154 Libres, 89 Ocupadas, 12 Reservadas',
+      'Tarjetas de vehículos activos con contador dinámico de tiempo transcurrido',
+      'Filtros rápidos por tipología: Todos, Automóviles, Motos, Camionetas',
+      'Acceso directo con un clic a "Liquidar Salida"'
     ],
     uxHighlights: [
-      'Mapeo visual intuitivo de daños para evitar disputas y reclamos por rayones preexistentes.',
-      'Soporte táctil optimizado para tablets de inspección en patio.',
-      'Generación de constancia asociada al ticket de entrada del cliente.'
+      'Respuesta predictiva en tiempo real sin recargar la página.',
+      'Código cromático según tiempo de permanencia para detectar vehículos con sobretiempo.',
+      'Diseño responsivo operable tanto en pantallas panorámicas como en tablets de patio.'
     ],
     designSpecs: {
-      dimensions: '1440 x 810 px (16:9)',
-      primaryAction: 'Guardar Novedad y Notificar Propietario (#2563eb)',
-      colorPalette: ['#1e40af (Blue Accent)', '#ef4444 (Daño / Alto)', '#f59e0b (Medio)', '#10b981 (Bajo)']
+      dimensions: '1440 x 900 px (16:9)',
+      primaryAction: 'LIQUIDAR SALIDA (#2563EB)',
+      colorPalette: ['#0f172a (Sidebar)', '#10b981 (Disponible)', '#ef4444 (Ocupado)', '#3b82f6 (Búsqueda)']
+    }
+  },
+  {
+    id: 'mockup-4-salida-cobro',
+    title: 'Pantalla 4: Registro de Salida y Liquidación del Cobro',
+    subtitle: 'Cálculo exacto de permanencia, aplicación de gracia (15 min), alerta de novedades y calculadora de cambio',
+    imageSrc: '/figma_mockup_pago_salida.jpg',
+    associatedStories: ['HU-06', 'HU-07', 'HU-10'],
+    targetDevice: 'Terminal de Caja (1024px)',
+    figmaFrameName: 'Frame 4: Taquilla - Liquidación y Cobro de Salida',
+    description: 'Pantalla nuclear del cajero de salida. Al seleccionar un vehículo, computa la permanencia exacta, aplica la regla de gracia de 15 minutos ($0 COP), desglosa horas y fracciones facturables según la tarifa en COP, advierte si existen novedades abiertas y provee una calculadora de cambio para pagos en efectivo o botones para pasarelas digitales (Nequi, Daviplata, Tarjeta).',
+    keyComponents: [
+      'Cronómetro de permanencia: Hora entrada vs Hora salida y Total minutos',
+      'Indicador de Periodo de Gracia: Exoneración automática si permanencia ≤ 15 min',
+      'Alerta visual ámbar en caso de novedades pendientes en el automotor (Regla RN-14)',
+      'Selector multicanal de pago: Efectivo, Nequi, Daviplata, Tarjeta Débito/Crédito',
+      'Calculadora de cambio: Input "Monto Recibido" con cálculo automático de "Devuelta"'
+    ],
+    uxHighlights: [
+      'Elimina descuadres de caja mostrando el cambio exacto a entregar en billetes grandes.',
+      'Exige acuse de recibo si hay incidencias físicas previas antes de abrir la talanquera.',
+      'Soporte táctil con teclas numéricas gigantes para terminales POS.'
+    ],
+    designSpecs: {
+      dimensions: '1024 x 768 px (4:3)',
+      primaryAction: 'CONFIRMAR PAGO Y REGISTRAR SALIDA (#059669)',
+      colorPalette: ['#064e3b (Encabezado)', '#10b981 (Completar Pago)', '#f59e0b (Alerta Novedad)', '#f8fafc (Fondo)']
+    }
+  },
+  {
+    id: 'mockup-5-confirmacion-salida',
+    title: 'Pantalla 5: Confirmación de Salida y Recibo Fiscal de Caja',
+    subtitle: 'Liberación reactiva de celda a DISPONIBLE, apertura de talanquera y recibo REC-XXXXXX Ley 1480',
+    imageSrc: '/figma_mockup_pago_salida.jpg',
+    associatedStories: ['HU-08', 'HU-09'],
+    targetDevice: 'Terminal de Caja (1024px)',
+    figmaFrameName: 'Frame 5: Salida Exitosa y Recibo Fiscal',
+    description: 'Pantalla final del ciclo de salida. Confirma el asentamiento contable del pago en la base de datos, emite el recibo oficial de caja consecutivo REC-XXXXXX con validez tributaria, actualiza instantáneamente la celda en el mapa a color verde (DISPONIBLE) y activa el comando de apertura de talanquera vehicular.',
+    keyComponents: [
+      'Banner de éxito: "Salida Completada Exitosamente · Talanquera Abierta"',
+      'Recibo oficial consecutivo REC-008920 con fecha, hora, medio de pago y cajero',
+      'Desglose tributario: Subtotal, Base gravable e IVA régimen simplificado',
+      'Indicador de Celda Liberada: Transición inmediata a DISPONIBLE (verde)',
+      'Botones de acción: Imprimir Recibo, Enviar por Email o Volver a Operaciones'
+    ],
+    uxHighlights: [
+      'Cierre visual inequívoco que garantiza que el automotor ya no figura en patio.',
+      'Generación de documento auditable conforme al Estatuto Tributario y Ley 1480.',
+      'Animación de confirmación de celda desocupada que reduce tiempos muertos en taquilla.'
+    ],
+    designSpecs: {
+      dimensions: '1024 x 768 px (4:3)',
+      primaryAction: 'IMPRIMIR RECIBO FISCAL (#0F172A)',
+      colorPalette: ['#10b981 (Éxito)', '#0f172a (Recibo)', '#3b82f6 (Nueva Operación)', '#ffffff (Fondo)']
     }
   }
 ];
@@ -186,7 +241,19 @@ Elevations: Soft Shadow (0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a
+              href={FIGMA_PROTOTYPE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-md transition-colors shadow-xs cursor-pointer"
+              title="Abrir prototipo interactivo directamente en Figma"
+            >
+              <Figma className="w-4 h-4" />
+              <span>Abrir Prototipo en Figma</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            </a>
+
             <button
               onClick={handleCopyFigmaTokens}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors cursor-pointer"
@@ -207,16 +274,40 @@ Elevations: Soft Shadow (0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 
             <a
               href={currentMockup.imageSrc}
               download={`${currentMockup.id}.jpg`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-md transition-colors shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 rounded-md transition-colors shadow-xs cursor-pointer"
             >
               <Download className="w-4 h-4" />
-              <span>Descargar Mockup HD</span>
+              <span>Descargar Mockup</span>
             </a>
           </div>
         </div>
 
-        {/* Mockup Selector Tabs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 border-t border-slate-100 pt-4">
+        {/* Prototype Alert Banner */}
+        <div className="mt-4 p-3 bg-violet-50/60 border border-violet-200 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-violet-900">
+            <span className="p-1 rounded bg-violet-100 text-violet-700">
+              <Figma className="w-4 h-4" />
+            </span>
+            <div>
+              <span className="font-bold">Prototipo Interactivo Oficial: </span>
+              <span className="text-violet-700 font-mono text-[11px] break-all">
+                node-id=2011-3791 (Parqueadero-Autos-Colombia)
+              </span>
+            </div>
+          </div>
+          <a
+            href={FIGMA_PROTOTYPE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 font-semibold text-violet-700 hover:text-violet-900 hover:underline shrink-0"
+          >
+            <span>Probar navegación en vivo en Figma</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        {/* Mockup Selector Tabs - 5 Screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 mt-5 border-t border-slate-100 pt-4">
           {MOCKUPS.map((mockup) => {
             const isSelected = selectedMockupId === mockup.id;
             return (
