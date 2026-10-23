@@ -188,8 +188,9 @@ const MOCKUPS: MockupDefinition[] = [
 export const FigmaMockupsView: React.FC = () => {
   const [selectedMockupId, setSelectedMockupId] = useState<string>(MOCKUPS[0].id);
   const [copiedTokens, setCopiedTokens] = useState(false);
-
   const [viewMode, setViewMode] = useState<'ui' | 'image'>('ui');
+
+  const currentMockup = MOCKUPS.find(m => m.id === selectedMockupId) || MOCKUPS[0];
 
   const renderMockupPreview = (id: string) => {
     switch (id) {
