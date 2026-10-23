@@ -1,0 +1,650 @@
+{
+  "_type": "Project",
+  "_id": "AAAAAAF8ArquitecturaParqueaderoAutosColombia",
+  "name": "Parqueadero Autos Colombia - Arquitectura del Sistema (4 Capas)",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "AAAAAAF8ModelArquitecturaCapas",
+      "_parent": {
+        "$ref": "AAAAAAF8ArquitecturaParqueaderoAutosColombia"
+      },
+      "name": "Arquitectura de Software N-Tier (StarUML 5.x)",
+      "ownedElements": [
+        {
+          "_type": "UMLClassDiagram",
+          "_id": "AAAAAAF8DiagramArquitecturaPrincipal",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelArquitecturaCapas"
+          },
+          "name": "Diagrama de Arquitectura de 4 Capas",
+          "visible": true,
+          "defaultDiagram": true
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "PKG_Presentacion",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelArquitecturaCapas"
+          },
+          "name": "CapaPresentacion_Frontend",
+          "ownedElements": [
+            {
+              "_type": "UMLClass",
+              "_id": "UI_ModalRegistroEntrada",
+              "_parent": {
+                "$ref": "PKG_Presentacion"
+              },
+              "name": "ModalRegistroEntrada",
+              "stereotype": "boundary",
+              "documentation": "Interfaz utilizada por el Operador de Entrada para validar y registrar vehículos.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_pe1",
+                  "name": "capturarPlacaRUNT"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_pe2",
+                  "name": "seleccionarTipoVehiculo"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_pe3",
+                  "name": "confirmarIngresoBahia"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "UI_VistaMapaCeldas",
+              "_parent": {
+                "$ref": "PKG_Presentacion"
+              },
+              "name": "VistaMapaCeldas",
+              "stereotype": "boundary",
+              "documentation": "Topografía interactiva del parqueadero con estados en tiempo real.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mc1",
+                  "name": "renderizarZonasABC"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mc2",
+                  "name": "seleccionarCeldaLibre"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mc3",
+                  "name": "actualizarAforoEnVivo"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "UI_ModalLiquidacionSalida",
+              "_parent": {
+                "$ref": "PKG_Presentacion"
+              },
+              "name": "ModalLiquidacionSalida",
+              "stereotype": "boundary",
+              "documentation": "Interfaz utilizada por el Cajero de Salida para buscar, liquidar y cobrar.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ls1",
+                  "name": "buscarPorPlacaOTicket"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ls2",
+                  "name": "mostrarTiempoPermanencia"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ls3",
+                  "name": "alertarNovedadesAbiertas"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "UI_CalculadoraCobroPago",
+              "_parent": {
+                "$ref": "PKG_Presentacion"
+              },
+              "name": "CalculadoraCobroPago",
+              "stereotype": "boundary",
+              "documentation": "Módulo de recaudo multicanal (Efectivo con devuelta, Nequi, Daviplata, Tarjetas).",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_cp1",
+                  "name": "seleccionarMedioPago"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_cp2",
+                  "name": "calcularCambioDevuelta"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_cp3",
+                  "name": "imprimirReciboFiscal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "PKG_LogicaNegocio",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelArquitecturaCapas"
+          },
+          "name": "CapaLogicaNegocio_Servicios",
+          "ownedElements": [
+            {
+              "_type": "UMLClass",
+              "_id": "SRV_ValidadorEntrada",
+              "_parent": {
+                "$ref": "PKG_LogicaNegocio"
+              },
+              "name": "ValidadorEntradaVehicular",
+              "stereotype": "service",
+              "documentation": "Valida placas colombianas, restringe duplicados en patio (RN-01) y asigna modalidad.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ve1",
+                  "name": "validarPlacaRUNT",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "placa",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ve2",
+                  "name": "verificarNoDuplicadoPatio",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "placa",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_ve3",
+                  "name": "asociarModalidadServicio",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "placa",
+                      "type": "String"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "SRV_MotorTarifas",
+              "_parent": {
+                "$ref": "PKG_LogicaNegocio"
+              },
+              "name": "MotorTarifasLiquidacion",
+              "stereotype": "service",
+              "documentation": "Calcula permanencia exacta, aplica periodo de gracia de 15 min (RN-09) y liquida fracciones.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mt1",
+                  "name": "calcularMinutosPermanencia",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "hEntrada",
+                      "type": "Date"
+                    },
+                    {
+                      "_type": "UMLParameter",
+                      "name": "hSalida",
+                      "type": "Date"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mt2",
+                  "name": "aplicarPeriodoGracia15Min",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "minutos",
+                      "type": "int"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_mt3",
+                  "name": "liquidarMontoTotal",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "tipo",
+                      "type": "String"
+                    },
+                    {
+                      "_type": "UMLParameter",
+                      "name": "minutos",
+                      "type": "int"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "SRV_GestorCeldas",
+              "_parent": {
+                "$ref": "PKG_LogicaNegocio"
+              },
+              "name": "GestorAsignacionCeldas",
+              "stereotype": "service",
+              "documentation": "Garantiza compatibilidad vehicular por zonas (A, B y C) y bloqueo de concurrencia.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_gc1",
+                  "name": "sugerirCeldaOptima",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "tipoVehiculo",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_gc2",
+                  "name": "bloquearCeldaTransaccional",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "idCelda",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_gc3",
+                  "name": "liberarCeldaSalida",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "idCelda",
+                      "type": "String"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "SRV_GestorCobro",
+              "_parent": {
+                "$ref": "PKG_LogicaNegocio"
+              },
+              "name": "GestorSalidaCobro",
+              "stereotype": "service",
+              "documentation": "Controla el recaudo, cálculo de cambio, novedades abiertas y cierre de estancia.",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_sc1",
+                  "name": "verificarNovedadesPendientes",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "placa",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_sc2",
+                  "name": "procesarPagoTransaccion",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "monto",
+                      "type": "Decimal"
+                    },
+                    {
+                      "_type": "UMLParameter",
+                      "name": "medio",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_sc3",
+                  "name": "calcularCambioDevuelta",
+                  "parameters": [
+                    {
+                      "_type": "UMLParameter",
+                      "name": "recibido",
+                      "type": "Decimal"
+                    },
+                    {
+                      "_type": "UMLParameter",
+                      "name": "total",
+                      "type": "Decimal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "PKG_AccesoDatos",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelArquitecturaCapas"
+          },
+          "name": "CapaAccesoDatos_Repositorios",
+          "ownedElements": [
+            {
+              "_type": "UMLClass",
+              "_id": "DAO_Vehiculo",
+              "_parent": {
+                "$ref": "PKG_AccesoDatos"
+              },
+              "name": "VehiculoRepository",
+              "stereotype": "dao",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dv1",
+                  "name": "findByPlaca"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dv2",
+                  "name": "save"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dv3",
+                  "name": "existsByPlaca"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "DAO_EntradaSalida",
+              "_parent": {
+                "$ref": "PKG_AccesoDatos"
+              },
+              "name": "EntradaVehiculoRepository",
+              "stereotype": "dao",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_de1",
+                  "name": "crearEntrada"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_de2",
+                  "name": "findActivasPatio"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_de3",
+                  "name": "registrarSalidaYPago"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "DAO_Celda",
+              "_parent": {
+                "$ref": "PKG_AccesoDatos"
+              },
+              "name": "CeldaParqueoRepository",
+              "stereotype": "dao",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dc1",
+                  "name": "findDisponiblesPorZona"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dc2",
+                  "name": "actualizarEstadoCelda"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dc3",
+                  "name": "liberarCelda"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "DAO_Pago",
+              "_parent": {
+                "$ref": "PKG_AccesoDatos"
+              },
+              "name": "PagoRepository",
+              "stereotype": "dao",
+              "operations": [
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dp1",
+                  "name": "insertarPago"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dp2",
+                  "name": "findByNumeroRecibo"
+                },
+                {
+                  "_type": "UMLOperation",
+                  "_id": "op_dp3",
+                  "name": "arqueoTurnoCaja"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_type": "UMLPackage",
+          "_id": "PKG_BaseDatos",
+          "_parent": {
+            "$ref": "AAAAAAF8ModelArquitecturaCapas"
+          },
+          "name": "CapaBaseDatos_TablasSQL",
+          "ownedElements": [
+            {
+              "_type": "UMLClass",
+              "_id": "TBL_Vehiculos",
+              "_parent": {
+                "$ref": "PKG_BaseDatos"
+              },
+              "name": "VEHICULOS",
+              "stereotype": "table",
+              "attributes": [
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_v1",
+                  "name": "placa : VARCHAR(8) [PK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_v2",
+                  "name": "tipo_vehiculo : VARCHAR(20)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_v3",
+                  "name": "marca : VARCHAR(40)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_v4",
+                  "name": "modelo : VARCHAR(40)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_v5",
+                  "name": "id_usuario_propietario : UUID [FK]"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "TBL_Entradas",
+              "_parent": {
+                "$ref": "PKG_BaseDatos"
+              },
+              "name": "ENTRADAS_VEHICULOS",
+              "stereotype": "table",
+              "attributes": [
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e1",
+                  "name": "id_entrada : UUID [PK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e2",
+                  "name": "numero_ticket : VARCHAR(20) [UQ]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e3",
+                  "name": "placa : VARCHAR(8) [FK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e4",
+                  "name": "id_celda : VARCHAR(10) [FK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e5",
+                  "name": "hora_entrada : TIMESTAMP"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e6",
+                  "name": "hora_salida : TIMESTAMP"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_e7",
+                  "name": "monto_liquidado : DECIMAL(12,2)"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "TBL_Celdas",
+              "_parent": {
+                "$ref": "PKG_BaseDatos"
+              },
+              "name": "CELDAS_PARQUEO",
+              "stereotype": "table",
+              "attributes": [
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_c1",
+                  "name": "id_celda : VARCHAR(10) [PK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_c2",
+                  "name": "zona : VARCHAR(20)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_c3",
+                  "name": "tipo_permitido : VARCHAR(20)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_c4",
+                  "name": "estado : VARCHAR(20)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_c5",
+                  "name": "placa_actual : VARCHAR(8) [FK]"
+                }
+              ]
+            },
+            {
+              "_type": "UMLClass",
+              "_id": "TBL_Pagos",
+              "_parent": {
+                "$ref": "PKG_BaseDatos"
+              },
+              "name": "PAGOS",
+              "stereotype": "table",
+              "attributes": [
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p1",
+                  "name": "id_pago : UUID [PK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p2",
+                  "name": "numero_recibo : VARCHAR(25) [UQ]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p3",
+                  "name": "id_entrada : UUID [FK]"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p4",
+                  "name": "monto : DECIMAL(12,2)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p5",
+                  "name": "medio_pago : VARCHAR(25)"
+                },
+                {
+                  "_type": "UMLAttribute",
+                  "_id": "col_p6",
+                  "name": "cambio_entregado : DECIMAL(12,2)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

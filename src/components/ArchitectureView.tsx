@@ -30,9 +30,10 @@ import {
 import { UmlDiagramCanvas } from './UmlDiagramCanvas';
 import { UseCaseDiagramView } from './UseCaseDiagramView';
 import { PackageDiagramView } from './PackageDiagramView';
+import { LayeredArchitectureDiagramView } from './LayeredArchitectureDiagramView';
 
 export const ArchitectureView: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'conexiones' | 'paquetes' | 'casos_uso' | 'clases' | 'capas' | 'secuencia' | 'staruml'>('conexiones');
+  const [activeTab, setActiveTab] = useState<'arquitectura_4capas' | 'conexiones' | 'paquetes' | 'casos_uso' | 'clases' | 'capas' | 'secuencia' | 'staruml'>('arquitectura_4capas');
   const [selectedClass, setSelectedClass] = useState<string>(UML_CLASSES[0].name);
   const [copiedNotification, setCopiedNotification] = useState(false);
   const [selectedSequence, setSelectedSequence] = useState<'ENTRADA' | 'SALIDA'>('ENTRADA');
@@ -85,6 +86,22 @@ export const ArchitectureView: React.FC = () => {
 
         {/* SubTabs */}
         <div className="flex items-center gap-2 mt-6 border-b border-slate-200 pb-2 text-xs font-medium overflow-x-auto">
+          <button
+            onClick={() => setActiveTab('arquitectura_4capas')}
+            className={`px-3 py-1.5 rounded-md transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+              activeTab === 'arquitectura_4capas'
+                ? 'bg-blue-600 text-white font-semibold shadow-xs'
+                : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span>Arquitectura del Sistema (4 Capas)</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+              activeTab === 'arquitectura_4capas' ? 'bg-blue-700 text-white' : 'bg-blue-100 text-blue-800'
+            }`}>
+              StarUML N-Tier
+            </span>
+          </button>
           <button
             onClick={() => setActiveTab('conexiones')}
             className={`px-3 py-1.5 rounded-md transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
@@ -151,7 +168,7 @@ export const ArchitectureView: React.FC = () => {
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            Arquitectura por Capas
+            Capas Detalladas
           </button>
           <button
             onClick={() => setActiveTab('secuencia')}
@@ -175,6 +192,11 @@ export const ArchitectureView: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* ARQUITECTURA DEL SISTEMA EN 4 CAPAS (STARUML) */}
+      {activeTab === 'arquitectura_4capas' && (
+        <LayeredArchitectureDiagramView />
+      )}
 
       {/* 0. DIAGRAMA COMPLETO CON CONEXIONES */}
       {activeTab === 'conexiones' && (
