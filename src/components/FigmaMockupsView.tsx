@@ -18,6 +18,13 @@ import {
   Maximize2
 } from 'lucide-react';
 import { USER_STORIES } from '../data/userStoriesData';
+import {
+  Screen1EntradaMockup,
+  Screen2TicketMockup,
+  Screen3BusquedaMockup,
+  Screen4SalidaCobroMockup,
+  Screen5ConfirmacionSalidaMockup
+} from './FigmaScreenMockups';
 
 interface MockupDefinition {
   id: string;
@@ -182,7 +189,24 @@ export const FigmaMockupsView: React.FC = () => {
   const [selectedMockupId, setSelectedMockupId] = useState<string>(MOCKUPS[0].id);
   const [copiedTokens, setCopiedTokens] = useState(false);
 
-  const currentMockup = MOCKUPS.find(m => m.id === selectedMockupId) || MOCKUPS[0];
+  const [viewMode, setViewMode] = useState<'ui' | 'image'>('ui');
+
+  const renderMockupPreview = (id: string) => {
+    switch (id) {
+      case 'mockup-1-entrada':
+        return <Screen1EntradaMockup />;
+      case 'mockup-2-ticket':
+        return <Screen2TicketMockup />;
+      case 'mockup-3-busqueda':
+        return <Screen3BusquedaMockup />;
+      case 'mockup-4-salida-cobro':
+        return <Screen4SalidaCobroMockup />;
+      case 'mockup-5-confirmacion-salida':
+        return <Screen5ConfirmacionSalidaMockup />;
+      default:
+        return <Screen1EntradaMockup />;
+    }
+  };
 
   const handleCopyFigmaTokens = () => {
     const figmaTokens = `/* PARQUEADERO AUTOS COLOMBIA - FIGMA DESIGN TOKENS */
@@ -356,31 +380,62 @@ Elevations: Soft Shadow (0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 
                   {currentMockup.title}
                 </h2>
               </div>
-              <a
-                href={currentMockup.imageSrc}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded transition-colors"
-                title="Abrir imagen completa en pestaña nueva"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>Ver a pantalla completa</span>
-              </a>
-            </div>
+              <div className="flex items-center gap-2">
+                <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200 text-xs">
+                  <button
+                    onClick={() => setViewMode('ui')}
+                    className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${
+                      viewMode === 'ui'
+                        ? 'bg-white text-violet-700 shadow-xs font-semibold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Mockup UI Renderizado (Figma)
+                  </button>
+                  <button
+                    onClick={() => setViewMode('image')}
+                    className={`px-2.5 py-1 rounded font-medium transition-colors cursor-pointer ${
+                      viewMode === 'image'
+                        ? 'bg-white text-violet-700 shadow-xs font-semibold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Captura JPG
+                  </button>
+                </div>
 
-            {/* Mockup Image Container */}
-            <div className="relative rounded-lg overflow-hidden border border-slate-300 bg-slate-950 shadow-md group">
-              <img
-                src={currentMockup.imageSrc}
-                alt={currentMockup.title}
-                className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-              />
-              <div className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-mono text-white flex items-center gap-2">
-                <span>Resolución: {currentMockup.designSpecs.dimensions}</span>
-                <span>•</span>
-                <span>Figma Ready</span>
+                <a
+                  href={currentMockup.imageSrc}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded transition-colors"
+                  title="Abrir imagen en pestaña nueva"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>Pantalla Completa</span>
+                </a>
               </div>
             </div>
+
+            {/* Mockup Display Container: Dedicated UI or Static Image */}
+            {viewMode === 'ui' ? (
+              <div className="rounded-xl overflow-hidden border border-slate-700 shadow-lg">
+                {renderMockupPreview(currentMockup.id)}
+              </div>
+            ) : (
+              <div className="relative rounded-lg overflow-hidden border border-slate-300 bg-slate-950 shadow-md group">
+                <img
+                  src={currentMockup.imageSrc}
+                  alt={currentMockup.title}
+                  className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+                <div className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-mono text-white flex items-center gap-2">
+                  <span>Resolución: {currentMockup.designSpecs.dimensions}</span>
+                  <span>•</span>
+                  <span>Figma Ready</span>
+                </div>
+              </div>
+            )}
 
             {/* Key Components Pills */}
             <div className="space-y-2 pt-2">
