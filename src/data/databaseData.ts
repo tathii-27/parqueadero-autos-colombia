@@ -52,13 +52,13 @@ export const RELATIONAL_TABLES: RelationalTable[] = [
       { column: 'id_usuario_propietario', targetTable: 'USUARIOS_MENSUALISTAS', targetColumn: 'id_usuario', onDelete: 'SET NULL', onUpdate: 'CASCADE' }
     ],
     columns: [
-      { name: 'placa', type: 'VARCHAR(8)', isPk: true, isFk: false, nullable: false, description: 'Placa colombiana formato AAA000 / AAA00A' },
-      { name: 'tipo_vehiculo', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, CAMIONETA, PESADO' },
-      { name: 'marca', type: 'VARCHAR(40)', isPk: false, isFk: false, nullable: false, description: 'Marca (Mazda, Chevrolet, etc.)' },
+      { name: 'placa', type: 'VARCHAR(10)', isPk: true, isFk: false, nullable: false, description: 'Placa colombiana formato AAA000 / AAA00A o BICI-XXX' },
+      { name: 'tipo_vehiculo', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, BICICLETA, PESADO' },
+      { name: 'marca', type: 'VARCHAR(40)', isPk: false, isFk: false, nullable: false, description: 'Marca (Mazda, Chevrolet, Specialized, etc.)' },
       { name: 'modelo', type: 'VARCHAR(40)', isPk: false, isFk: false, nullable: false, description: 'Línea y año de fabricación' },
       { name: 'color', type: 'VARCHAR(30)', isPk: false, isFk: false, nullable: false, description: 'Color predominante de carrocería' },
-      { name: 'id_usuario_propietario', type: 'UUID', isPk: false, isFk: true, fkTarget: 'USUARIOS_MENSUALISTAS.id_usuario', nullable: true, description: 'FK opcional si pertenece a un mensualista' },
-      { name: 'creado_en', type: 'TIMESTAMP', isPk: false, isFk: false, nullable: false, defaultValue: 'CURRENT_TIMESTAMP', description: 'Fecha de primer registro' }
+      { name: 'id_usuario_propietario', type: 'VARCHAR(36)', isPk: false, isFk: true, fkTarget: 'USUARIOS_MENSUALISTAS.id_usuario', nullable: true, description: 'FK opcional si pertenece a un mensualista' },
+      { name: 'creado_en', type: 'DATETIME', isPk: false, isFk: false, nullable: false, defaultValue: 'CURRENT_TIMESTAMP', description: 'Fecha de primer registro' }
     ]
   },
   {
@@ -70,12 +70,12 @@ export const RELATIONAL_TABLES: RelationalTable[] = [
       { column: 'usuario_reservado_id', targetTable: 'USUARIOS_MENSUALISTAS', targetColumn: 'id_usuario', onDelete: 'SET NULL', onUpdate: 'CASCADE' }
     ],
     columns: [
-      { name: 'id_celda', type: 'VARCHAR(10)', isPk: true, isFk: false, nullable: false, description: 'Código único de celda (ej: A-01, B-12, M-05)' },
-      { name: 'zona', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'Zona A (Piso 1), Zona B (Piso 2), Zona M (Motos)' },
-      { name: 'tipo_permitido', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, CAMIONETA, PESADO' },
+      { name: 'id_celda', type: 'VARCHAR(10)', isPk: true, isFk: false, nullable: false, description: 'Código único de celda (ej: A-01, B-12, BICI-01, C-01)' },
+      { name: 'zona', type: 'VARCHAR(30)', isPk: false, isFk: false, nullable: false, description: 'Zona A (Autos), Zona B (Motos), Zona Bici, Zona C (Pesados)' },
+      { name: 'tipo_permitido', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, BICICLETA, PESADO' },
       { name: 'estado', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, defaultValue: "'DISPONIBLE'", description: 'DISPONIBLE, OCUPADA, RESERVADA, MANTENIMIENTO' },
-      { name: 'placa_actual', type: 'VARCHAR(8)', isPk: false, isFk: false, nullable: true, description: 'Placa del vehículo que ocupa la celda en tiempo real' },
-      { name: 'usuario_reservado_id', type: 'UUID', isPk: false, isFk: true, fkTarget: 'USUARIOS_MENSUALISTAS.id_usuario', nullable: true, description: 'FK si la celda es fija para un mensualista' }
+      { name: 'placa_actual', type: 'VARCHAR(10)', isPk: false, isFk: false, nullable: true, description: 'Placa del vehículo que ocupa la celda en tiempo real' },
+      { name: 'usuario_reservado_id', type: 'VARCHAR(36)', isPk: false, isFk: true, fkTarget: 'USUARIOS_MENSUALISTAS.id_usuario', nullable: true, description: 'FK si la celda es fija para un mensualista' }
     ]
   },
   {
@@ -178,94 +178,126 @@ export const RELATIONAL_TABLES: RelationalTable[] = [
     primaryKey: ['id_tarifa'],
     foreignKeys: [],
     columns: [
-      { name: 'id_tarifa', type: 'SERIAL', isPk: true, isFk: false, nullable: false, description: 'Identificador incremental' },
-      { name: 'tipo_vehiculo', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, CAMIONETA, PESADO' },
+      { name: 'id_tarifa', type: 'INT AUTO_INCREMENT', isPk: true, isFk: false, nullable: false, description: 'Identificador incremental' },
+      { name: 'tipo_vehiculo', type: 'VARCHAR(20)', isPk: false, isFk: false, nullable: false, description: 'AUTOMOVIL, MOTOCICLETA, BICICLETA, PESADO' },
       { name: 'valor_hora', type: 'DECIMAL(10,2)', isPk: false, isFk: false, nullable: false, description: 'Tarifa por primera hora en COP' },
       { name: 'valor_fraccion_15min', type: 'DECIMAL(10,2)', isPk: false, isFk: false, nullable: false, description: 'Tarifa cada 15 minutos adicionales' },
       { name: 'valor_dia_completo', type: 'DECIMAL(10,2)', isPk: false, isFk: false, nullable: false, description: 'Tope máximo de 24 horas' },
       { name: 'valor_mensualidad', type: 'DECIMAL(12,2)', isPk: false, isFk: false, nullable: false, description: 'Tarifa mensual estándar' },
       { name: 'vigente_desde', type: 'DATE', isPk: false, isFk: false, nullable: false, description: 'Fecha de aprobación de tarifa' },
-      { name: 'activo', type: 'BOOLEAN', isPk: false, isFk: false, nullable: false, defaultValue: 'TRUE', description: 'Solo 1 tarifa activa por tipo de vehículo' }
+      { name: 'activo', type: 'TINYINT(1)', isPk: false, isFk: false, nullable: false, defaultValue: '1', description: 'Solo 1 tarifa activa por tipo de vehículo' }
     ]
   }
 ];
 
 export const SQL_PHYSICAL_DDL = `-- ========================================================================
--- MODELO FÍSICO DE BASE DE DATOS (SQL DDL)
--- PROYECTO: PARQUEADERO AUTOS COLOMBIA
+-- SISTEMA DE GESTIÓN PARQUEADERO AUTOS COLOMBIA
+-- SCRIPT DE CREACIÓN FÍSICA DE BASE DE DATOS (DDL & DML)
+-- MOTOR COMPATIBLE: MySQL 8.0+ / MySQL Workbench / MariaDB 10.5+
 -- INSTITUCIÓN: IU DIGITAL DE ANTIOQUIA
--- AUTORA: TATIANA GALLEGO
--- MOTOR COMPATIBLE: PostgreSQL 14+ / MySQL 8.0+
+-- ESTUDIANTE: TATIANA GALLEGO (tatiana.gallegog@est.iudigital.edu.co)
+-- FECHA: OCTUBRE 2026 · ITERACIÓN 1
 -- ========================================================================
 
--- Habilitar extensión para UUIDs en PostgreSQL si aplica
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- 1. CONFIGURACIÓN DEL ESQUEMA
+DROP DATABASE IF EXISTS autos_colombia_db;
+CREATE DATABASE autos_colombia_db 
+    CHARACTER SET utf8mb4 
+    COLLATE utf8mb4_unicode_ci;
 
--- 1. TABLA: TARIFAS
-CREATE TABLE IF NOT EXISTS TARIFAS (
-    id_tarifa SERIAL PRIMARY KEY,
+USE autos_colombia_db;
+
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS PAGOS;
+DROP TABLE IF EXISTS NOVEDADES_VEHICULOS;
+DROP TABLE IF EXISTS ENTRADAS_VEHICULOS;
+DROP TABLE IF EXISTS SUSCRIPCIONES_MENSUALES;
+DROP TABLE IF EXISTS CELDAS_PARQUEO;
+DROP TABLE IF EXISTS VEHICULOS;
+DROP TABLE IF EXISTS USUARIOS_MENSUALISTAS;
+DROP TABLE IF EXISTS TARIFAS;
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- 2. TABLA: TARIFAS (Unifica AUTOMOVIL, MOTOCICLETA, BICICLETA, PESADO)
+CREATE TABLE TARIFAS (
+    id_tarifa INT AUTO_INCREMENT PRIMARY KEY,
     tipo_vehiculo VARCHAR(20) NOT NULL,
-    valor_hora DECIMAL(10,2) NOT NULL CHECK (valor_hora >= 0),
-    valor_fraccion_15min DECIMAL(10,2) NOT NULL CHECK (valor_fraccion_15min >= 0),
-    valor_dia_completo DECIMAL(10,2) NOT NULL CHECK (valor_dia_completo >= 0),
-    valor_mensualidad DECIMAL(12,2) NOT NULL CHECK (valor_mensualidad >= 0),
-    vigente_desde DATE NOT NULL DEFAULT CURRENT_DATE,
-    activo BOOLEAN NOT NULL DEFAULT TRUE,
-    CONSTRAINT chk_tipo_vehiculo_tarifa CHECK (tipo_vehiculo IN ('AUTOMOVIL', 'MOTOCICLETA', 'CAMIONETA', 'PESADO'))
-);
+    valor_hora DECIMAL(10,2) NOT NULL,
+    valor_fraccion_15min DECIMAL(10,2) NOT NULL,
+    valor_dia_completo DECIMAL(10,2) NOT NULL,
+    valor_mensualidad DECIMAL(12,2) NOT NULL,
+    vigente_desde DATE NOT NULL DEFAULT (CURRENT_DATE),
+    activo TINYINT(1) NOT NULL DEFAULT 1,
+    CONSTRAINT chk_tarifa_tipo CHECK (tipo_vehiculo IN ('AUTOMOVIL', 'MOTOCICLETA', 'BICICLETA', 'PESADO')),
+    CONSTRAINT chk_tarifa_hora CHECK (valor_hora >= 0),
+    CONSTRAINT chk_tarifa_fraccion CHECK (valor_fraccion_15min >= 0),
+    CONSTRAINT chk_tarifa_dia CHECK (valor_dia_completo >= 0),
+    CONSTRAINT chk_tarifa_mensual CHECK (valor_mensualidad >= 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 2. TABLA: USUARIOS_MENSUALISTAS
-CREATE TABLE IF NOT EXISTS USUARIOS_MENSUALISTAS (
-    id_usuario UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    tipo_documento VARCHAR(10) NOT NULL CHECK (tipo_documento IN ('CC', 'CE', 'NIT', 'PAS')),
-    numero_documento VARCHAR(25) NOT NULL UNIQUE,
+-- 3. TABLA: USUARIOS_MENSUALISTAS
+CREATE TABLE USUARIOS_MENSUALISTAS (
+    id_usuario VARCHAR(36) PRIMARY KEY,
+    tipo_documento VARCHAR(10) NOT NULL,
+    numero_documento VARCHAR(25) NOT NULL,
     nombres VARCHAR(60) NOT NULL,
     apellidos VARCHAR(60) NOT NULL,
     telefono VARCHAR(20) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO' CHECK (estado IN ('ACTIVO', 'MOROSO', 'INACTIVO')),
-    creado_en TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+    email VARCHAR(100) NOT NULL,
+    estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO',
+    creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_usuario_documento UNIQUE (numero_documento),
+    CONSTRAINT uq_usuario_email UNIQUE (email),
+    CONSTRAINT chk_usuario_doc_tipo CHECK (tipo_documento IN ('CC', 'CE', 'NIT', 'PAS')),
+    CONSTRAINT chk_usuario_estado CHECK (estado IN ('ACTIVO', 'MOROSO', 'INACTIVO'))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 3. TABLA: VEHICULOS
-CREATE TABLE IF NOT EXISTS VEHICULOS (
-    placa VARCHAR(8) PRIMARY KEY,
-    tipo_vehiculo VARCHAR(20) NOT NULL CHECK (tipo_vehiculo IN ('AUTOMOVIL', 'MOTOCICLETA', 'CAMIONETA', 'PESADO')),
+-- 4. TABLA: VEHICULOS
+CREATE TABLE VEHICULOS (
+    placa VARCHAR(10) PRIMARY KEY,
+    tipo_vehiculo VARCHAR(20) NOT NULL,
     marca VARCHAR(40) NOT NULL,
     modelo VARCHAR(40) NOT NULL,
     color VARCHAR(30) NOT NULL,
-    id_usuario_propietario UUID NULL,
-    creado_en TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_vehiculo_propietario FOREIGN KEY (id_usuario_propietario)
+    id_usuario_propietario VARCHAR(36) NULL,
+    creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_vehiculo_tipo CHECK (tipo_vehiculo IN ('AUTOMOVIL', 'MOTOCICLETA', 'BICICLETA', 'PESADO')),
+    CONSTRAINT fk_vehiculo_usuario FOREIGN KEY (id_usuario_propietario)
         REFERENCES USUARIOS_MENSUALISTAS (id_usuario)
         ON DELETE SET NULL
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 4. TABLA: CELDAS_PARQUEO
-CREATE TABLE IF NOT EXISTS CELDAS_PARQUEO (
+-- 5. TABLA: CELDAS_PARQUEO
+CREATE TABLE CELDAS_PARQUEO (
     id_celda VARCHAR(10) PRIMARY KEY,
-    zona VARCHAR(20) NOT NULL,
-    tipo_permitido VARCHAR(20) NOT NULL CHECK (tipo_permitido IN ('AUTOMOVIL', 'MOTOCICLETA', 'CAMIONETA', 'PESADO')),
-    estado VARCHAR(20) NOT NULL DEFAULT 'DISPONIBLE' CHECK (estado IN ('DISPONIBLE', 'OCUPADA', 'RESERVADA', 'MANTENIMIENTO')),
-    placa_actual VARCHAR(8) NULL,
-    usuario_reservado_id UUID NULL,
+    zona VARCHAR(30) NOT NULL,
+    tipo_permitido VARCHAR(20) NOT NULL,
+    estado VARCHAR(20) NOT NULL DEFAULT 'DISPONIBLE',
+    placa_actual VARCHAR(10) NULL,
+    usuario_reservado_id VARCHAR(36) NULL,
+    CONSTRAINT chk_celda_tipo CHECK (tipo_permitido IN ('AUTOMOVIL', 'MOTOCICLETA', 'BICICLETA', 'PESADO')),
+    CONSTRAINT chk_celda_estado CHECK (estado IN ('DISPONIBLE', 'OCUPADA', 'RESERVADA', 'MANTENIMIENTO')),
     CONSTRAINT fk_celda_usuario_reserva FOREIGN KEY (usuario_reservado_id)
         REFERENCES USUARIOS_MENSUALISTAS (id_usuario)
         ON DELETE SET NULL
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 5. TABLA: SUSCRIPCIONES_MENSUALES
-CREATE TABLE IF NOT EXISTS SUSCRIPCIONES_MENSUALES (
-    id_suscripcion UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    id_usuario UUID NOT NULL,
+-- 6. TABLA: SUSCRIPCIONES_MENSUALES
+CREATE TABLE SUSCRIPCIONES_MENSUALES (
+    id_suscripcion VARCHAR(36) PRIMARY KEY,
+    id_usuario VARCHAR(36) NOT NULL,
     id_celda_asignada VARCHAR(10) NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_vencimiento DATE NOT NULL,
-    canon_mensual DECIMAL(12,2) NOT NULL CHECK (canon_mensual > 0),
-    estado VARCHAR(20) NOT NULL DEFAULT 'VIGENTE' CHECK (estado IN ('VIGENTE', 'VENCIDA', 'CANCELADA')),
-    dia_corte SMALLINT NOT NULL DEFAULT 5 CHECK (dia_corte BETWEEN 1 AND 28),
+    canon_mensual DECIMAL(12,2) NOT NULL,
+    estado VARCHAR(20) NOT NULL DEFAULT 'VIGENTE',
+    dia_corte SMALLINT NOT NULL DEFAULT 5,
+    CONSTRAINT chk_suscripcion_canon CHECK (canon_mensual > 0),
+    CONSTRAINT chk_suscripcion_estado CHECK (estado IN ('VIGENTE', 'VENCIDA', 'CANCELADA')),
+    CONSTRAINT chk_suscripcion_corte CHECK (dia_corte BETWEEN 1 AND 28),
+    CONSTRAINT chk_suscripcion_fechas CHECK (fecha_vencimiento >= fecha_inicio),
     CONSTRAINT fk_suscripcion_usuario FOREIGN KEY (id_usuario)
         REFERENCES USUARIOS_MENSUALISTAS (id_usuario)
         ON DELETE RESTRICT
@@ -273,24 +305,29 @@ CREATE TABLE IF NOT EXISTS SUSCRIPCIONES_MENSUALES (
     CONSTRAINT fk_suscripcion_celda FOREIGN KEY (id_celda_asignada)
         REFERENCES CELDAS_PARQUEO (id_celda)
         ON DELETE RESTRICT
-        ON UPDATE CASCADE,
-    CONSTRAINT chk_fechas_suscripcion CHECK (fecha_vencimiento >= fecha_inicio)
-);
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 6. TABLA: ENTRADAS_VEHICULOS
-CREATE TABLE IF NOT EXISTS ENTRADAS_VEHICULOS (
-    id_entrada UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    numero_ticket VARCHAR(20) NOT NULL UNIQUE,
-    placa VARCHAR(8) NOT NULL,
-    tipo_servicio VARCHAR(20) NOT NULL DEFAULT 'ROTATIVO' CHECK (tipo_servicio IN ('ROTATIVO', 'MENSUALIDAD', 'CONVENIO')),
+-- 7. TABLA: ENTRADAS_VEHICULOS (Transaccional)
+CREATE TABLE ENTRADAS_VEHICULOS (
+    id_entrada VARCHAR(36) PRIMARY KEY,
+    numero_ticket VARCHAR(20) NOT NULL,
+    placa VARCHAR(10) NOT NULL,
+    tipo_servicio VARCHAR(20) NOT NULL DEFAULT 'ROTATIVO',
     id_celda VARCHAR(10) NOT NULL,
-    hora_entrada TIMESTAMP NOT NULL,
-    hora_salida TIMESTAMP NULL,
+    hora_entrada DATETIME NOT NULL,
+    hora_salida DATETIME NULL,
     notas_inspeccion TEXT NULL,
-    total_minutos INTEGER NULL CHECK (total_minutos IS NULL OR total_minutos >= 0),
-    monto_liquidado DECIMAL(12,2) NOT NULL DEFAULT 0.00 CHECK (monto_liquidado >= 0),
-    estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO' CHECK (estado IN ('ACTIVO', 'LIQUIDADO', 'ANULADO')),
+    total_minutos INT NULL,
+    monto_liquidado DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+    estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO',
     operador_entrada VARCHAR(60) NOT NULL,
+    CONSTRAINT uq_entrada_ticket UNIQUE (numero_ticket),
+    CONSTRAINT chk_entrada_servicio CHECK (tipo_servicio IN ('ROTATIVO', 'MENSUALIDAD', 'CONVENIO')),
+    CONSTRAINT chk_entrada_estado CHECK (estado IN ('ACTIVO', 'LIQUIDADO', 'ANULADO')),
+    CONSTRAINT chk_entrada_minutos CHECK (total_minutos IS NULL OR total_minutos >= 0),
+    CONSTRAINT chk_entrada_monto CHECK (monto_liquidado >= 0),
+    CONSTRAINT chk_entrada_fechas CHECK (hora_salida IS NULL OR hora_salida >= hora_entrada),
     CONSTRAINT fk_entrada_vehiculo FOREIGN KEY (placa)
         REFERENCES VEHICULOS (placa)
         ON DELETE RESTRICT
@@ -298,24 +335,27 @@ CREATE TABLE IF NOT EXISTS ENTRADAS_VEHICULOS (
     CONSTRAINT fk_entrada_celda FOREIGN KEY (id_celda)
         REFERENCES CELDAS_PARQUEO (id_celda)
         ON DELETE RESTRICT
-        ON UPDATE CASCADE,
-    CONSTRAINT chk_horas_entrada_salida CHECK (hora_salida IS NULL OR hora_salida >= hora_entrada)
-);
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 7. TABLA: NOVEDADES_VEHICULOS
-CREATE TABLE IF NOT EXISTS NOVEDADES_VEHICULOS (
-    id_novedad UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    codigo_novedad VARCHAR(20) NOT NULL UNIQUE,
-    placa VARCHAR(8) NOT NULL,
-    id_entrada UUID NULL,
+-- 8. TABLA: NOVEDADES_VEHICULOS
+CREATE TABLE NOVEDADES_VEHICULOS (
+    id_novedad VARCHAR(36) PRIMARY KEY,
+    codigo_novedad VARCHAR(20) NOT NULL,
+    placa VARCHAR(10) NOT NULL,
+    id_entrada VARCHAR(36) NULL,
     id_celda VARCHAR(10) NULL,
-    tipo_novedad VARCHAR(30) NOT NULL CHECK (tipo_novedad IN ('RAYON_GOLPE', 'FUGA_LIQUIDOS', 'LUCES_ENCENDIDAS', 'ALARMA', 'OTRO')),
-    severidad VARCHAR(10) NOT NULL CHECK (severidad IN ('BAJA', 'MEDIA', 'ALTA')),
+    tipo_novedad VARCHAR(30) NOT NULL,
+    severidad VARCHAR(10) NOT NULL,
     descripcion TEXT NOT NULL,
     foto_evidencia_url VARCHAR(255) NULL,
     reportado_por VARCHAR(60) NOT NULL,
-    fecha_reporte TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    estado VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE' CHECK (estado IN ('PENDIENTE', 'NOTIFICADO', 'RESUELTA')),
+    fecha_reporte DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    estado VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE',
+    CONSTRAINT uq_novedad_codigo UNIQUE (codigo_novedad),
+    CONSTRAINT chk_novedad_tipo CHECK (tipo_novedad IN ('RAYON_GOLPE', 'FUGA_LIQUIDOS', 'LUCES_ENCENDIDAS', 'ALARMA', 'OBJETOS_CUSTODIA', 'OTRO')),
+    CONSTRAINT chk_novedad_severidad CHECK (severidad IN ('BAJA', 'MEDIA', 'ALTA')),
+    CONSTRAINT chk_novedad_estado CHECK (estado IN ('PENDIENTE', 'NOTIFICADO', 'RESUELTA')),
     CONSTRAINT fk_novedad_vehiculo FOREIGN KEY (placa)
         REFERENCES VEHICULOS (placa)
         ON DELETE RESTRICT
@@ -328,22 +368,27 @@ CREATE TABLE IF NOT EXISTS NOVEDADES_VEHICULOS (
         REFERENCES CELDAS_PARQUEO (id_celda)
         ON DELETE SET NULL
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 8. TABLA: PAGOS
-CREATE TABLE IF NOT EXISTS PAGOS (
-    id_pago UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    numero_recibo VARCHAR(25) NOT NULL UNIQUE,
-    id_entrada UUID NULL,
-    id_suscripcion UUID NULL,
-    fecha_pago TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    concepto VARCHAR(30) NOT NULL CHECK (concepto IN ('PARQUEO_ROTATIVO', 'CANON_MENSUAL', 'RECARGO_NOVEDAD')),
-    monto DECIMAL(12,2) NOT NULL CHECK (monto >= 0),
-    medio_pago VARCHAR(25) NOT NULL CHECK (medio_pago IN ('EFECTIVO', 'NEQUI', 'DAVIPLATA', 'TARJETA_DEBITO', 'TARJETA_CREDITO', 'TRANSFERENCIA')),
-    monto_recibido DECIMAL(12,2) NULL CHECK (monto_recibido IS NULL OR monto_recibido >= monto),
-    cambio_entregado DECIMAL(12,2) NULL CHECK (cambio_entregado IS NULL OR cambio_entregado >= 0),
+-- 9. TABLA: PAGOS
+CREATE TABLE PAGOS (
+    id_pago VARCHAR(36) PRIMARY KEY,
+    numero_recibo VARCHAR(25) NOT NULL,
+    id_entrada VARCHAR(36) NULL,
+    id_suscripcion VARCHAR(36) NULL,
+    fecha_pago DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    concepto VARCHAR(30) NOT NULL,
+    monto DECIMAL(12,2) NOT NULL,
+    medio_pago VARCHAR(25) NOT NULL,
+    monto_recibido DECIMAL(12,2) NULL,
+    cambio_entregado DECIMAL(12,2) NULL,
     cajero VARCHAR(60) NOT NULL,
-    estado VARCHAR(20) NOT NULL DEFAULT 'PAGADO' CHECK (estado IN ('PAGADO', 'ANULADO')),
+    estado VARCHAR(20) NOT NULL DEFAULT 'PAGADO',
+    CONSTRAINT uq_pago_recibo UNIQUE (numero_recibo),
+    CONSTRAINT chk_pago_concepto CHECK (concepto IN ('PARQUEO_ROTATIVO', 'CANON_MENSUAL', 'RECARGO_NOVEDAD')),
+    CONSTRAINT chk_pago_medio CHECK (medio_pago IN ('EFECTIVO', 'NEQUI', 'DAVIPLATA', 'TARJETA_DEBITO', 'TARJETA_CREDITO', 'TRANSFERENCIA')),
+    CONSTRAINT chk_pago_monto CHECK (monto >= 0),
+    CONSTRAINT chk_pago_estado CHECK (estado IN ('PAGADO', 'ANULADO')),
     CONSTRAINT fk_pago_entrada FOREIGN KEY (id_entrada)
         REFERENCES ENTRADAS_VEHICULOS (id_entrada)
         ON DELETE SET NULL
@@ -351,51 +396,61 @@ CREATE TABLE IF NOT EXISTS PAGOS (
     CONSTRAINT fk_pago_suscripcion FOREIGN KEY (id_suscripcion)
         REFERENCES SUSCRIPCIONES_MENSUALES (id_suscripcion)
         ON DELETE SET NULL
-        ON UPDATE CASCADE,
-    CONSTRAINT chk_pago_origen CHECK (id_entrada IS NOT NULL OR id_suscripcion IS NOT NULL)
-);
+        ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- ========================================================================
--- ÍNDICES DE ALTO RENDIMIENTO (OPTIMIZACIÓN DE CONSULTAS)
--- ========================================================================
-CREATE INDEX idx_entradas_placa ON ENTRADAS_VEHICULOS(placa);
-CREATE INDEX idx_entradas_estado ON ENTRADAS_VEHICULOS(estado);
-CREATE INDEX idx_entradas_ticket ON ENTRADAS_VEHICULOS(numero_ticket);
-CREATE INDEX idx_celdas_estado ON CELDAS_PARQUEO(estado);
-CREATE INDEX idx_novedades_placa ON NOVEDADES_VEHICULOS(placa);
-CREATE INDEX idx_pagos_fecha ON PAGOS(fecha_pago);
-CREATE INDEX idx_pagos_recibo ON PAGOS(numero_recibo);
-CREATE INDEX idx_suscripciones_usuario ON SUSCRIPCIONES_MENSUALES(id_usuario);
-CREATE INDEX idx_suscripciones_vencimiento ON SUSCRIPCIONES_MENSUALES(fecha_vencimiento);
+-- 10. ÍNDICES DE ALTO RENDIMIENTO
+CREATE INDEX idx_entradas_placa ON ENTRADAS_VEHICULOS (placa);
+CREATE INDEX idx_entradas_estado ON ENTRADAS_VEHICULOS (estado);
+CREATE INDEX idx_entradas_fechas ON ENTRADAS_VEHICULOS (hora_entrada, hora_salida);
+CREATE INDEX idx_celdas_estado ON CELDAS_PARQUEO (estado);
+CREATE INDEX idx_celdas_zona ON CELDAS_PARQUEO (zona);
+CREATE INDEX idx_novedades_placa ON NOVEDADES_VEHICULOS (placa);
+CREATE INDEX idx_pagos_fecha ON PAGOS (fecha_pago);
+CREATE INDEX idx_suscripciones_usuario ON SUSCRIPCIONES_MENSUALES (id_usuario);
+CREATE INDEX idx_suscripciones_vencimiento ON SUSCRIPCIONES_MENSUALES (fecha_vencimiento);
 
--- ========================================================================
--- DATOS SEMILLA DE PRUEBA (SEED DATA)
--- ========================================================================
-INSERT INTO TARIFAS (tipo_vehiculo, valor_hora, valor_fraccion_15min, valor_dia_completo, valor_mensualidad, vigente_desde, activo) VALUES
-('AUTOMOVIL', 5000.00, 1500.00, 35000.00, 160000.00, CURRENT_DATE, TRUE),
-('MOTOCICLETA', 2500.00, 800.00, 18000.00, 85000.00, CURRENT_DATE, TRUE),
-('CAMIONETA', 6000.00, 1800.00, 42000.00, 190000.00, CURRENT_DATE, TRUE),
-('PESADO', 10000.00, 3000.00, 75000.00, 320000.00, CURRENT_DATE, TRUE);
+-- 11. POBLAMIENTO INICIAL (SEED DATA CON BICICLETAS)
+INSERT INTO TARIFAS (tipo_vehiculo, valor_hora, valor_fraccion_15min, valor_dia_completo, valor_mensualidad, activo) VALUES
+('AUTOMOVIL',   5000.00, 1500.00, 35000.00, 160000.00, 1),
+('MOTOCICLETA', 2500.00,  800.00, 18000.00,  85000.00, 1),
+('BICICLETA',   1000.00,  300.00,  8000.00,  30000.00, 1),
+('PESADO',      9000.00, 2500.00, 65000.00, 280000.00, 1);
 
 INSERT INTO USUARIOS_MENSUALISTAS (id_usuario, tipo_documento, numero_documento, nombres, apellidos, telefono, email, estado) VALUES
-('11111111-1111-1111-1111-111111111111', 'CC', '1037654321', 'Carlos', 'Gómez Restrepo', '3004567890', 'carlos.gomez@empresa.com', 'ACTIVO'),
-('22222222-2222-2222-2222-222222222222', 'CC', '43890123', 'Mariana', 'Zapata Ospina', '3109876543', 'mariana.zapata@correo.co', 'ACTIVO'),
-('33333333-3333-3333-3333-333333333333', 'NIT', '901456789-1', 'Logística del Café SAS', 'Representante', '3201234567', 'contacto@logisticacafe.com', 'MOROSO');
+('usr-001', 'CC',  '1037654321',  'Carlos Alberto', 'Gómez Restrepo', '3004567890', 'carlos.gomez@empresa.com', 'ACTIVO'),
+('usr-002', 'CC',  '43890123',    'Mariana Sofía',  'Zapata Ospina',  '3109876543', 'mariana.zapata@correo.co', 'ACTIVO'),
+('usr-003', 'NIT', '901456789-1', 'Logística Express SAS', 'Comercial', '3201234567', 'contacto@logisticaexpress.co', 'MOROSO');
 
 INSERT INTO CELDAS_PARQUEO (id_celda, zona, tipo_permitido, estado, placa_actual, usuario_reservado_id) VALUES
-('A-01', 'Zona A (Piso 1)', 'AUTOMOVIL', 'DISPONIBLE', NULL, NULL),
-('A-02', 'Zona A (Piso 1)', 'AUTOMOVIL', 'OCUPADA', 'HNE612', NULL),
-('A-03', 'Zona A (Piso 1)', 'AUTOMOVIL', 'DISPONIBLE', NULL, NULL),
-('A-04', 'Zona A (Piso 1)', 'AUTOMOVIL', 'RESERVADA', NULL, '11111111-1111-1111-1111-111111111111'),
-('M-01', 'Zona M (Motos)', 'MOTOCICLETA', 'DISPONIBLE', NULL, NULL),
-('M-02', 'Zona M (Motos)', 'MOTOCICLETA', 'OCUPADA', 'XYZ789', NULL);
+('A-01', 'Zona A (Autos)',      'AUTOMOVIL',   'DISPONIBLE', NULL, NULL),
+('A-02', 'Zona A (Autos)',      'AUTOMOVIL',   'OCUPADA',    'HNE612', NULL),
+('A-03', 'Zona A (Autos)',      'AUTOMOVIL',   'DISPONIBLE', NULL, NULL),
+('A-04', 'Zona A (Autos)',      'AUTOMOVIL',   'RESERVADA',  NULL, 'usr-001'),
+('B-01', 'Zona B (Motos)',      'MOTOCICLETA', 'DISPONIBLE', NULL, NULL),
+('B-02', 'Zona B (Motos)',      'MOTOCICLETA', 'OCUPADA',    'XYZ789', NULL),
+('BICI-01', 'Zona Bici (Movilidad)', 'BICICLETA', 'DISPONIBLE', NULL, NULL),
+('BICI-02', 'Zona Bici (Movilidad)', 'BICICLETA', 'OCUPADA',    'BICI-044', NULL),
+('C-01', 'Zona C (Pesados)',    'PESADO',      'DISPONIBLE', NULL, NULL);
 
 INSERT INTO VEHICULOS (placa, tipo_vehiculo, marca, modelo, color, id_usuario_propietario) VALUES
-('HNE612', 'AUTOMOVIL', 'Mazda', 'Mazda 3 2023', 'Gris Grafito', NULL),
-('KLY872', 'AUTOMOVIL', 'Chevrolet', 'Onix Sedan 2022', 'Azul Eléctrico', '11111111-1111-1111-1111-111111111111'),
-('XYZ789', 'MOTOCICLETA', 'Yamaha', 'NMAX 155 2024', 'Negro Mate', '22222222-2222-2222-2222-222222222222');
+('HNE612',   'AUTOMOVIL',   'Mazda',     'Mazda 3 2023',      'Gris Grafito', NULL),
+('KLY872',   'AUTOMOVIL',   'Chevrolet', 'Onix Turbo 2022',   'Azul Zafiro',  'usr-001'),
+('XYZ789',   'MOTOCICLETA', 'Yamaha',    'NMAX 155 2024',     'Negro Mate',   'usr-002'),
+('BICI-044', 'BICICLETA',   'Specialized','Rockhopper Expert','Rojo Carrera', NULL),
+('WFD310',   'PESADO',      'Hino',      'Dutro City 2021',   'Blanco',       'usr-003');
 
 INSERT INTO SUSCRIPCIONES_MENSUALES (id_suscripcion, id_usuario, id_celda_asignada, fecha_inicio, fecha_vencimiento, canon_mensual, estado, dia_corte) VALUES
-('44444444-4444-4444-4444-444444444444', '11111111-1111-1111-1111-111111111111', 'A-04', CURRENT_DATE - INTERVAL '15 day', CURRENT_DATE + INTERVAL '15 day', 160000.00, 'VIGENTE', 5),
-('55555555-5555-5555-5555-555555555555', '22222222-2222-2222-2222-222222222222', 'M-02', CURRENT_DATE - INTERVAL '40 day', CURRENT_DATE - INTERVAL '10 day', 85000.00, 'VENCIDA', 10);
+('sub-001', 'usr-001', 'A-04', DATE_SUB(CURDATE(), INTERVAL 10 DAY), DATE_ADD(CURDATE(), INTERVAL 20 DAY), 160000.00, 'VIGENTE', 5),
+('sub-002', 'usr-002', 'B-02', DATE_SUB(CURDATE(), INTERVAL 35 DAY), DATE_SUB(CURDATE(), INTERVAL 5 DAY),   85000.00, 'VENCIDA', 10);
+
+INSERT INTO ENTRADAS_VEHICULOS (id_entrada, numero_ticket, placa, tipo_servicio, id_celda, hora_entrada, hora_salida, notas_inspeccion, total_minutos, monto_liquidado, estado, operador_entrada) VALUES
+('ent-001', 'PAC-2026-1042', 'HNE612',   'ROTATIVO', 'A-02',    DATE_SUB(NOW(), INTERVAL 2 HOUR), NULL, 'Vehículo ingresa con paquete declarado en maletero.', NULL, 0.00, 'ACTIVO', 'Camila Martínez'),
+('ent-002', 'PAC-2026-1040', 'XYZ789',   'MENSUALIDAD', 'B-02', DATE_SUB(NOW(), INTERVAL 4 HOUR), NULL, 'Sin rayones visibles. Casco dejado en custodia.', NULL, 0.00, 'ACTIVO', 'Camila Martínez'),
+('ent-003', 'PAC-2026-1038', 'BICI-044', 'ROTATIVO', 'BICI-02', DATE_SUB(NOW(), INTERVAL 1 HOUR), NULL, 'Bicicleta electro-asistida asegurada con candado en U.', NULL, 0.00, 'ACTIVO', 'Carlos Mendoza');
+
+INSERT INTO NOVEDADES_VEHICULOS (id_novedad, codigo_novedad, placa, id_entrada, id_celda, tipo_novedad, severidad, descripcion, reportado_por, estado) VALUES
+('nov-001', 'NOV-2026-001', 'HNE612', 'ent-001', 'A-02', 'RAYON_GOLPE', 'MEDIA', 'Rayón previo de 15 cm en guardabarros documentado.', 'Camila Martínez', 'NOTIFICADO');
+
+INSERT INTO PAGOS (id_pago, numero_recibo, id_entrada, id_suscripcion, fecha_pago, concepto, monto, medio_pago, monto_recibido, cambio_entregado, cajero, estado) VALUES
 `;
