@@ -502,20 +502,40 @@ export const ParkingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return renewalPayment;
   };
 
-  const updateCellStatus = (cellId: string, status: CellStatus, notes?: string) => {
-    setCells(prev =>
-      prev.map(c => {
-        if (c.id === cellId) {
-          return {
-            ...c,
-            status,
-            notes: notes !== undefined ? notes : c.notes,
-          };
-        }
-        return c;
-      })
+  const updateCellStatus = (
+  cellId: string,
+  status: CellStatus,
+  notes?: string
+) => {
+  const cell = cells.find(c => c.id === cellId);
+
+  if (!cell) {
+    throw new Error('La celda seleccionada no existe.');
+  }
+
+  if (
+    cell.status === 'OCUPADA' &&
+    (status === 'DISPONIBLE' || status === 'MANTENIMIENTO')
+  ) {
+    throw new Error(
+      'No se puede liberar ni enviar a mantenimiento una celda ocupada.'
     );
-  };
+  }
+
+  setCells(prev =>
+    prev.map(c => {
+      if (c.id === cellId) {
+        return {
+          ...c,
+          status,
+          notes: notes !== undefined ? notes : c.notes,
+        };
+      }
+
+      return c;
+    })
+  );
+};
 
   const createCell = (cellData: Omit<ParkingCell, 'id'>): ParkingCell => {
     const newCell: ParkingCell = {
